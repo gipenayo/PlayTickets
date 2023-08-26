@@ -18,6 +18,7 @@
       <button type="submit">Login</button>
     </form>
     <p>¿No está registrado? <a href="register.html">Registrate aquí</a></p>
+    <p>¿Olvidaste tu contraseña? <a href="recovery_form.html">Haga click aqui</a></p>
   </div>
 </div>
 </body>

@@ -17,8 +17,8 @@
       <input type="password" name="password" placeholder="Password" required>
       <button type="submit">Login</button>
     </form>
-    <p>¿No está registrado? <a href="register.html">Registrate aquí</a></p>
-    <p>¿Olvidaste tu contraseña? <a href="recovery_form.html">Haga click aqui</a></p>
+    <p>¿No está registrado? <a href="../view/register.php">Registrate aquí</a></p>
+    <p>¿Olvidaste tu contraseña? <a href="">Haga click aqui</a></p>
   </div>
 </div>
 </body>

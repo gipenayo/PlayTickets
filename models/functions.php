@@ -1,7 +1,5 @@
 <?php
 // GUARDAMOS TODAS LAS FUNCIONES QUE VAMOS A USAR
-
-
 function database()
 {
     $user_password = getenv("MYSQL_ROOT_PASSWORD");
@@ -27,6 +25,5 @@ function add ($genero)
     $bd=database();
     $sente=$bd->prepare("INSERT INTO genders(gender) VALUES (?)");
     return $sente->execute([$genero]);
-
 }
 ?>

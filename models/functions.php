@@ -1,6 +1,6 @@
 <?php
 // GUARDAMOS TODAS LAS FUNCIONES QUE VAMOS A USAR
-date_default_timezone_get("America/Argentina");
+
 
 function database()
 {

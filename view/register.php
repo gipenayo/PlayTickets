@@ -10,29 +10,19 @@
     <div class="register-container">
         <div class="register-box">
           <div class="logo-container">
-            <img src="../assets/img/img2.png" alt="Logo">
-          </div>
-          <div class="form-row">
-            <input type="text" id="first-name" placeholder="Nombre">
-            <input type="text" id="last-name" placeholder="Apellido">
-          </div>
-          <div class="form-row">
-            <input type="text" id="dni" placeholder="DNI">
-            <input type="tel" id="phone" placeholder="Teléfono">
-          </div>
+            <h2 class="title-with-logo">Registrate <img src="../assets/img/logo.png.png" alt="" ></h2>
+           </div>
+         
+          
           <div class="form-row">
             <input type="email" id="email" placeholder="Correo Electrónico">
-            <input type="number" id="age" placeholder="Edad">
+          </div>
+         
+          <div class="form-row"> 
+          <input type="password" id="password" placeholder="Contraseña">
+
           </div>
           <div class="form-row">
-            <input type="text" id="street" placeholder="Calle">
-            <input type="number" id="street-number" placeholder="Altura">
-          </div>
-          <div class="form-row">
-            <input type="text" id="city" placeholder="Localidad">
-          </div>
-          <div class="form-row">
-            <input type="password" id="password" placeholder="Contraseña">
             <input type="password" id="confirm-password" placeholder="Conf. Contraseña">
           </div>
           <button id="register-button">Registrarse</button>

@@ -38,6 +38,11 @@
             </div>
             <button type="submit" id="register-button">Registrarse</button>
           </form> 
+            <h2 class="title-with-logo">Registrate <img src="../assets/img/logo.png.png" alt="" ></h2>
+           </div>
+         
+          
+          <div class="form-row">
           <p>¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a></p>
         </div>
       </div>

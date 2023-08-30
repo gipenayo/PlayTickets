@@ -1,3 +1,7 @@
+<?php
+include_once "../models/functions.php";
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,32 +16,31 @@
           <div class="logo-container">
             <img src="../assets/img/img2.png" alt="Logo">
           </div>
+          <form action="save_register.php" method="post">
           <div class="form-row">
-            <input type="text" id="first-name" placeholder="Nombre">
-            <input type="text" id="last-name" placeholder="Apellido">
+            <input type="text" name="first_name" id="first_name"placeholder="Nombre">
+            <input type="text" name="last_name" id="last_name"placeholder="Apellido">
           </div>
           <div class="form-row">
-            <input type="text" id="dni" placeholder="DNI">
-            <input type="tel" id="phone" placeholder="Teléfono">
+            <input type="text" name ="dni" id="dni" placeholder="DNI">
+            <input type="email" name="email" id="email" placeholder="Correo Electrónico">
           </div>
           <div class="form-row">
-            <input type="email" id="email" placeholder="Correo Electrónico">
-            <input type="number" id="age" placeholder="Edad">
+          <input type="tel" name="phone" id="phone" placeholder="Teléfono">
+            <input type="datetime-local" name="date_birth" id="date_birth">
+          </div> 
+          <div class="form-row">
+          <input type="street" name="street" id="street" placeholder="Calle">
+          <input type="height" name="height" id="height" placeholder="Altura">
           </div>
           <div class="form-row">
-            <input type="text" id="street" placeholder="Calle">
-            <input type="number" id="street-number" placeholder="Altura">
+          <input type="password" name="_password" id="_password" placeholder="Contraseña">
+          <input type="" name="" id="" placeholder="Confirmar contraseña">
           </div>
-          <div class="form-row">
-            <input type="text" id="city" placeholder="Localidad">
-          </div>
-          <div class="form-row">
-            <input type="password" id="password" placeholder="Contraseña">
-            <input type="password" id="confirm-password" placeholder="Conf. Contraseña">
-          </div>
-          <button id="register-button">Registrarse</button>
+          <button type="submit" id="register-button">Registrarse</button>
           <p>¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a></p>
         </div>
+        </form>
       </div>
 </body>
 </html>

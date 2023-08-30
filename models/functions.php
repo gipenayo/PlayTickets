@@ -12,5 +12,18 @@ function database()
     $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
     return $database;
 }
+function register ($first_name, $last_name, $dni ,$email,$phone,$date_birth,$street,$height,$_password)
+{
+    $bd=database();
+    $sente=$bd->prepare("INSERT INTO users(user_name,last_name,dni,email,phone,date_birth,street,height,_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    return $sente->execute([$first_name, $last_name,$dni, $email, $phone,$date_birth,$street,$height,$_password]);
 
+}
+
+function add ($genero)
+{
+    $bd=database();
+    $sente=$bd->prepare("INSERT INTO genders(gender) VALUES (?)");
+    return $sente->execute([$genero]);
+}
 ?>

@@ -1,13 +1,11 @@
 <?php
 // GUARDAMOS TODAS LAS FUNCIONES QUE VAMOS A USAR
-//date_default_timezone_get("America/Argentina");
+date_default_timezone_get("America/Argentina");
 
 function database()
 {
     $user_password = getenv("MYSQL_ROOT_PASSWORD");
     $user_name = getenv("MYSQL_PASSWORD");
-    /*var_dump($user_name);
-    exit;*/
     $databasename = "PlayTickets";
     $database = new PDO('mysql:host=db;dbname=' . $databasename, $user_name, $user_password);
     $database->query("set names utf8;");

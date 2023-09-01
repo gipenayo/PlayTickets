@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/login.css">
     <title>PlayTickets</title>
+    <link rel="icon" type="image/png" href="../assets/img/logo.png.png">
+
 </head>
 <body>
 <div class="login-container">
   <div class="login-box">
     <div class="logo-container">
-      <img src="../assets/img/img1.png" alt="Icon">
+    <h2 class="title-with-logo">Recupera tu cuenta<img src="../assets/img/logo.png.png" alt="" ></h2>
     </div>
-        <form action="recuperar_contrasena.php" method="post">
-            <label for="email">Correo electrónico:</label>
-            <input type="email" id="email" name="email" required>
-            <button type="submit">Recuperar contraseña</button>
-        </form>
-        <p>¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a></p>
+    <form action="#" method="post">
+      <input type="text" name="username" placeholder="Correo Electronico" required><br><br>
+      <button type="submit">Confirmar</button><br>
+
+    </form>
+    <p>¿No está registrado? <a href="../view/register.php">Registrate aquí</a></p>
+    <p>¿Olvidaste tu contraseña? <a href="../view/recovery_form.php">Haga click aqui</a></p>
   </div>
 </div>
 </body>

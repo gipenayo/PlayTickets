@@ -8,9 +8,12 @@ include_once "../models/functions.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../assets/css/register.css">
+    <link rel="icon" type="image/png" href="../assets/img/logo.png.png">
+
     <title>Registro</title>
 </head>
 <body>
+
     <div class="register-container">
         <div class="register-box">
           <div class="logo-container">
@@ -37,8 +40,9 @@ include_once "../models/functions.php";
           <input type="floor" name="floor" id="floor" placeholder="piso">
           <input type="cuil" name="cuil" id="cuil" placeholder="cuil">
           </div>
-          <button type="submit" id="register-button">Continuar</button>
-          <p>¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a></p>
+
+          <button id="register-button">Registrarse</button>
+          <p>¿Ya tienes cuenta? <a href="../view/login.php">Iniciar sesión</a></p>
         </div>
         </form>
       </div>

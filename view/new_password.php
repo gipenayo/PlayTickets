@@ -13,11 +13,13 @@
       <img src="../assets/img/logo.png.png" alt="Icon">
     </div>
         <form action="../controller/mail.php" method="post">
-            <label for="email">Correo electrónico:</label>
-            <input type="email" id="email" name="email" required>
-            <button type="submit">Recuperar contraseña</button>
+            <label for="email">Nueva Password</label>
+            <input type="email" id="email" name="email" required><br>
+            <label for="email">Confirmar Password</label>
+            <input type="email" id="email" name="email_1" required>
+            
+            <button type="submit">Cambiar contraseña</button>
         </form>
-        <p>¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a></p>
   </div>
 </div>
 </body>

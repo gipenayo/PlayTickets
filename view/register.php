@@ -14,30 +14,30 @@ include_once "../models/functions.php";
     <div class="register-container">
         <div class="register-box">
           <div class="logo-container">
-            <img src="../assets/img/img2.png" alt="Logo">
+            <img src="../assets/img/logo.png.png" alt="Logo">
           </div>
-          <form action="save_register.php" method="post">
+          <form action="../controller/save_register.php" method="post">
           <div class="form-row">
             <input type="text" name="first_name" id="first_name"placeholder="Nombre">
             <input type="text" name="last_name" id="last_name"placeholder="Apellido">
           </div>
           <div class="form-row">
             <input type="text" name ="dni" id="dni" placeholder="DNI">
-            <input type="email" name="email" id="email" placeholder="Correo Electrónico">
+            <input type="tel" name="phone" id="phone" placeholder="Teléfono">
           </div>
-          <div class="form-row">
-          <input type="tel" name="phone" id="phone" placeholder="Teléfono">
-            <input type="datetime-local" name="date_birth" id="date_birth">
+          <div class="form-row"> 
+            <input type="date" name="date_birth" id="date_birth">
+            <input type="street" name="street" id="street" placeholder="Calle">
           </div> 
           <div class="form-row">
-          <input type="street" name="street" id="street" placeholder="Calle">
           <input type="height" name="height" id="height" placeholder="Altura">
+          <input type="departament" name="departament" id="departament" placeholder="departamento">
           </div>
           <div class="form-row">
-          <input type="password" name="_password" id="_password" placeholder="Contraseña">
-          <input type="" name="" id="" placeholder="Confirmar contraseña">
+          <input type="floor" name="floor" id="floor" placeholder="piso">
+          <input type="cuil" name="cuil" id="cuil" placeholder="cuil">
           </div>
-          <button type="submit" id="register-button">Registrarse</button>
+          <button type="submit" id="register-button">Continuar</button>
           <p>¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a></p>
         </div>
         </form>

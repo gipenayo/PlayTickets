@@ -12,6 +12,7 @@
 <div class="login-container">
   <div class="login-box">
     <div class="logo-container">
+
     <h2 class="title-with-logo">Recupera tu cuenta<img src="../assets/img/logo.png.png" alt="" ></h2>
     </div>
     <form action="#" method="post">

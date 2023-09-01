@@ -13,9 +13,10 @@ function database()
     $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
     return $database;
 }
-function register ($first_name, $last_name, $dni ,$email,$phone,$date_birth,$street,$height,$_password)
+function register ($first_name, $last_name, $dni ,$phone,$date_birth,$street,$height,$departament,$floor,$cuil)
 {
     $bd=database();
+
     $sentence=$bd->prepare("INSERT INTO users(user_name,last_name,dni,email,phone,date_birth,street,height,_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     return $sentence->execute([$first_name, $last_name,$dni, $email, $phone,$date_birth,$street,$height,$_password]);
 
@@ -27,6 +28,7 @@ function getGender()
     $sentence = $bd->query("SELECT id_gender , gender FROM genders");
     return $sentence->fetchAll();
 }
+
 
 function getCategory()
 {
@@ -50,6 +52,7 @@ function getShow()
     $sentence = $bd->query("SELECT  show_name , show_description , show_date_time , id_gender , id_category FROM shows");
     return $sentence->fetchAll();
 }
+
 
 function searchShow($show_name)
 {
@@ -81,4 +84,5 @@ function deleteSHow($id_show)
     return $sentence->execute([$id_show]);
 }
 
+ main
 ?>

@@ -1,3 +1,4 @@
+/* Agrega esta línea en el encabezado de tu archivo CSS */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 body {
@@ -8,23 +9,23 @@ body {
   color: #333;
 }
 
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px);
+}
+
 .login-box {
   background-color: #fff;
   color: #333;
   width: 400px;
-  padding: 40px 30px;
+  padding: 30px;
   text-align: center;
   border-radius: 15px;
   border: 2px solid #e0e0e0;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   margin: auto;
-}
-
-.login-box h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 28px;
-  color: #333;
-  margin-bottom: 20px;
 }
 
 .logo-container {
@@ -40,33 +41,39 @@ body {
   margin-right: 10px;
 }
 
-.login-box input[type="text"],
-.login-box input[type="password"] {
+.login-box h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.login-box form {
+  margin-bottom: 20px;
+}
+
+.login-box input {
   width: 100%;
-  padding: 15px;
-  margin-top: 15px;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
+  padding: 12px;
+  border: none;
+  border-bottom: 2px solid #e0e0e0;
   outline: none;
   font-size: 16px;
   transition: border-color 0.3s;
 }
 
-.login-box input[type="text"]:focus,
-.login-box input[type="password"]:focus {
+.login-box input:focus {
   border-color: #333;
 }
 
 .login-box button {
   width: 100%;
   padding: 12px;
-  margin-top: 20px;
   background-color: #333;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   transition: background-color 0.3s;
 }
 
@@ -76,6 +83,7 @@ body {
 
 .login-box p {
   margin-top: 20px;
+  color: #555;
   font-size: 14px;
 }
 
@@ -89,13 +97,6 @@ body {
   color: #555;
 }
 
-/* Media Query para pantallas más pequeñas */
-@media (max-width: 480px) {
-  .login-box {
-    width: 100%;
-    padding: 25px;
-  }
-}
 .title-with-logo {
   display: flex;
   align-items: center;
@@ -111,3 +112,4 @@ body {
   height: auto;
   margin-left: 120px;
 }
+3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       w                         

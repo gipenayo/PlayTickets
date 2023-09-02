@@ -14,9 +14,9 @@
     </div>
         <form action="../controller/mail.php" method="post">
             <label for="email">Nueva Password</label>
-            <input type="email" id="email" name="email" required><br>
+            <input type="password" id="password" name="password" required><br>
             <label for="email">Confirmar Password</label>
-            <input type="email" id="email" name="email_1" required>
+            <input type="password" id="password" name="password_1" required>
             
             <button type="submit">Cambiar contraseña</button>
         </form>

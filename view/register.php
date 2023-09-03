@@ -12,7 +12,7 @@
           <div class="logo-container">
             <img src="../assets/img/img2.png" alt="Logo">
           </div>
-          <form action="../controller/welcome_mail.php" method="post"> 
+          <form action="../controller/WelcomeMail.php" method="post"> 
             <div class="form-row">
               <input type="text" id="first-name" name="first-name" placeholder="Nombre">
               <input type="text" id="last-name" name="last-name" placeholder="Apellido">

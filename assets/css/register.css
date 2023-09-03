@@ -54,8 +54,8 @@ body {
 }
 
 .logo-container img {
-  width: 200px;
-  height: 90px;
+  width: 10px;
+  height: 10px;
   margin-right: 10px;
 }
 
@@ -126,7 +126,7 @@ body {
 }
 
 .title-with-logo img {
-  width: 120px; /* Ajusta el tamaño según tus preferencias */
-  height: auto;
-  margin-left: 120px;
+  width: 90px; /* Ajusta el tamaño según tus preferencias */
+  height: 90px;
+
 }

@@ -2,11 +2,11 @@
 
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
+ev
 /*var_dump($show);
 exit;*/
 $genders = getGender();
 $categorys= getCategory();
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,6 +16,7 @@ $categorys= getCategory();
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/edit_form_show.css">
     <link rel="icon" type="img/logo" href="../assets/img/logo.png.png"><!--Icono en la pestaña-->
+
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
     <title>PlayTickets</title>
 </head>
@@ -53,6 +54,7 @@ $categorys= getCategory();
                 </div>
                 <div class="form-group">
                     <label for="id_gender">Seleccione un genero:</label>
+
                     <select class="form-control" name="id_gender" id="id_gender">
                     <?php 
                         $opcion_gender=$show->id_gender;//le asigno el numero de id a la opcion
@@ -62,12 +64,14 @@ $categorys= getCategory();
                             {
                                 echo "selected";
                             } ?> value="<?php echo $option_get_gender->gender ?>"><?php echo $option_get_gender->gender ?></option>
+
                         <?php } ?>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="id_category">Calificaciones: </label><br>
                     <select class="form-control" id="id_category" name="id_category">
+
                         <?php 
                         $opcion_category=$show->id_category;//le asigno el numero de id a la opcion
                         foreach ($categorys as $option_get_category) { ?>

@@ -1,6 +1,7 @@
 <?php
 include_once "../models/functions.php";
 
+
 /*$gender = $_POST["id_gender"];
 var_dump($gender);
 exit;*/
@@ -37,3 +38,4 @@ if (!$ok) {
     exit;
 }
 ?>
+

@@ -13,6 +13,7 @@ $categorys= getCategory();
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/add_fuction.css">
     <link rel="icon" type="img/logo" href="../assets/img/logo.png.png"><!--Icono en la pestaña-->
+
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
     <title>PlayTickets</title>
 </head>
@@ -37,10 +38,12 @@ $categorys= getCategory();
             <label for="show_name">Nombre de la función:</label>
             <input required type="text" class="form-control" name="show_name" id="show_name">
         </div>
+
     
         <div class="form-group">
             <label for="monto">Descripción de la función:</label>
             <textarea id="show_description" name="show_description" rows="4" cols="50"></textarea><br><br>
+
         </div>
         <div class="form-group">
             <label for="show_date_time">Fecha y Hora:</label>

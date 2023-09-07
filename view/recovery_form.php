@@ -32,8 +32,9 @@
 
     <h2 class="title-with-logo">Recupera tu cuenta<img src="../assets/img/logo.png.png" alt="" ></h2>
     </div>
-    <form action="#" method="post">
-      <input type="text" name="username" placeholder="Correo Electronico" required><br><br>
+    <form action="../controller/mail.php" method="post">
+      <input type="email" name="email" placeholder="Correo Electronico" required><br><br>
+
       <button type="submit">Confirmar</button><br>
 
     </form>

@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,7 +20,9 @@
             <div class="panel">
 
                 <ul>
-                    <li><a href="index.php">Cartelera</a></li>
+
+                    <li><a href="../index.php">Cartelera</a></li>
+
                     <li><a href="../view/login.php">Ingresar</a></li>
                     <li><a href="../view/register.php">Registrarse</a></li>
                     <li><a href="#">Contacto</a></li>
@@ -30,9 +35,10 @@
     <div class="logo-container">
     <h2 class="title-with-logo"> Login<img src="../assets/img/logo.png.png" alt="" ></h2>
     </div>
-    <form action="login.php" method="post">
-      <input type="text" name="username" placeholder="Correo Electronico" required>
-      <input type="password" name="password" placeholder="Password" required><br><br>
+    <form action="../controller/save_login.php" method="post">
+      <input type="email" name="email" placeholder="Correo Electronico" required>
+      <input type="_password" name="_password" placeholder="Password" required><br><br>
+   
       <button type="submit">Login</button>
     </form>
     <p>¿No está registrado? <a href="../view/register.php">Registrate aquí</a></p>
@@ -55,5 +61,7 @@
     </footer>
     <script src="../assets/js/barnavfooter.js"></script>
     
+ev
 </body>
+
 </html>

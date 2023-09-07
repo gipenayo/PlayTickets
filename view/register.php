@@ -35,20 +35,38 @@
            </div>
          
           
+           <form action="../controller/welcome_mail.php" method="post">
           <div class="form-row">
+            <input type="text" name="first_name" id="first_name"placeholder="Nombre" required>
+            <input type="text" name="last_name" id="last_name"placeholder="Apellido" required>
+          </div>
+          <div class="form-row">
+            <input type="email" name="email" placeholder="Correo Electronico" required>
+            <input type="text" name ="dni" id="dni" placeholder="DNI" required>
 
-            <input type="email" id="email" placeholder="Correo Electrónico">
           </div>
          
           <div class="form-row"> 
-          <input type="password" id="password" placeholder="Contraseña">
 
+            <input type="tel" name="phone" id="phone" placeholder="Teléfono" required>
+            <input type="date" name="date_birth" id="date_birth" required>
+          </div> 
+          <div class="form-row">
+            <input type="street" name="street" id="street" placeholder="Calle">
+            <input type="height" name="height" id="height" placeholder="Altura">
           </div>
           <div class="form-row">
-            <input type="password" id="confirm-password" placeholder="Conf. Contraseña">
+            <input type="departament" name="departament" id="departament" placeholder="departamento">
+            <input type="floor" name="floor" id="floor" placeholder="piso">
           </div>
-          <button id="register-button">Registrarse</button>
-          <p>¿Ya tienes cuenta? <a href="../view/login.php">Iniciar sesión</a></p>
+          <div class="form-row">
+          <input type="cuil" name="cuil" id="cuil" placeholder="cuil">
+          <input type="password" name="_password" placeholder="Password" required>
+          </div>
+          <button type="submit" id="register-button">Continuar</button>
+          <p>¿Ya tienes cuenta? <a href="login.php">Iniciar sesión</a></p>
+        </div>
+        </form>
         </div>
       </div>
      </main> 

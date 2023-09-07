@@ -1,11 +1,14 @@
 <?php
 include_once"../models/functions.php";
+
+
+
 if (!isset($_GET["search"]) || empty($_GET["search"]))
 {
     $shows = getShow();
 } else {
     $shows = searchShow($_GET["search"]);
-}
+}ev
 $get_category=getShowDetallCategory();
 $get_gender=getShowDetallGender();
 ?>
@@ -17,6 +20,7 @@ $get_gender=getShowDetallGender();
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/supplier.css"> 
     <link rel="icon" type="img/logo" href="../assets/img/logo.png.png"><!--Icono en la pestaña-->
+
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
     <title>PlayTickets</title>
 </head>

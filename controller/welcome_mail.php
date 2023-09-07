@@ -5,15 +5,40 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../controller/vendor/autoload.php';
+require '../vendor/autoload.php';
 
 
+include_once "../models/functions.php";
+
+
+$first_name = $_POST["first_name"];
+$last_name = $_POST["last_name"];
 $email = $_POST["email"];
-$conf=false;
+$dni = $_POST["dni"];
+$phone = $_POST["phone"];
+$date_birth = $_POST["date_birth"];
+$street = $_POST["street"];
+$height = $_POST["height"];
+$departament = $_POST["departament"];
+$floor = $_POST["floor"];
+$cuil = $_POST["cuil"];
+$password = $_POST["_password"];
+
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+$ok = register($first_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $departament, $floor, $cuil, $hashed_password);
+
+if (!$ok) {
+    echo "Error registrando.";
+} else {
+    $_SESSION["nombre"] = $first_name;
 
 
-function welcome($email)
-{
+
+    
+$email = $_POST["email"];
+
+
 $mail = new PHPMailer(true);
 
 if (!empty($email)) {
@@ -34,11 +59,12 @@ if (!empty($email)) {
     $src_imagen = '../assets/img/logo.fondo.png';
     $mail->addEmbeddedImage($src_imagen, 'logo');
 
-    $mail->isHTML(true);     
-    $mail->CharSet='UTF-8';                      
+    $mail->isHTML(true);     ev    $mail->
+CharSet='UTF-8';                      
     $mail->Subject = 'Bienvenido';
     $mail->Body = '
     <h1>¡Bienvenido a PlayTickets!</h1>
+
     <p>
     Estamos encantados de tenerte aquí.
     Explora y disfruta de todos nuestros servicios. 
@@ -47,7 +73,7 @@ if (!empty($email)) {
     <img src="cid:logo">';
 
     
-    $mail->send();
+    $mail->send();ev
    return true;
 }
 }
@@ -87,6 +113,7 @@ function Confirmation($email) {
 if (welcome($email)&&Confirmation($email)==true) {
     header("Location: ../view/register.php");
     exit;
+
 
 }
 ?>

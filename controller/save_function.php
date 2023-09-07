@@ -8,5 +8,6 @@ if (!$ok) {
     //echo "REGISTRO EXITOSO";
     header("Location: ../view/supplier.php");
     exit;
+
 }
 ?>

@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="img/logo" href="assets/img/logo.jpeg"><!--Icono en la pestaña-->
+
     <link rel="icon" type="img/logo" href="assets/img/logo-removebg-preview.png"><!-- Bootstrap -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"><!-- CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
@@ -182,8 +183,7 @@
             <!-- Fin Card -->        
         </div>
 
-    </div><!-- Cierre de clase container -->
-    
+    </div><!-- Cierre de clase container -->    
     <footer>
         <div class="footer-logo"></div> 
         <div class="footer-content">

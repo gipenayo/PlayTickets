@@ -43,8 +43,11 @@
           <div class="form-row">
             <input type="email" name="email" placeholder="Correo Electronico" required>
             <input type="text" name ="dni" id="dni" placeholder="DNI" required>
+
           </div>
+         
           <div class="form-row"> 
+
             <input type="tel" name="phone" id="phone" placeholder="Teléfono" required>
             <input type="date" name="date_birth" id="date_birth" required>
           </div> 

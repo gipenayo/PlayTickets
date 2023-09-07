@@ -1,5 +1,4 @@
-<?hh
-
+<?
 namespace FastRoute\TestFixtures;
 
 function all_options_simple(): \FastRoute\Dispatcher {

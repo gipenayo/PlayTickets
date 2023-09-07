@@ -34,6 +34,7 @@
     </div>
     <form action="../controller/mail.php" method="post">
       <input type="email" name="email" placeholder="Correo Electronico" required><br><br>
+
       <button type="submit">Confirmar</button><br>
 
     </form>

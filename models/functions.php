@@ -4,7 +4,9 @@ function database()
 {
     $user_password = getenv("MYSQL_ROOT_PASSWORD");
     $user_name = getenv("MYSQL_PASSWORD");
+
     $databasename = getenv("MYSQL_DATABASE");
+
     $database = new PDO('mysql:host=db;dbname=' . $databasename, $user_name, $user_password);
     $database->query("set names utf8;");
     $database->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
@@ -15,9 +17,8 @@ function database()
 function register ($first_name, $last_name,$email, $dni ,$phone,$date_birth,$street,$height,$departament,$floor,$cuil,$_password)
 {
     $bd=database();
-
-    $sentence=$bd->prepare("INSERT INTO users(user_name,last_name,email,dni,phone,date_birth,street,height,_password) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)");
-    return $sentence->execute([$first_name, $last_name,$email,$dni, $phone,$date_birth,$street,$height,$_password]);
+    $sentence=$bd->prepare("INSERT INTO users(user_name,last_name,dni,email,phone,date_birth,street,height,_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    return $sentence->execute([$first_name, $last_name,$dni, $phone,$date_birth,$street,$height]);
 
 }
 
@@ -25,7 +26,7 @@ function getGender()
 {
     $bd = database();
     $sentence = $bd->query("SELECT id_gender , gender FROM genders");
-    return $sentence->fetchAll();
+    return $sentence->fetchAll();v
 }
 
 
@@ -35,6 +36,7 @@ function getCategory()
     $sentence = $bd->query("SELECT id_category , category FROM shows_categorys");
     return $sentence->fetchAll();
 }
+
 
 function addShow($show_name, $show_description, $show_date_time, $id_gender, $id_category)
 {
@@ -47,11 +49,25 @@ function addShow($show_name, $show_description, $show_date_time, $id_gender, $id
 
 function getShow()
 {
+    $bd = database();ev
+    $sentence = $bd->query("SELECT  id_show , show_name , show_description , show_date_time , id_gender , id_category FROM shows");
+    return $sentence->fetchAll();//hice cambios (agregue el id_show)
+}
+
+function getShowDetallCategory()
+{
     $bd = database();
-    $sentence = $bd->query("SELECT  show_name , show_description , show_date_time , id_gender , id_category FROM shows");
+    $sentence = $bd->query("SELECT shows_categorys.id_category , shows_categorys.category FROM `shows` JOIN shows_categorys on shows.id_category=shows_categorys.id_category");
     return $sentence->fetchAll();
 }
 
+function getShowDetallGender()
+{
+    $bd = database();
+    $sentence = $bd ->query("SELECT genders.id_gender , genders.gender FROM `shows` JOIN genders on shows.id_gender=genders.id_gender");
+    //$sentence = $bd->query("SELECT  genders.gender  FROM shows JOIN genders on shows.id_gender=genders.id_gender");
+    return $sentence->fetchAll();
+}
 
 function searchShow($show_name)
 {
@@ -59,6 +75,29 @@ function searchShow($show_name)
     $sentence = $bd->prepare("SELECT id_show, show_name , show_description , show_date_time , id_gender , id_category FROM shows WHERE show_name LIKE ?");
     $sentence->execute(["%$show_name%"]);
     return $sentence->fetchAll();
+
+}
+
+function getShowForId($id_show)
+{
+    $bd = database();
+    $sentence = $bd->prepare("SELECT id_show, show_name , show_description , show_date_time , id_gender , id_category FROM shows WHERE id_show = ?");
+    $sentence->execute([$id_show]);
+    return $sentence->fetchObject();
+}
+
+function updateShow($show_name , $show_description , $show_date_time , $id_gender , $id_category, $id_show)
+{
+    $bd = database();
+    $sentence = $bd->prepare("UPDATE shows SET show_name = ?, show_description = ?, show_date_time = ? , id_gender= ? , id_category = ? WHERE id_show = ?");
+    return $sentence->execute([$show_name,$show_description,$show_date_time,$id_gender,$id_category,$id_show]);
+}
+
+function deleteShow($id_show)
+{
+    $bd = database();
+    $sentence = $bd->prepare("DELETE FROM shows WHERE id_show = ?");
+    return $sentence->execute([$id_show]);
 }
 
 function getShowForId($id_show)

@@ -5,70 +5,8 @@
 body{
     background-color: #ffffff;
 }
-nav
-{
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    background: #ffffff;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 15px 15px rgba(0, 0,0,0.05);
-}
-parts
-{
-display: flex;
-align-items: center;
-}
-nav ul
-{
-    position: relative;
-    display: flex;
-    gap: 30px;
-}
-
-li
-{
-    list-style: none; /*saca los items de la lista*/
-}
-
-nav ul li a
-{
-    position: relative;
-    text-decoration: none;
-    font-size: 1em;
-    color: hsl(0, 0%, 0%);
-    text-transform: uppercase; /*mayuscula*/
-    letter-spacing: 0.2em;
-    
-}
-
-/*permite que sobre las opciones cuando tengan el pursor encima se deslice la barra negra*/
-nav ul li a:before
-{
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    width: 100%;
-    height: 2px;
-    background: #ffffff;
-    transform: scaleX(0);
-    transition: transform 0.5s ease-in-out;
-    transform-origin: right;
-}
-
-nav ul li a:hover::before
-{
-transform: scaleX(1);
-transform-origin: left;
-}
 
 /* Carrusel */
-
 .carousel{
     background-color: #ffffff;
 }
@@ -134,6 +72,7 @@ main
     width: 100%;
 
 }
+
 
 footer
 {
@@ -228,6 +167,7 @@ li .service_name
     align-items: center;
     font-size: 0.875rem;
 }
+
 
 .lastSentence
 {

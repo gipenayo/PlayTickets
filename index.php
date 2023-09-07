@@ -8,27 +8,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="img/logo" href="assets/img/logo.jpeg"><!--Icono en la pestaña-->
-    <link rel="icon" type="img/logo" href="assets/img/logo-removebg-preview.png">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <!-- CSS -->
+    <link rel="icon" type="img/logo" href="assets/img/logo-removebg-preview.png"><!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"><!-- CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
-
-    <title> Play Tickets </title>
+    <link rel="stylesheet" href="assets/css/barnavfooter.css">
+    <title>PlayTickets</title>
 </head>
 <body>
-    <nav><img src="assets/img/logo.jpeg" alt="" width="103" height="104">
-        <a href="assets/img/logo.jpeg" class="logo">PLAYTICKETS</a>
-
-        <div class="parts"><!-- div de las opciones a mostrar en la barra de navegacion-->
-            <ul class="opcions">
-                <li><a href="#">Cartelera</a></li>
-                <li><a href="#">Eventos</a></li>
-                <li><a href="/view/login.html ">Ingresar</a></li>
-                <li><a href="/view/register.html">Registrarse</a></li>
+    <header>
+    <div class="navbar">
+        <h1 class="logo"><img src="assets/img/logo.png.png" alt="Logo" height="80px ">PLAYTICKETS</h1>
+        <button class="accordion">Menú</button>
+        <div class="panel">
+            <ul>
+                <li><a href="index.php">Cartelera</a></li>
+                <li><a href="view/login.php">Ingresar</a></li>
+                <li><a href="view/register.php">Registrarse</a></li>
+                <li><a href="#">Contacto</a></li>
             </ul>
         </div>
-    </nav>
+    </div>
+    </header>
+
     <div class="container-index">
         <!-- Carrusel -->
         <div class="row">
@@ -182,47 +183,19 @@
         </div>
 
     </div><!-- Cierre de clase container -->
+    
     <footer>
-        <div class="containerFooter">
-            <div class="cont_footer">
-                <div class="descrip">
-                    <div class="logo_area">
-                        <img src="assets/img/logo.jpeg" alt="" width="160" height="150">
-                        <span class="logo_name">PLAYTICKETS</span>
-                    </div>
-                </div>
-
-                <div class="service_area">
-                    <ul class="area_service">
-                        <li class="service_name"> Area de Consultas</li>
-                        <li> <a href="">consultas</a></li>
-                        <li><a href="">nosotros</a></li>
-                        <li><a href="">eventos</a></li>
-                    </ul>
-
-                    <ul class="area_service">
-                        <li class="service_name"> Area de Compra</li>
-                        <li> <a href="">consultas</a></li>
-                        <li><a href="">nosotros</a></li>
-                        <li><a href="">eventos</a></li>
-                    </ul>
-
-                    <ul class="area_service">
-                        <li class="service_name"> Area de Funciones</li>
-                        <li><a href="">consultas</a></li>
-                        <li><a href="">nosotros</a></li>
-                        <li><a href="">eventos</a></li>
-                    </ul>
-                </div>
+        <div class="footer-logo"></div> 
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Términos y Condiciones</a>
+                <a href="#">Contacto</a>
             </div>
-            <hr>
-            <div class="footer__bottom">
-                <div class="lastSentence">
-                    <span>2023 PLAYTICKETS</span>
-                </div>
-            </div>
+            <div class="footer-copyright">&copy; 2023 PlayTickets</div>  
         </div>
     </footer>
+    <script src="../assets/js/barnavfooter.js"></script>
 </body>
 
 <!-- JS -->

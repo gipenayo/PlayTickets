@@ -36,6 +36,7 @@
          
           
           <div class="form-row">
+
             <input type="email" id="email" placeholder="Correo Electrónico">
           </div>
          

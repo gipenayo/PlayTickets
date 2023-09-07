@@ -1,6 +1,7 @@
 <?php
 
 
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -86,5 +87,6 @@ function Confirmation($email) {
 if (welcome($email)&&Confirmation($email)==true) {
     header("Location: ../view/register.php");
     exit;
+
 }
 ?>

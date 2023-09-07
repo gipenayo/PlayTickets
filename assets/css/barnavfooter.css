@@ -1,0 +1,84 @@
+/* Estilos para la barra de navegación (navbar) */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    margin: 0;
+}
+
+.accordion {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.panel {
+    display: none;
+}
+
+.panel ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.panel ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.panel ul li a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 10px;
+    background-color: #444;
+    transition: background-color 0.3s ease;
+}
+
+.panel ul li a:hover {
+    background-color: #555;
+}
+
+/* Estilos para el pie de página (footer) */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #fff;
+    margin-right: 20px;
+}
+
+.footer-copyright {
+    font-size: 14px;
+}
+.logo {
+    display: flex;
+    align-items: center; /* Centra verticalmente */
+}
+
+.logo img {
+    margin-right: 400px; /* Espacio entre la imagen y el texto */
+}

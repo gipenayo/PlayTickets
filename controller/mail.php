@@ -19,7 +19,8 @@ require '../vendor/autoload.php';
     
     $mail->setFrom('PlayTickets1@gmail.com', 'PlayTickets');
     $mail->addAddress($_POST["email"], 'usuario');     
-    $mail->isHTML(true);                                  
+    $mail->isHTML(true);   
+    $mail->CharSet='UTF-8';                               
     $mail->Subject = 'Reestablecer Contraseña';
     $mail->Body    = 'http://localhost:8080/TicketRun/view/new_password.php';
 

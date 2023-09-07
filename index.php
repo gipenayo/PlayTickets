@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,8 +24,8 @@
             <ul class="opcions">
                 <li><a href="#">Cartelera</a></li>
                 <li><a href="#">Eventos</a></li>
-                <li><a href="/view/login.html ">Ingresar</a></li>
-                <li><a href="/view/register.html">Registrarse</a></li>
+                <li><a href="view/login.php">Ingresar</a></li>
+                <li><a href="view/register.php">Registrarse</a></li>
             </ul>
         </div>
     </nav>
@@ -226,3 +229,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
 </html>
+
+<?php
+
+?>

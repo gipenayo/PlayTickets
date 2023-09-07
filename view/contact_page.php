@@ -26,6 +26,7 @@
             </div>
         </div>
     </header>
+
     <div class="contact-container">
         <div class="company-info">
             <div class="company-logo">
@@ -38,20 +39,21 @@
                 <p>Correo Electrónico: Playtikets1@gmail.com</p>
             </div>
         </div>
+
         <div class="contact-form">
             <h2>Tus Datos:</h2>
-            <form>
+            <form action="../controller/contact_mail.php" method="post">
                 <div class="form-group">
-                    <input type="text" id="nombre" placeholder="Nombre y Apellido" required>
+                    <input type="text" id="name" name="name" placeholder="Nombre y Apellido" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" id="email" placeholder="Correo Electrónico" required>
+                    <input type="email" id="email" name="email" placeholder="Correo Electrónico" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="asunto" placeholder="Asunto" required>
+                    <input type="text" id="affair" name="affair" placeholder="Asunto" required>
                 </div>
                 <div class="form-group">
-                    <textarea id="comentarios" placeholder="Comentarios"></textarea>
+                    <textarea id="comment" name="comment" placeholder="Comentarios"></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn-submit">Enviar</button>
@@ -66,7 +68,7 @@
             <div class="footer-links">
                 <a href="#">Política de Privacidad</a>
                 <a href="#">Términos y Condiciones</a>
-                <a href="#">Contacto</a>
+                <a href="../view/contact_page.php">Contacto</a>
             </div>
             <div class="footer-copyright">
                 &copy; 2023 PlayTickets

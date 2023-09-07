@@ -22,7 +22,7 @@
                     <li><a href="index.php">Cartelera</a></li>
                     <li><a href="../view/login.php">Ingresar</a></li>
                     <li><a href="../view/register.php">Registrarse</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="../view/contact_page.php">Contacto</a></li>
                 </ul>
             </div>
         </div>

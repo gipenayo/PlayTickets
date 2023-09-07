@@ -1,0 +1,70 @@
+/* Estilo general para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: relative;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilo del contenedor de advertencia */
+.advertencia {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 20px;
+    max-width: 400px;
+    margin-left: 35%;
+    margin-top: 10%;
+    margin-bottom: 20%;
+}
+
+/* Estilo del título */
+h2 {
+    color: #333; /* Negro */
+    margin-top: 0;
+}
+
+/* Estilo del párrafo de advertencia */
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #666; /* Gris oscuro */
+}
+
+/* Estilo de los botones */
+.btn-eliminar,
+.btn-cancelar {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-eliminar {
+    background-color: #e74c3c; /* Rojo */
+    color: #fff;
+    border: none;
+}
+
+.btn-eliminar:hover {
+    background-color: #c0392b; /* Rojo oscuro al pasar el ratón */
+}
+
+.btn-cancelar {
+    background-color: #3498db; /* Azul */
+    color: #fff;
+    border: none;
+    margin-left: 10px;
+}
+
+.btn-cancelar:hover {
+    background-color: #2980b9; /* Azul oscuro al pasar el ratón */
+}

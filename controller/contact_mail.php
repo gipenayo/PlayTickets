@@ -16,7 +16,6 @@ function Contact_mail($name,$email,$comment,$affair)
 
     $mail = new PHPMailer(true);
 
-
 if(!empty($name) && !empty($email) && !empty($comment) && !empty($affair))
 {
 

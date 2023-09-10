@@ -37,8 +37,7 @@ p {
 }
 
 /* Estilo de los botones */
-.btn-eliminar,
-.btn-cancelar {
+.btn-eliminar {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
@@ -56,15 +55,4 @@ p {
 
 .btn-eliminar:hover {
     background-color: #c0392b; /* Rojo oscuro al pasar el ratón */
-}
-
-.btn-cancelar {
-    background-color: #3498db; /* Azul */
-    color: #fff;
-    border: none;
-    margin-left: 10px;
-}
-
-.btn-cancelar:hover {
-    background-color: #2980b9; /* Azul oscuro al pasar el ratón */
 }

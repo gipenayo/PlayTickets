@@ -46,11 +46,34 @@ function addShow($show_name, $show_description, $show_date_time, $id_gender, $id
     return $sente->execute([$show_name, $show_description, $show_date_time, $id_gender , $id_category]);
 }
 
-function getShow()
+function getShow($search = null, $id_gender = null, $id_category = null)
 {
     $bd = database();
-    $sentence = $bd->query("SELECT  id_show , show_name , show_description , show_date_time , id_gender , id_category FROM shows");
-    return $sentence->fetchAll();//hice cambios (agregue el id_show)
+    $sql = "SELECT id_show, show_name, show_description, show_date_time, id_gender, id_category FROM shows WHERE 1";
+
+    $parameters = [];
+
+    if (!empty($search)) {
+        // Si se proporciona un término de búsqueda, se agrega una condición a la consulta SQL
+        $sql .= " AND show_name LIKE ?";
+        $parameters[] = "%$search%";
+    }
+
+    if (!empty($id_gender)) {
+        // Si se selecciona un género, se agrega una condición a la consulta SQL
+        $sql .= " AND id_gender = ?";
+        $parameters[] = $id_gender;
+    }
+
+    if (!empty($id_category)) {
+        // Si se selecciona una categoría, se agrega una condición a la consulta SQL
+        $sql .= " AND id_category = ?";
+        $parameters[] = $id_category;
+    }
+
+    $sentence = $bd->prepare($sql);
+    $sentence->execute($parameters);
+    return $sentence->fetchAll();
 }
 
 function getShowDetallCategory()

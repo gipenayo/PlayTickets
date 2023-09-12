@@ -1,4 +1,30 @@
 <?php
+include_once "models/functions.php";
+
+$search = isset($_POST["search"]) ? $_POST["search"] : "";
+$id_gender = isset($_POST["id_gender"]) ? $_POST["id_gender"] : "";
+$id_category = isset($_POST["id_category"]) ? $_POST["id_category"] : "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $shows = getShow($search, $id_gender, $id_category);
+} else {
+    $shows = getShow();
+}
+
+$genders=getGender();
+$categorys=getCategory();
+
+include_once "models/functions.php";
+
+if (!isset($_GET["search"]) || empty($_GET["search"]))
+{
+    $shows = getShow();
+} else {
+    $shows = searchShow($_GET["search"]);
+}
+
+$genders=getGender();
+$categorys=getCategory();
 
 include_once "models/functions.php";
 
@@ -52,13 +78,16 @@ $categorys=getCategory();
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="assets/img/show_tini.jpeg" class="d-block w-100">
-            </div>
+  </div>
             <div class="carousel-item">
+
                 <img src="assets/img/show_taylor.jpg"" class="d-block w-100">
+
             </div>
             <div class="carousel-item">
                 <img src="assets/img/show_granja.jpg" class="d-block w-100">
             </div>
+
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -105,17 +134,30 @@ $categorys=getCategory();
     <!--fin de buscador/filtros-->
     <!-- Cartelera -->
     <div class="cartelera row">
-        <?php foreach ($shows as $show) { ?>
-        <div class="col-lg-3"><!-- Card -->
+
+        <?php foreach ($shows as $show) 
+        { ?>
+            <?php if ($show->show_state == 1) /*MUESTRA SOLO LOS QUE SEAN DE ESTADO=1 QUE SON LOS SHOWS ACTIVOS*/
+            { ?>
+        <div class="col-lg-3">
             <div class="card">
-                <img src="assets/img/images.jpeg" width="100%" height="250px">
+            <img src="data:image/jpeg;base64,<?php echo base64_encode($show->picture); ?>" width="100%" height="250px">
+
                 <div>
                     <a href="view/synopsis.php?id_show=<?php echo $show->id_show ?>"><button><?php echo $show->show_name?></button></a>
                 </div>
             </div>
-        </div><!-- Fin Card -->
-        <?php }?>
-    </div>    
+
+
+        </div>
+        <?php
+            }
+        }
+        ?>
+    </div>  
+      
+
+
     <footer>
         <div class="footer-logo"></div> 
         <div class="footer-content">
@@ -131,10 +173,4 @@ $categorys=getCategory();
 </body>
 
 <!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-
-</html>
-
-<?php
-
-?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr

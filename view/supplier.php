@@ -1,7 +1,5 @@
 <?php
-include_once"../models/functions.php";
-
-
+include_once "../models/functions.php";
 
 if (!isset($_GET["search"]) || empty($_GET["search"]))
 {
@@ -17,24 +15,22 @@ $get_gender=getShowDetallGender();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/supplier.css"> 
-    <link rel="icon" type="img/logo" href="../assets/img/logo.png.png"><!--Icono en la pestaña-->
-
+    <link rel="icon" type="img/logo" href="../assets/img/logo.png"><!--Icono en la pestaña-->
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
     <title>PlayTickets</title>
 </head>
 <body>
-<header>
+    <header>
         <div class="navbar">
-            <h1 class="logo"><img src="../assets/img/logo.png.png" alt="Logo" height="80px ">PLAYTICKETS</h1>
+            <h1 class="logo"><img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS</h1>
             <button class="accordion">Menú</button>
             <div class="panel">
                 <ul>
                     <li><a href="index.php">Cartelera</a></li>
                     <li><a href="../view/login.php">Ingresar</a></li>
                     <li><a href="../view/register.php">Registrarse</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="../view/contact_page.php">Contacto</a></li>
                 </ul>
             </div>
         </div>
@@ -56,58 +52,56 @@ $get_gender=getShowDetallGender();
                 </div>
             </form>
             <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Fecha y Hora</th>
-                        <th>Genero</th>
-                        <th>Categoria</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($shows as $show) { ?>
-                        <tr>
-                            <td><?php echo $show->show_name ?></td>
-                            <td>
-                                <textarea name="show_description" id="show_description" cols="10" rows="6"><?php echo $show->show_description ?>
-                                </textarea>
-                            </td>
-                            <td><?php echo $show->show_date_time?></td>
-                           <td>
-                            <?php 
-                            $opcion_gender = $show->id_gender; // Supongamos que $opcion es un número
-                            foreach ($get_gender as $opcion_get_gender)//le asigno el valor 
-                            {
-                                if ($opcion_get_gender->id_gender === $opcion_gender) // Compara el ID del género
-                                {
-                                    echo $opcion_get_gender->gender; // Imprime el nombre del género (ajusta esto según tus datos)
-                                    break;
-                                }
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Fecha y Hora</th>
+            <th>Género</th>
+            <th>Categoría</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($shows as $show) { ?>
+            <?php if ($show->show_state == 1) { ?>
+                <tr>
+                    <td><?php echo $show->show_name ?></td>
+                    <td>
+                        <textarea name="show_description" id="show_description" cols="10" rows="6"><?php echo $show->show_description ?></textarea>
+                    </td>
+                    <td><?php echo $show->show_date_time ?></td>
+                    <td>
+                        <?php
+                        $opcion_gender = $show->id_gender;
+                        foreach ($get_gender as $opcion_get_gender) {
+                            if ($opcion_get_gender->id_gender === $opcion_gender) {
+                                echo $opcion_get_gender->gender;
+                                break;
                             }
-                            ?>
-                            </td>
-                            <td>
-                                <?php 
-                                $opcion_category = $show->id_category; // Supongamos que $opcion es un número
-                                foreach ($get_category as $opcion_get_category)//le asigno el valor 
-                                {
-                                    if ($opcion_get_category->id_category === $opcion_category) // Compara el ID del género
-                                    {
-                                        echo $opcion_get_category->category; // Imprime el nombre del género (ajusta esto según tus datos)
-                                        break;
-                                    }
-                                }
-                                ?>
-                            </td>
-                            <td><a class="btn btn-warning" href="edit_form_show.php?id_show=<?php echo $show->id_show ?>">EDITAR</a></td>
-                            <td><a class="btn btn-danger" href="warning_delete.php?id_show=<?php echo $show->id_show ?>">ELIMINAR</a></td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        $opcion_category = $show->id_category;
+                        foreach ($get_category as $opcion_get_category) {
+                            if ($opcion_get_category->id_category === $opcion_category) {
+                                echo $opcion_get_category->category;
+                                break;
+                            }
+                        }
+                        ?>
+                    </td>
+                    <td><a class="btn btn-warning" href="edit_form_show.php?id_show=<?php echo $show->id_show ?>">EDITAR</a></td>
+                    <td><a class="btn btn-danger" href="warning_delete.php?id_show=<?php echo $show->id_show ?>">ELIMINAR</a></td>
+                </tr>
+            <?php } ?>
+        <?php } ?>
+    </tbody>
+</table>
+
         </div>
     </div>
     <footer>

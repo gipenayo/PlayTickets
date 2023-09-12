@@ -2,7 +2,6 @@
 
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
-ev
 /*var_dump($show);
 exit;*/
 $genders = getGender();

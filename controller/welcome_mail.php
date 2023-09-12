@@ -32,13 +32,14 @@ if (!$ok) {
     echo "Error registrando.";
 } else {
     $_SESSION["nombre"] = $first_name;
-
+}
 
 
     
 $email = $_POST["email"];
 
-
+function welcome($email)
+{
 $mail = new PHPMailer(true);
 
 if (!empty($email)) {
@@ -59,8 +60,8 @@ if (!empty($email)) {
     $src_imagen = '../assets/img/logo.fondo.png';
     $mail->addEmbeddedImage($src_imagen, 'logo');
 
-    $mail->isHTML(true);     ev    $mail->
-CharSet='UTF-8';                      
+    $mail->isHTML(true);
+    $mail->CharSet='UTF-8';                      
     $mail->Subject = 'Bienvenido';
     $mail->Body = '
     <h1>¡Bienvenido a PlayTickets!</h1>
@@ -73,8 +74,8 @@ CharSet='UTF-8';
     <img src="cid:logo">';
 
     
-    $mail->send();ev
-   return true;
+    $mail->send();
+    return true;
 }
 }
 

@@ -26,7 +26,7 @@ function getGender()
 {
     $bd = database();
     $sentence = $bd->query("SELECT id_gender , gender FROM genders");
-    return $sentence->fetchAll();v
+    return $sentence->fetchAll();
 }
 
 
@@ -49,7 +49,7 @@ function addShow($show_name, $show_description, $show_date_time, $id_gender, $id
 
 function getShow()
 {
-    $bd = database();ev
+    $bd = database();
     $sentence = $bd->query("SELECT  id_show , show_name , show_description , show_date_time , id_gender , id_category FROM shows");
     return $sentence->fetchAll();//hice cambios (agregue el id_show)
 }

@@ -8,7 +8,7 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
     $shows = getShow();
 } else {
     $shows = searchShow($_GET["search"]);
-}ev
+}
 $get_category=getShowDetallCategory();
 $get_gender=getShowDetallGender();
 ?>

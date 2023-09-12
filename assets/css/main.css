@@ -12,41 +12,43 @@ body{
 }
 .carousel img {
     
-    height: 300px;
+    height: 500px;
 }
 
-/* Filtros */
+/* Estilos para la barra de búsqueda */
+.filtros {
+    background-color: white; /* Fondo negro */
+    color: black; /* Texto blanco */
+    padding: 10px 0; /* Espacio interno */
+}
 
-.filtros{
-    background-color: #ffffff;
-    height: 50px;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    padding: 0px 10px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 1px #000;
+.filtros .buscador {
+    width: 100%; /* Ocupar todo el ancho disponible */
+    padding: 5px; /* Espacio interno */
+    background-color: white; /* Fondo blanco */
+    color: black; /* Texto negro */
+    border: none; /* Sin borde */
+    margin-right: 10px; /* Espacio derecho entre el campo y el selector */
 }
-.buscador{
-    height: 50px;
-    width: 100%;
-    border-style: none;
+
+.filtros select {
+    background-color: white; /* Fondo blanco */
+    color: black; /* Texto negro */
+    border: none; /* Sin borde */
+    padding: 5px; /* Espacio interno */
+    margin-right: 10px; /* Espacio derecho entre el selector y el botón */
 }
-.buscar{
-    height: 100%;
-    width: 100%;
-    border-radius: 0%;
-}
-select{
-    width: 200px; height: 100%;
-    background-color: #ffffff;
-    border-style: none;
-}
-label{
-    margin-top: 10px;
+
+/* Estilos para el botón de búsqueda */
+.filtros .buscar {
+    padding: 5px 10px; /* Espacio interno */
+    background-color: #333; /* Fondo negro */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
 }
 
 /* Cartelera */ 
-
 .card{
     box-shadow: 0px 0px 10px 1px #000000;
     border-radius: 10px;
@@ -73,116 +75,6 @@ main
 
 }
 
-
-footer
-{
-    position: relative;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    background-color: #fff;
-    box-shadow: 0 16px 70px -8px rgba(0, 0, 0, 0.25);
-    border-radius:  20px 20px 0 0;
-    transition: background 0.3s linear; 
-}
-
-.containerFooter
-{
-    max-width: 1240px;
-    margin-bottom: -5%;
-
-}
-
-.cont_footer
-{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.descrip .logo_area
-{
-    display: flex;
-    align-items: 1rem;
-    margin-bottom: 1rem;
-}
-
-.descrip .logo_area img
-{
-border-radius: 50%;
-border: 1px solid #fff;
-
-
-}
-
-.logo_area .logo_name
-{
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: auto;
-    color: #000;
-}
-
-.service_area
-{
-    display: flex;
-}
-
-.area_service
-{
-    margin-right: 40px;
-}
-
-li .service_name
-{
-    color: #000;
-    font-weight:600 ;
-
-}
-
-.area_service li a
-{
-    color: #828282;
-    padding-bottom: 1px;
-    font-weight: 400;
-
-}
-
-.area_service li a:hover
-{
-    color: #313131;
-
-}
-
-.area_service li 
-{
-    margin-bottom: 10px;
-}
-
-.footer_bottom
-{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.875rem;
-}
-
-
-.lastSentence
-{
-    color: #828282;
-    display: flex;
-    align-items: center;
-}
-
-.lastSentence span
-{
-    margin-left: 8px;
-    font-weight: 400;
-    letter-spacing: 0.135rem;
-}
-
 .acordeon
 {
     position: relative;
@@ -191,4 +83,3 @@ li .service_name
     padding-bottom: 17%;
     height: 80%;
 }
-

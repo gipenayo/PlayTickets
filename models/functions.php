@@ -17,8 +17,7 @@ function register ($first_name, $last_name,$email, $dni ,$phone,$date_birth,$str
 {
     $bd=database();
     $sentence=$bd->prepare("INSERT INTO users(user_name,last_name,dni,email,phone,date_birth,street,height,_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    return $sentence->execute([$first_name, $last_name,$dni, $phone,$date_birth,$street,$height]);
-
+    return $sentence->execute([$first_name, $last_name, $dni, $email, $phone, $date_birth, $street, $height, $_password]);
 }
 
 function getGender()
@@ -44,10 +43,34 @@ function addShow($show_name, $show_description, $show_date_time, $id_gender, $pi
     return $sente->execute([$show_name, $show_description, $show_date_time, $id_gender, $picture, $id_category, $state]);
 }
 
-function getShow()
+function getShow($search = null, $id_gender = null, $id_category = null)
 {
     $bd = database();
-    $sentence = $bd->query("SELECT  id_show, show_name, show_description, show_date_time, id_gender, id_category, picture , show_state FROM shows");
+
+    $sql = "SELECT id_show, show_name, show_description, show_date_time, id_gender, id_category FROM shows WHERE 1";
+
+    $parameters = [];
+
+    if (!empty($search)) {
+        // Si se proporciona un término de búsqueda, se agrega una condición a la consulta SQL
+        $sql .= " AND show_name LIKE ?";
+        $parameters[] = "%$search%";
+    }
+
+    if (!empty($id_gender)) {
+        // Si se selecciona un género, se agrega una condición a la consulta SQL
+        $sql .= " AND id_gender = ?";
+        $parameters[] = $id_gender;
+    }
+
+    if (!empty($id_category)) {
+        // Si se selecciona una categoría, se agrega una condición a la consulta SQL
+        $sql .= " AND id_category = ?";
+        $parameters[] = $id_category;
+    }
+
+    $sentence = $bd->prepare($sql);
+    $sentence->execute($parameters);
     return $sentence->fetchAll();
 }
 
@@ -95,6 +118,7 @@ function updateShow($show_name, $show_description, $show_date_time, $id_gender, 
     $bd = database();
     $sentence = $bd->prepare("DELETE FROM shows WHERE id_show = ?");
     return $sentence->execute([$id_show]);
+
 }*//* ELIMINA EL SHOW POR COMPLETO DE LA BASE DE DATOS */
 
 function deleteShow($id_show)
@@ -108,6 +132,7 @@ function deleteShow($id_show)
 
 function recovery($_password)
 {
+
     $bd=database();
     $sentence=$bd->prepare("UPDATE users SET _password =?");
     return $sentence->execute([$_password]);
@@ -119,4 +144,19 @@ function recovery($_password)
     $sentence=$bd->query("SELECT email ,_password FROM users");
     return $sentence->fetchAll();
  }
+
+ function confMail($id_state, $id_user)
+ {
+    $bd=database();
+    $sentence = $bd->prepare("UPDATE users SET id_state = ? WHERE id_user = ?");
+    $sentence->execute([$id_state, $id_user]);
+ }
+
+ function getIdUser()
+ {
+    $bd=database();
+    $sentence=$bd->query("SELECT id_user FROM users ORDER BY id_user DESC");
+    return $sentence->fetch();
+ }
+
 ?>

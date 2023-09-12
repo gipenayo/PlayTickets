@@ -48,11 +48,8 @@ function addShow($show_name, $show_description, $show_date_time, $id_gender, $pi
 function getShow($search = null, $id_gender = null, $id_category = null)
 {
     $bd = database();
-
-    $sql = "SELECT id_show, show_name, show_description, show_date_time, id_gender, id_category FROM shows WHERE 1";
-
+    $sql = "SELECT id_show, show_name, show_description, show_date_time, id_gender,picture, id_category, show_state FROM shows WHERE 1";
     $parameters = [];
-
     if (!empty($search)) {
         // Si se proporciona un término de búsqueda, se agrega una condición a la consulta SQL
         $sql .= " AND show_name LIKE ?";
@@ -70,11 +67,9 @@ function getShow($search = null, $id_gender = null, $id_category = null)
         $sql .= " AND id_category = ?";
         $parameters[] = $id_category;
     }
-
     $sentence = $bd->prepare($sql);
     $sentence->execute($parameters);
     return $sentence->fetchAll();
-
 }
 
 function getShowDetallCategory()
@@ -128,6 +123,7 @@ function updateShow($show_name, $show_description, $show_date_time, $id_gender, 
     return $sentence->execute([$id_show]);
 
 
+}*//* ELIMINA EL SHOW POR COMPLETO DE LA BASE DE DATOS */
 function recovery($email, $_password)
 {
     $bd = database();
@@ -136,17 +132,13 @@ function recovery($email, $_password)
 }
 function getUserInfo($email)
 {
-    
-
-        $bd=database();
-        $query = "SELECT * FROM users WHERE email = ?";
-        $stmt = $bd->prepare($query);
-        $stmt->execute([$email]);
-        $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user_info;
+    $bd=database();
+    $query = "SELECT * FROM users WHERE email = ?";
+    $stmt = $bd->prepare($query);
+    $stmt->execute([$email]);
+    $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $user_info;
 }
-
-}*//* ELIMINA EL SHOW POR COMPLETO DE LA BASE DE DATOS */
 
 function deleteShow($id_show)
 {
@@ -156,9 +148,6 @@ function deleteShow($id_show)
     $result = $sentence->execute([$state_inactive, $id_show]);
     return $result;
 }
-
-
-
  function login ()
  {
     $bd=database();

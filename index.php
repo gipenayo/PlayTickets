@@ -11,33 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $shows = getShow();
 }
 
-$genders=getGender();
-$categorys=getCategory();
-
-include_once "models/functions.php";
-
-if (!isset($_GET["search"]) || empty($_GET["search"]))
-{
-    $shows = getShow();
-} else {
-    $shows = searchShow($_GET["search"]);
-}
+/*var_dump($shows);
+exit;*/
 
 $genders=getGender();
 $categorys=getCategory();
-
-include_once "models/functions.php";
-
-if (!isset($_GET["search"]) || empty($_GET["search"]))
-{
-    $shows = getShow();
-} else {
-    $shows = searchShow($_GET["search"]);
-}
-
-$genders=getGender();
-$categorys=getCategory();
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -78,25 +56,15 @@ $categorys=getCategory();
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="assets/img/show_tini.jpeg" class="d-block w-100">
-  </div>
+            </div>
             <div class="carousel-item">
 
                 <img src="assets/img/show_taylor.jpg"" class="d-block w-100">
-
             </div>
             <div class="carousel-item">
                 <img src="assets/img/show_granja.jpg" class="d-block w-100">
             </div>
-
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
     <!-- Fin de carrusel -->
     <!-- Buscador/Filtros -->
@@ -134,7 +102,6 @@ $categorys=getCategory();
     <!--fin de buscador/filtros-->
     <!-- Cartelera -->
     <div class="cartelera row">
-
         <?php foreach ($shows as $show) 
         { ?>
             <?php if ($show->show_state == 1) /*MUESTRA SOLO LOS QUE SEAN DE ESTADO=1 QUE SON LOS SHOWS ACTIVOS*/
@@ -142,22 +109,16 @@ $categorys=getCategory();
         <div class="col-lg-3">
             <div class="card">
             <img src="data:image/jpeg;base64,<?php echo base64_encode($show->picture); ?>" width="100%" height="250px">
-
                 <div>
                     <a href="view/synopsis.php?id_show=<?php echo $show->id_show ?>"><button><?php echo $show->show_name?></button></a>
                 </div>
             </div>
-
-
         </div>
         <?php
             }
         }
         ?>
     </div>  
-      
-
-
     <footer>
         <div class="footer-logo"></div> 
         <div class="footer-content">

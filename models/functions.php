@@ -4,9 +4,7 @@ function database()
 {
     $user_password = getenv("MYSQL_ROOT_PASSWORD");
     $user_name = getenv("MYSQL_PASSWORD");
-
     $databasename = getenv("MYSQL_DATABASE");
-
     $database = new PDO('mysql:host=db;dbname=' . $databasename, $user_name, $user_password);
     $database->query("set names utf8;");
     $database->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
@@ -14,11 +12,11 @@ function database()
     $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
     return $database;
 }
-function register ($first_name, $last_name,$email, $dni ,$phone,$date_birth,$street,$height,$departament,$floor,$cuil,$_password)
+function register ($first_name, $last_name,$email, $dni ,$phone,$date_birth,$street,$height,$departament,$id_rol,$_password)
 {
     $bd=database();
-    $sentence=$bd->prepare("INSERT INTO users(user_name,last_name,dni,email,phone,date_birth,street,height,_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    return $sentence->execute([$first_name, $last_name,$dni, $phone,$date_birth,$street,$height]);
+    $sentence=$bd->prepare("INSERT INTO users(user_name,last_name,email,dni,phone,date_birth,street,height,departament,id_rol,_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    return $sentence->execute([$first_name, $last_name,$email,$dni, $phone,$date_birth,$street,$height,$departament,$id_rol,$_password]);
 
 }
 
@@ -26,7 +24,7 @@ function getGender()
 {
     $bd = database();
     $sentence = $bd->query("SELECT id_gender , gender FROM genders");
-    return $sentence->fetchAll();v
+    return $sentence->fetchAll();
 }
 
 
@@ -49,7 +47,7 @@ function addShow($show_name, $show_description, $show_date_time, $id_gender, $id
 
 function getShow()
 {
-    $bd = database();ev
+    $bd = database();
     $sentence = $bd->query("SELECT  id_show , show_name , show_description , show_date_time , id_gender , id_category FROM shows");
     return $sentence->fetchAll();//hice cambios (agregue el id_show)
 }
@@ -78,27 +76,6 @@ function searchShow($show_name)
 
 }
 
-function getShowForId($id_show)
-{
-    $bd = database();
-    $sentence = $bd->prepare("SELECT id_show, show_name , show_description , show_date_time , id_gender , id_category FROM shows WHERE id_show = ?");
-    $sentence->execute([$id_show]);
-    return $sentence->fetchObject();
-}
-
-function updateShow($show_name , $show_description , $show_date_time , $id_gender , $id_category, $id_show)
-{
-    $bd = database();
-    $sentence = $bd->prepare("UPDATE shows SET show_name = ?, show_description = ?, show_date_time = ? , id_gender= ? , id_category = ? WHERE id_show = ?");
-    return $sentence->execute([$show_name,$show_description,$show_date_time,$id_gender,$id_category,$id_show]);
-}
-
-function deleteShow($id_show)
-{
-    $bd = database();
-    $sentence = $bd->prepare("DELETE FROM shows WHERE id_show = ?");
-    return $sentence->execute([$id_show]);
-}
 
 function getShowForId($id_show)
 {
@@ -122,17 +99,29 @@ function deleteSHow($id_show)
     return $sentence->execute([$id_show]);
 }
 
- function recovery($_password)
- {
-    $bd=database();
-    $sentence=$bd->prepare("UPDATE users SET _password =?");
-    return $sentence->execute([$_password]);
- }
+function recovery($email, $_password)
+{
+    $bd = database();
+    $sentence = $bd->prepare("UPDATE users SET _password = ? WHERE email = ?");
+    return $sentence->execute([$_password, $email]);
+}
+function getUserInfo($email)
+{
+    
+
+        $bd=database();
+        $query = "SELECT * FROM users WHERE email = ?";
+        $stmt = $bd->prepare($query);
+        $stmt->execute([$email]);
+        $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user_info;
+}
+
 
  function login ()
  {
     $bd=database();
-    $sentence=$bd->query("SELECT email ,_password FROM users");
+    $sentence=$bd->query("SELECT email ,_password, id_rol,user_name FROM users");
     return $sentence->fetchAll();
     
  }

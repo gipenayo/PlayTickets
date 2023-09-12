@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -27,36 +30,27 @@
         </div>
     </header>
 <?php
-    
+    include_once "../models/functions.php";
     $mensaje = '';
-    
- 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-       
+        $ver=$_SESSION["email"];
         $password1 = $_POST['password1'];
         $password2 = $_POST['password2'];
-        $hashed_password = password_hash($password1, PASSWORD_DEFAULT);
-        $hashed_password = password_hash($password2, PASSWORD_DEFAULT);
-       
+        $user_info = getUserInfo($ver);
         if ($password1 === $password2) {
-            include_once "../models/functions.php";
-
-            $ok =recovery($password1);
-            
-            if(!$ok)
-            {
-                echo "error registrando";
+            $hashed_password1 = password_hash($password1, PASSWORD_DEFAULT);
+            $ok =recovery($ver,$hashed_password1);
+            if (!$ok) {
+                echo "Error actualizando la contraseña.";
+            } else {
+                echo "La contraseña se actualizó correctamente.";
             }
-            else
-            {
-                echo"se actualizo";
-                
-            }
-            
         } else {
             $mensaje = "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.";
         }
     }
+
+
     ?>
 <div class="login-container">
   <div class="login-box">

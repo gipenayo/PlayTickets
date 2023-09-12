@@ -23,22 +23,23 @@ $departament = $_POST["departament"];
 $floor = $_POST["floor"];
 $cuil = $_POST["cuil"];
 $password = $_POST["_password"];
-
+$id_rol=1;
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-$ok = register($first_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $departament, $floor, $cuil, $hashed_password);
+$ok = register($first_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $departament,$id_rol,$hashed_password);
 
 if (!$ok) {
     echo "Error registrando.";
-} else {
+} 
+else {
     $_SESSION["nombre"] = $first_name;
 
 
 
     
 $email = $_POST["email"];
-
-
+function welcome($email)
+{
 $mail = new PHPMailer(true);
 
 if (!empty($email)) {
@@ -59,8 +60,8 @@ if (!empty($email)) {
     $src_imagen = '../assets/img/logo.fondo.png';
     $mail->addEmbeddedImage($src_imagen, 'logo');
 
-    $mail->isHTML(true);     ev    $mail->
-CharSet='UTF-8';                      
+    $mail->isHTML(true);     
+    $mail->CharSet='UTF-8';                      
     $mail->Subject = 'Bienvenido';
     $mail->Body = '
     <h1>¡Bienvenido a PlayTickets!</h1>
@@ -73,7 +74,7 @@ CharSet='UTF-8';
     <img src="cid:logo">';
 
     
-    $mail->send();ev
+    $mail->send();
    return true;
 }
 }
@@ -113,7 +114,6 @@ function Confirmation($email) {
 if (welcome($email)&&Confirmation($email)==true) {
     header("Location: ../view/register.php");
     exit;
-
-
+}
 }
 ?>

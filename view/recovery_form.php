@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -34,7 +37,7 @@
     </div>
     <form action="../controller/mail.php" method="post">
       <input type="email" name="email" placeholder="Correo Electronico" required><br><br>
-
+        <?php $_SESSION["email"]=$_POST["email"];?>
       <button type="submit">Confirmar</button><br>
 
     </form>

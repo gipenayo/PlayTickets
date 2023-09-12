@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.asientos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.asiento-label {
+    margin: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.asiento-checkbox {
+    display: none;
+}
+
+.nombre-input {
+    margin: 10px;
+    padding: 5px;
+}
+
+#reservar-btn {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}

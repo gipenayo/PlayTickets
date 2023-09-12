@@ -74,9 +74,9 @@ if (!empty($email)) {
     <img src="cid:logo">';
 
     
-    $mail->send();
-    return true;
-}
+
+    $mail->send();return true;
+
 
 
 }
@@ -115,7 +115,9 @@ function Confirmation($email,$confirmationLink)
         
 }
 
+
 if (welcome($email)&&Confirmation($email,$confirmationLink)==true) {
+
     header("Location: ../view/register.php");
     exit;
 }

@@ -14,6 +14,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 $genders=getGender();
 $categorys=getCategory();
 
+include_once "models/functions.php";
+
+if (!isset($_GET["search"]) || empty($_GET["search"]))
+{
+    $shows = getShow();
+} else {
+    $shows = searchShow($_GET["search"]);
+}
+
+$genders=getGender();
+$categorys=getCategory();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -56,7 +68,9 @@ $categorys=getCategory();
                 <img src="assets/img/show_tini.jpeg" class="d-block w-100">
             </div>
             <div class="carousel-item">
-                <img src="assets/img/show_taylor.jpg" class="d-block w-100">
+
+                <img src="assets/img/show_taylor.jpg"" class="d-block w-100">
+
             </div>
             <div class="carousel-item">
                 <img src="assets/img/show_granja.jpg" class="d-block w-100">
@@ -74,50 +88,60 @@ $categorys=getCategory();
     <!-- Fin de carrusel -->
     <!-- Buscador/Filtros -->
     <div class="filtros">
-    <form action="index.php" method="POST" class="row justify-content-between">
-        <div class="col-lg-3">
-            <input value="<?php echo isset($search) && !empty($search) ? $search : "" ?>" name="search" class="buscador" type="text" placeholder="NOMBRE DEL SHOW">
-        </div>
-        <div class="col-lg-1">
-            <button type="submit" class="buscar btn">Buscar</button>
-        </div>
-        <div class="col-lg-4 d-flex"><!-- Filtrar por tipo -->
-            <label for="id_gender">Género: </label>
-            <select name="id_gender" id="id_gender">
-                <option value=""></option>
-                <?php foreach ($genders as $genders2) { ?>
-                    <option value="<?php echo $genders2->id_gender ?>"><?php echo $genders2->gender ?></option>
-                <?php } ?>
-            </select>
-        </div>
-        <div class="col-lg-4 d-flex"><!-- Filtrar por tipo -->
-            <label for="id_category">Clasificación: </label>
-            <select name="id_category" id="id_category">
-                <option value=""></option>
-                <?php foreach ($categorys as $categorys2) { ?>
-                    <option value="<?php echo $categorys2->id_category ?>"><?php echo $categorys2->category ?></option>
-                <?php } ?>
-            </select>
-        </div>
-        <?php
-        include "../TicketRun/controller/filter.php"
-        ?>
-    </form>
-</div>
+        <form action="index.php" class="row justify-content-between" >
+            <div class="col-lg-3">
+                <input value="<?php echo isset($_GET["search"]) && !empty($_GET["search"]) ?  $_GET["search"] : "" ?>" name="search" class="buscador" type="text" placeholder="NOMBRE DEL SHOW">
+            </div>    
+            <div class="col-lg-1">
+                <button type="submit" class="buscar btn">Buscar</button>
+            </div>
+            <div class="col-lg-4 d-flex"><!-- Filtrar por tipo -->
+                <label for="id_gender">Genero: </label>
+                <select name="id_gender" id="id_gender">
+                    <option value=""></option>
+                    <?php foreach ($genders as $genders2) { ?>
+                        <option value="<?php echo $genders2->gender?>"><?php echo $genders2->gender?></option>
+                    <?php }?>
+                    
+                </select>
+            </div>
+            <div class="col-lg-4 d-flex"><!-- Filtrar por tipo -->
+                <label for="id_category">Clasificación: </label>
+                <select name="id_category" id="id_category">
+                    <option value=""></option>
+                    <?php foreach ($categorys as $categorys2) { ?>
+                        <option value="<?php echo $categorys2->category?>"><?php echo $categorys2->category?></option>
+                    <?php }?>
+                    
+                </select>
+            </div>
+        </form>
+
+    </div>
     <!--fin de buscador/filtros-->
     <!-- Cartelera -->
     <div class="cartelera row">
-        <?php foreach ($shows as $show) { ?>
-        <div class="col-lg-3"><!-- Card -->
+        <?php foreach ($shows as $show) 
+        { ?>
+            <?php if ($show->show_state == 1) /*MUESTRA SOLO LOS QUE SEAN DE ESTADO=1 QUE SON LOS SHOWS ACTIVOS*/
+            { ?>
+        <div class="col-lg-3">
             <div class="card">
-                <img src="assets/img/images.jpeg" width="100%" height="250px">
+            <img src="data:image/jpeg;base64,<?php echo base64_encode($show->picture); ?>" width="100%" height="250px">
+
                 <div>
                     <a href="view/synopsis.php?id_show=<?php echo $show->id_show ?>"><button><?php echo $show->show_name?></button></a>
                 </div>
             </div>
-        </div><!-- Fin Card -->
-        <?php }?>
-    </div>    
+
+        </div>
+        <?php
+            }
+        }
+        ?>
+    </div>  
+      
+
     <footer>
         <div class="footer-logo"></div> 
         <div class="footer-content">

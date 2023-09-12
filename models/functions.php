@@ -18,8 +18,7 @@ function register ($first_name, $last_name,$email, $dni ,$phone,$date_birth,$str
 {
     $bd=database();
     $sentence=$bd->prepare("INSERT INTO users(user_name,last_name,dni,email,phone,date_birth,street,height,_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    return $sentence->execute([$first_name, $last_name,$dni, $phone,$date_birth,$street,$height]);
-
+    return $sentence->execute([$first_name, $last_name, $dni, $email, $phone, $date_birth, $street, $height, $_password]);
 }
 
 function getGender()
@@ -100,29 +99,7 @@ function deleteShow($id_show)
     return $sentence->execute([$id_show]);
 }
 
-function getShowForId($id_show)
-{
-    $bd = database();
-    $sentence = $bd->prepare("SELECT id_show, show_name , show_description , show_date_time , id_gender , id_category FROM shows WHERE id_show = 3");
-    $sentence->execute([$id_show]);
-    return $sentence->fetchObject();
-}
-
-function updateShow($show_name , $show_description , $show_date_time , $id_gender , $id_category , $id_show)
-{
-    $bd = database();
-    $sentence = $bd->prepare("UPDATE shows SET show_name = ?, show_description = ?, show_date_time = ? , id_gender= ? , id_category = ? WHERE id_show = ?");
-    return $sentence->execute([$show_name,$show_description,$show_date_time,$id_gender,$id_category,$id_show]);
-}
-
-function deleteSHow($id_show)
-{
-    $bd = database();
-    $sentence = $bd->prepare("DELETE FROM shows WHERE id_show = ?");
-    return $sentence->execute([$id_show]);
-}
-
- function recovery($_password)
+function recovery($_password)
  {
     $bd=database();
     $sentence=$bd->prepare("UPDATE users SET _password =?");
@@ -137,5 +114,17 @@ function deleteSHow($id_show)
     
  }
 
+ function confMail($id_state, $id_user)
+ {
+    $bd=database();
+    $sentence = $bd->prepare("UPDATE users SET id_state = ? WHERE id_user = ?");
+    $sentence->execute([$id_state, $id_user]);
+ }
 
+ function getIdUser()
+ {
+    $bd=database();
+    $sentence=$bd->query("SELECT id_user FROM users ORDER BY id_user DESC");
+    return $sentence->fetch();
+ }
 ?>

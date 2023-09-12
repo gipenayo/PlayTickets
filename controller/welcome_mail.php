@@ -27,6 +27,9 @@ $password = $_POST["_password"];
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 $ok = register($first_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $departament, $floor, $cuil, $hashed_password);
+$idObject = getIdUser();
+$id = $idObject->id_user;
+$confirmationLink = 'http://localhost:8080/TicketRun/controller/confirmation.php?id=' . $id;
 
 if (!$ok) {
     echo "Error registrando.";
@@ -34,9 +37,6 @@ if (!$ok) {
     $_SESSION["nombre"] = $first_name;
 }
 
-
-    
-$email = $_POST["email"];
 
 function welcome($email)
 {
@@ -77,10 +77,14 @@ if (!empty($email)) {
     $mail->send();
     return true;
 }
+
+
 }
 
 
-function Confirmation($email) {
+function Confirmation($email,$confirmationLink) 
+{  
+
     $mail = new PHPMailer(true);
 
     $mail->SMTPDebug = 0 ;                      
@@ -103,7 +107,7 @@ function Confirmation($email) {
             <h1>Bienvenido a PlayTickets</h1>
             <p>Gracias por registrarte con nosotros.</p>
             <p>Para confirmar tu correo electrónico, haz clic en el siguiente enlace:</p>
-            <a href="register.php">Confirmar correo</a>
+            <a href="'.$confirmationLink.'">Confirmar correo</a>
         </body>';
 
         $mail->send();
@@ -111,10 +115,8 @@ function Confirmation($email) {
         
 }
 
-if (welcome($email)&&Confirmation($email)==true) {
+if (welcome($email)&&Confirmation($email,$confirmationLink)==true) {
     header("Location: ../view/register.php");
     exit;
-
-
 }
 ?>

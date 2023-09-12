@@ -13,11 +13,13 @@ function database()
     return $database;
 }
 
-function register ($first_name, $last_name,$email, $dni ,$phone,$date_birth,$street,$height,$departament,$floor,$cuil,$_password)
+function register ($first_name, $last_name,$email, $dni ,$phone,$date_birth,$street,$height,$departament,$id_rol,$_password)
 {
     $bd=database();
-    $sentence=$bd->prepare("INSERT INTO users(user_name,last_name,dni,email,phone,date_birth,street,height,_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    return $sentence->execute([$first_name, $last_name, $dni, $email, $phone, $date_birth, $street, $height, $_password]);
+    $sentence=$bd->prepare("INSERT INTO users(user_name,last_name,email,dni,phone,date_birth,street,height,departament,id_rol,_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    return $sentence->execute([$first_name, $last_name,$email,$dni, $phone,$date_birth,$street,$height,$departament,$id_rol,$_password]);
+
+
 }
 
 function getGender()
@@ -72,6 +74,7 @@ function getShow($search = null, $id_gender = null, $id_category = null)
     $sentence = $bd->prepare($sql);
     $sentence->execute($parameters);
     return $sentence->fetchAll();
+
 }
 
 function getShowDetallCategory()
@@ -98,13 +101,16 @@ function searchShow($show_name)
 
 }
 
+
 function getShowForId($id_show)
 {
     $bd = database();
+
     $sentence = $bd->prepare("SELECT id_show, show_name, show_description, show_date_time, id_gender, id_category, picture , show_state FROM shows WHERE id_show = ?");
     $sentence->execute([$id_show]);
     return $sentence->fetchObject();
 }
+
 
 function updateShow($show_name, $show_description, $show_date_time, $id_gender, $id_category, $picture, $id_show)
 {
@@ -113,11 +119,32 @@ function updateShow($show_name, $show_description, $show_date_time, $id_gender, 
     return $sentence->execute([$show_name, $show_description, $show_date_time, $id_gender, $id_category, $picture, $id_show]);
 }
 
+
 /*function deleteSHow($id_show)
+
 {
     $bd = database();
     $sentence = $bd->prepare("DELETE FROM shows WHERE id_show = ?");
     return $sentence->execute([$id_show]);
+
+
+function recovery($email, $_password)
+{
+    $bd = database();
+    $sentence = $bd->prepare("UPDATE users SET _password = ? WHERE email = ?");
+    return $sentence->execute([$_password, $email]);
+}
+function getUserInfo($email)
+{
+    
+
+        $bd=database();
+        $query = "SELECT * FROM users WHERE email = ?";
+        $stmt = $bd->prepare($query);
+        $stmt->execute([$email]);
+        $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user_info;
+}
 
 }*//* ELIMINA EL SHOW POR COMPLETO DE LA BASE DE DATOS */
 
@@ -130,18 +157,12 @@ function deleteShow($id_show)
     return $result;
 }
 
-function recovery($_password)
-{
 
-    $bd=database();
-    $sentence=$bd->prepare("UPDATE users SET _password =?");
-    return $sentence->execute([$_password]);
-}
 
  function login ()
  {
     $bd=database();
-    $sentence=$bd->query("SELECT email ,_password FROM users");
+    $sentence=$bd->query("SELECT email ,_password, id_rol,user_name FROM users");
     return $sentence->fetchAll();
  }
 

@@ -37,7 +37,7 @@
     </div>
     <form action="../controller/save_login.php" method="post">
       <input type="email" name="email" placeholder="Correo Electronico" required>
-      <input type="_password" name="_password" placeholder="Password" required><br><br>
+      <input type="password" name="_password" placeholder="Password" required><br><br>
    
       <button type="submit">Login</button>
     </form>

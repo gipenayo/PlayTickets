@@ -23,8 +23,9 @@ $departament = $_POST["departament"];
 $floor = $_POST["floor"];
 $cuil = $_POST["cuil"];
 $password = $_POST["_password"];
-
+$id_rol=1;
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
 
 $ok = register($first_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $departament, $floor, $cuil, $hashed_password);
 $idObject = getIdUser();
@@ -33,10 +34,16 @@ $confirmationLink = 'http://localhost:8080/TicketRun/controller/confirmation.php
 
 if (!$ok) {
     echo "Error registrando.";
-} else {
+} 
+else {
     $_SESSION["nombre"] = $first_name;
 }
 
+
+
+
+    
+$email = $_POST["email"];
 
 function welcome($email)
 {
@@ -60,7 +67,8 @@ if (!empty($email)) {
     $src_imagen = '../assets/img/logo.fondo.png';
     $mail->addEmbeddedImage($src_imagen, 'logo');
 
-    $mail->isHTML(true);
+    $mail->isHTML(true);     
+
     $mail->CharSet='UTF-8';                      
     $mail->Subject = 'Bienvenido';
     $mail->Body = '
@@ -75,9 +83,9 @@ if (!empty($email)) {
 
     
 
-    $mail->send();return true;
-
-
+    $mail->send();
+   return true;
+}
 
 }
 
@@ -116,9 +124,11 @@ function Confirmation($email,$confirmationLink)
 }
 
 
+
 if (welcome($email)&&Confirmation($email,$confirmationLink)==true) {
 
     header("Location: ../view/register.php");
     exit;
+
 }
 ?>

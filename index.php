@@ -26,6 +26,18 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
 $genders=getGender();
 $categorys=getCategory();
 
+include_once "models/functions.php";
+
+if (!isset($_GET["search"]) || empty($_GET["search"]))
+{
+    $shows = getShow();
+} else {
+    $shows = searchShow($_GET["search"]);
+}
+
+$genders=getGender();
+$categorys=getCategory();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -66,7 +78,7 @@ $categorys=getCategory();
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="assets/img/show_tini.jpeg" class="d-block w-100">
-            </div>
+  </div>
             <div class="carousel-item">
 
                 <img src="assets/img/show_taylor.jpg"" class="d-block w-100">
@@ -75,6 +87,7 @@ $categorys=getCategory();
             <div class="carousel-item">
                 <img src="assets/img/show_granja.jpg" class="d-block w-100">
             </div>
+
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -121,6 +134,7 @@ $categorys=getCategory();
     <!--fin de buscador/filtros-->
     <!-- Cartelera -->
     <div class="cartelera row">
+
         <?php foreach ($shows as $show) 
         { ?>
             <?php if ($show->show_state == 1) /*MUESTRA SOLO LOS QUE SEAN DE ESTADO=1 QUE SON LOS SHOWS ACTIVOS*/
@@ -134,6 +148,7 @@ $categorys=getCategory();
                 </div>
             </div>
 
+
         </div>
         <?php
             }
@@ -141,6 +156,7 @@ $categorys=getCategory();
         ?>
     </div>  
       
+
 
     <footer>
         <div class="footer-logo"></div> 

@@ -1,11 +1,32 @@
 <?php
 
+/*require '../vendor/PHPMailer/PHPMailer/src/PHPMailer.php';
+require '../vendor/PHPMailer/PHPMailer/src/SMTP.php';
+require '../vendor/PHPMailer/PHPMailer/src/Exception.php';
+*/
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-
+session_start();
 require '../vendor/autoload.php';
+include_once "../models/functions.php";
+$pdo=database();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+{
+    $email = $_POST['email'];
+    $_SESSION["email"]=$_POST["email"];
+    // Verifica si el correo electrónico existe en la base de datos
+    $stmt = $pdo->prepare('SELECT email FROM users WHERE email = ?');
+    $stmt->execute([$email]);
+    $user = $stmt->fetch();
 
+    if ($user) {
+        // Genera un token único y seguro
+        $token = bin2hex(random_bytes(32));
+
+        // Almacena el token y la hora de solicitud en la base de datos
+        $stmt = $pdo->prepare('INSERT INTO tokens (token, email, fecha_solicitud) VALUES (?, ?, NOW())');
+        $stmt->execute([$token, $email]);
 
     $mail = new PHPMailer;                     
     $mail->isSMTP();                                            
@@ -22,7 +43,9 @@ require '../vendor/autoload.php';
     $mail->isHTML(true);   
     $mail->CharSet='UTF-8';                               
     $mail->Subject = 'Reestablecer Contraseña';
-    $mail->Body    = 'http://localhost:8080/TicketRun/view/new_password.php';
+    $token = bin2hex(random_bytes(32));
+    $mail->Body    = ' token: '.$token .
+    ' http://localhost:8080/TicketRun/view/new_password.php';
 
 if (!$mail->send()) {
     echo 'Error al enviar el mensaje: ';
@@ -30,5 +53,8 @@ if (!$mail->send()) {
 
 else {
     echo 'Mensaje enviado correctamente';
+}
+
+}
 }
 ?>

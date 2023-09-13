@@ -4,7 +4,6 @@ include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
 /*var_dump($show);
 exit;*/
-
 ?>
 <!DOCTYPE html>
 <html lang="es">

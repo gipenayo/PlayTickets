@@ -13,7 +13,7 @@ if (isset($_FILES['picture']) && $_FILES['picture']['error'] === UPLOAD_ERR_OK) 
 
 $state_active=1;//le asigno el valor a el estado.
 
-$ok = AddShow($_POST["show_name"],$_POST["show_description"],$_POST["show_date_time"], $_POST["id_gender"], $binary_picture, $_POST["id_category"], $state_active);
+$ok = AddShow($_POST["show_name"],$_POST["show_description"],$_POST["show_date_time"], $_POST["id_gender"],  $_POST["id_category"],$binary_picture, $state_active);
 if (!$ok) {
     echo "Error registrando.";
 } else {

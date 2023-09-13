@@ -1,5 +1,4 @@
 <?php
-
 function database()
 {
     $user_password = getenv("MYSQL_ROOT_PASSWORD");
@@ -36,21 +35,19 @@ function getCategory()
     return $sentence->fetchAll();
 }
 
-function addShow($show_name, $show_description, $show_date_time, $id_gender, $picture, $id_category, $state)
+function addShow($show_name, $show_description, $show_date_time, $id_gender, $id_category, $picture, $state)
 {
     $show_name = ucfirst(strtoupper($show_name));//mayuscula en la primera letra de cada palabra
     $show_description=ucfirst(strtolower($show_description));//primera letra en mayuscula y lo demas en minuscula
     $bd=database();
-    $sente=$bd->prepare("INSERT INTO shows(show_name, show_description, show_date_time, id_gender, picture, id_category, show_state) VALUES (?,?,?,?,?,?,?)");
-    return $sente->execute([$show_name, $show_description, $show_date_time, $id_gender, $picture, $id_category, $state]);
+    $sente=$bd->prepare("INSERT INTO shows(show_name, show_description, show_date_time, id_gender, id_category, picture, show_state) VALUES (?,?,?,?,?,?,?)");
+    return $sente->execute([$show_name, $show_description, $show_date_time, $id_gender, $id_category , $picture,$state]);
 }
 
 function getShow($search = null, $id_gender = null, $id_category = null)
 {
     $bd = database();
-
-    $sql = "SELECT id_show, show_name, show_description, show_date_time, id_gender, id_category FROM shows WHERE 1";
-
+    $sql = "SELECT id_show, show_name, show_description, show_date_time, id_gender, id_category,picture ,show_state FROM shows WHERE 1";
     $parameters = [];
 
     if (!empty($search)) {
@@ -114,19 +111,12 @@ function getShowForId($id_show)
 
 function updateShow($show_name, $show_description, $show_date_time, $id_gender, $id_category, $picture, $id_show)
 {
+    $show_name = ucfirst(strtoupper($show_name));//mayuscula en la primera letra de cada palabra
+    $show_description=ucfirst(strtolower($show_description));//primera letra en mayuscula y lo demas en minuscula
     $bd = database();
     $sentence = $bd->prepare("UPDATE shows SET show_name = ?, show_description = ?, show_date_time = ?, id_gender = ?, id_category = ?, picture = ? WHERE id_show = ?");
     return $sentence->execute([$show_name, $show_description, $show_date_time, $id_gender, $id_category, $picture, $id_show]);
 }
-
-
-/*function deleteSHow($id_show)
-
-{
-    $bd = database();
-    $sentence = $bd->prepare("DELETE FROM shows WHERE id_show = ?");
-    return $sentence->execute([$id_show]);
-
 
 function recovery($email, $_password)
 {
@@ -134,20 +124,25 @@ function recovery($email, $_password)
     $sentence = $bd->prepare("UPDATE users SET _password = ? WHERE email = ?");
     return $sentence->execute([$_password, $email]);
 }
+
 function getUserInfo($email)
 {
-    
-
-        $bd=database();
-        $query = "SELECT * FROM users WHERE email = ?";
-        $stmt = $bd->prepare($query);
-        $stmt->execute([$email]);
-        $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user_info;
+    $bd=database();
+    $query = "SELECT * FROM users WHERE email = ?";
+    $stmt = $bd->prepare($query);
+    $stmt->execute([$email]);
+    $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $user_info;
 }
 
-}*//* ELIMINA EL SHOW POR COMPLETO DE LA BASE DE DATOS */
+/*function deleteSHow($id_show)
+{
+    $bd = database();
+    $sentence = $bd->prepare("DELETE FROM shows WHERE id_show = ?");
+    return $sentence->execute([$id_show]);
 
+
+}*//* ELIMINA EL SHOW POR COMPLETO DE LA BASE DE DATOS */
 function deleteShow($id_show)
 {
     $state_inactive = 0;
@@ -156,10 +151,7 @@ function deleteShow($id_show)
     $result = $sentence->execute([$state_inactive, $id_show]);
     return $result;
 }
-
-
-
- function login ()
+ function login()
  {
     $bd=database();
     $sentence=$bd->query("SELECT email ,_password, id_rol,user_name FROM users");

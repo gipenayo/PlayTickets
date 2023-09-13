@@ -13,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 /*var_dump($shows);
 exit;*/
-
 $genders=getGender();
 $categorys=getCategory();
 ?>
@@ -29,9 +28,9 @@ $categorys=getCategory();
     <link rel="stylesheet" href="assets/css/main.css">
     <title>PlayTickets</title>
 </head>
+
 <body>
-    <!-- inicio barra de navegacion-->
-    <header>
+    <header><!-- inicio barra de navegacion-->
     <div class="navbar">
         <h1 class="logo"><img src="assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS</h1>
         <button class="accordion">Menú</button>
@@ -44,10 +43,8 @@ $categorys=getCategory();
             </ul>
         </div>
     </div>
-    </header>
-    <!-- fin barra de navegacion-->
-    <!-- Inicio de carrusel -->
-    <div id="carouselExampleIndicators" class="carousel slide">
+    </header><!-- fin barra de navegacion-->
+    <div id="carouselExampleIndicators" class="carousel slide"><!-- Inicio de carrusel -->
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -67,38 +64,38 @@ $categorys=getCategory();
         </div>
     </div>
     <!-- Fin de carrusel -->
-    <!-- Buscador/Filtros -->
     <div class="filtros">
-        <form action="index.php" class="row justify-content-between" >
-            <div class="col-lg-3">
-                <input value="<?php echo isset($_GET["search"]) && !empty($_GET["search"]) ?  $_GET["search"] : "" ?>" name="search" class="buscador" type="text" placeholder="NOMBRE DEL SHOW">
-            </div>    
-            <div class="col-lg-1">
-                <button type="submit" class="buscar btn">Buscar</button>
-            </div>
-            <div class="col-lg-4 d-flex"><!-- Filtrar por tipo -->
-                <label for="id_gender">Genero: </label>
-                <select name="id_gender" id="id_gender">
-                    <option value=""></option>
-                    <?php foreach ($genders as $genders2) { ?>
-                        <option value="<?php echo $genders2->gender?>"><?php echo $genders2->gender?></option>
-                    <?php }?>
-                    
-                </select>
-            </div>
-            <div class="col-lg-4 d-flex"><!-- Filtrar por tipo -->
-                <label for="id_category">Clasificación: </label>
-                <select name="id_category" id="id_category">
-                    <option value=""></option>
-                    <?php foreach ($categorys as $categorys2) { ?>
-                        <option value="<?php echo $categorys2->category?>"><?php echo $categorys2->category?></option>
-                    <?php }?>
-                    
-                </select>
-            </div>
-        </form>
-
+    <form action="index.php" method="POST" class="row justify-content-between">
+        <div class="col-lg-3">
+            <input value="<?php echo isset($search) && !empty($search) ? $search : "" ?>" name="search" class="buscador" type="text" placeholder="NOMBRE DEL SHOW">
+        </div>
+        <div class="col-lg-1">
+            <button type="submit" class="buscar btn">Buscar</button>
+        </div>
+        <div class="col-lg-4 d-flex"><!-- Filtrar por tipo -->
+            <label for="id_gender">Género: </label>
+            <select name="id_gender" id="id_gender">
+                <option value=""></option>
+                <?php foreach ($genders as $genders2) { ?>
+                    <option value="<?php echo $genders2->id_gender ?>"><?php echo $genders2->gender ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="col-lg-4 d-flex"><!-- Filtrar por tipo -->
+            <label for="id_category">Clasificación: </label>
+            <select name="id_category" id="id_category">
+                <option value=""></option>
+                <?php foreach ($categorys as $categorys2) { ?>
+                    <option value="<?php echo $categorys2->id_category ?>"><?php echo $categorys2->category ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <?php
+        include "../TicketRun/controller/filter.php"
+        ?>
+    </form>
     </div>
+
     <!--fin de buscador/filtros-->
     <!-- Cartelera -->
     <div class="cartelera row">
@@ -132,6 +129,6 @@ $categorys=getCategory();
     </footer>
     <script src="../assets/js/barnavfooter.js"></script>
 </body>
-
-<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
+
+

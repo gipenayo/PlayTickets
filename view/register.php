@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../assets/css/register.css">  
-      <link rel="stylesheet" href="../assets/css/barnavfooter.css">
-
+    <link rel="stylesheet" href="../assets/css/barnavfooter.css">
     <link rel="icon" type="image/png" href="../assets/img/logo.png.png">
 
     <title>Registro</title>

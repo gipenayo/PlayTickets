@@ -11,6 +11,10 @@
     <title>Registro</title>
 </head>
 <body>
+<?php if (isset($_GET['successfulRegistratio']) && $_GET['successfulRegistratio'] == 1): ?>
+  <script src="../assets/js/successful_register.js"></script>
+    <?php endif; ?>
+
 <header>
         <div class="navbar">
             <h1 class="logo"> 

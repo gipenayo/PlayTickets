@@ -68,3 +68,35 @@ p {
 .fa-shopping-cart {
     margin-right: 5px;
 }
+
+/* Estilo para el mensaje de espectáculo agotado */
+.alert-danger p {
+    color: #ff4d4d; /* Cambia el color del texto a un rojo claro */
+    font-weight: bold; /* Hace que el texto sea más llamativo */
+    font-size: 20px; /* Ajusta el tamaño del texto */
+    text-align: center; /* Centra el texto en el contenedor */
+    margin-bottom: 15px; /* Agrega un espacio en la parte inferior */
+}
+/* Styles for the button to go back to Cartelera */
+.back-btn {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.back-btn a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.back-btn:hover {
+    background-color: #2980b9;
+}

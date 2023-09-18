@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
 
     <form action="../controller/save_reserve.php" method="POST">
         <div class="asientos">
-            <?php
+            <?php ?>
             
             for ($i = 1; $i <= 100; $i++) {
                 echo "<label class='asiento-label'><input type='checkbox' class='asiento-checkbox' name='asientos[]' value='$i'> Asiento $i</label>";

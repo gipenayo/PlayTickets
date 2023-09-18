@@ -21,6 +21,12 @@ function register ($first_name, $last_name,$email, $dni ,$phone,$date_birth,$str
     return $sentence->execute([$first_name, $last_name,$email,$dni, $phone,$date_birth,$street,$height,$departament,$id_rol,$_password,$user_state]);
 }
 
+function addSeating($asientos,$idese)
+{
+    $bd=database();
+    $sentence=$bd->prepare("INSERT INTO seatings(seating_number,id_show) VALUES (?,?)");
+    return $sentence->execute([$asientos,$idese]);
+}
 function getGender()
 {
     $bd = database();
@@ -68,6 +74,7 @@ function getShow($search = null, $id_gender = null, $id_category = null)
         $sql .= " AND show_name LIKE ?";
         $parameters[] = "%$search%";
     }
+
     if (!empty($id_gender)) {
         // Si se selecciona un género, se agrega una condición a la consulta SQL
         $sql .= " AND id_gender = ?";
@@ -83,6 +90,22 @@ function getShow($search = null, $id_gender = null, $id_category = null)
     return $sentence->fetchAll();
 }
 
+function getUser()
+{
+    $bd = database();
+    $sentence = $bd->query("SELECT user_name,last_name,email,phone,date_birth FROM users");
+    return $sentence->fetchAll();
+}
+
+
+function getReserver( $showId)
+{
+    $bd = database();
+    $sentence = $bd->prepare("SELECT seating_number, seating_state, id_show FROM seatings WHERE  id_show = :showId");
+    $sentence->bindParam(':showId', $showId, PDO::PARAM_INT);
+    $sentence->execute();
+    return $sentence->fetchAll(PDO::FETCH_OBJ);
+}
 function getShowDetallCategory()
 {
     $bd = database();
@@ -229,6 +252,7 @@ function inactiveShowDatetime($id_datetime)
     return $sentence->fetch();
  }
 
+
  function getUser()
  {
     $bd = database();
@@ -261,5 +285,15 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
     return $sentence->execute([$user_name, $last_name , $email, $phone, $date_birth, $id_user]);
 }
 
+ function getAmount($id_show)
+ {
+
+    $bd = database();
+    $sentence = $bd->prepare("SELECT amount_ticket FROM shows WHERE id_show = ?");
+    $sentence->execute([$id_show]);
+    $result = $sentence->fetch(PDO::FETCH_ASSOC);;
+    return $result['amount_ticket'];
+
+ }
 
 ?>

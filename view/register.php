@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../assets/css/register.css">  
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
+
     <link rel="icon" type="image/png" href="../assets/img/logo.png">
+
     <title>Registro</title>
 </head>
 <body>
-  <header>
+<?php if (isset($_GET['successfulRegistratio']) && $_GET['successfulRegistratio'] == 1): ?>
+  <script src="../assets/js/successful_register.js"></script>
+    <?php endif; ?>
+
+<header>
+
         <div class="navbar">
             <h1 class="logo"> 
                 <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS </h1>
@@ -29,7 +36,7 @@
     <div class="register-container">
         <div class="register-box">
           <div class="logo-container">
-            <h2 class="title-with-logo">Registrate <img src="../assets/img/logo.png.png" alt="" ></h2>
+            <h2 class="title-with-logo">Registrate <img src="../assets/img/logo.png" alt="" ></h2>
            </div>
          
           

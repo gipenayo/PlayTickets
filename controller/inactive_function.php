@@ -2,13 +2,12 @@
 
 include_once "../models/functions.php";
 
-$ok = deleteShow($_POST["id_show"]);
+$ok = inactiveShowDatetime($_POST["id_datetime"]);
 if (!$ok) {
-    echo "Error eliminando";
+    echo "Error";
 } else {
-    //echo "Eliminado con exito";
+    /*echo "inactivo con exito";*/
     header("Location: ../view/supplier.php");
     exit;
 }
-
 ?>

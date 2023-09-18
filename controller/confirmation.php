@@ -5,9 +5,9 @@ require_once "../models/functions.php";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $id_state = 1;
+    $user_state = 1;
 
-    confMail($id_state, $id);
+    confMail($user_state, $id);
 
     header("Location: ../index.php");
     exit;

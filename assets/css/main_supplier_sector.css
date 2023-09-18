@@ -1,0 +1,25 @@
+/* Estilo para la etiqueta <a> dentro de .accordion-body 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main{
+    padding: 1.5rem 0;
+}*/
+
+.accordion-body a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+  
+  /* Puedes agregar estilos adicionales según tus preferencias */
+  

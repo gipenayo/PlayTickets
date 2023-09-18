@@ -1,13 +1,10 @@
 <?php
-
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
-
 /*var_dump($show);
 exit;*/
 $genders = getGender();
 $categorys= getCategory();
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -27,9 +24,9 @@ $categorys= getCategory();
             <div class="panel">
                 <ul>
                     <li><a href="index.php">Cartelera</a></li>
-                    <li><a href="../view/login.php">Ingresar</a></li>
-                    <li><a href="../view/register.php">Registrarse</a></li>
-                    <li><a href="../view/contact_page.php">Contacto</a></li>
+                    <li><a href="login.php">Ingresar</a></li>
+                    <li><a href="register.php">Registrarse</a></li>
+                    <li><a href="contact_page.php">Contacto</a></li>
                 </ul>
             </div>
         </div>
@@ -41,15 +38,11 @@ $categorys= getCategory();
                 <input type="hidden" name="id_show" value="<?php echo $show->id_show ?>">
                 <div class="form-group">
                     <label for="show_name">Nombre de la función:</label>
-                    <input value="<?php echo $show->show_name ?>" required type="text" class="form-control" name="show_name" id="show_name">
+                    <input value="<?php echo $show->show_name ?>" type="text" class="form-control" name="show_name" id="show_name">
                 </div>
                 <div class="form-group">
                     <label for="show_description">Descripción de la función:</label>
                     <textarea id="show_description" name="show_description" rows="10" cols="6"><?php echo $show->show_description ?></textarea><br><br>
-                </div>
-                <div class="form-group">
-                    <label for="show_date_time">Fecha y Hora:</label>
-                    <input value="<?php echo $show->show_date_time ?>" required type="datetime-local" class="form-control" name="show_date_time" id="show_date_time">
                 </div>
                 <div class="form-group">
                     <label for="id_gender">Seleccione un genero:</label>
@@ -82,7 +75,7 @@ $categorys= getCategory();
                 <div class="form-group">
                     <label for="imagen">Imagen:</label><br>
                     <img src="data:image/jpeg;base64,<?php echo base64_encode($show->picture); ?>" ><br>
-                    <br><input type="file" name="picture" id="picture" accept="image/*" required value="<?php echo base64_encode($show->picture); ?>"><!--EL ACCEPT= ES PARA QUE ACEPTE CUALQUIER IMG-->
+                    <br><input type="file" name="picture" id="picture" accept="image/*" value="<?php echo base64_encode($show->picture); ?>"><!--EL ACCEPT= ES PARA QUE ACEPTE CUALQUIER IMG-->
                     <br><label for=""><b>(No debe superar los 2MB y solo acepta .jpg, .png, .jpeg)</b></label>
                 </div>
                 <div class="form-group">

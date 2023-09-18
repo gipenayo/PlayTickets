@@ -1,9 +1,13 @@
 
 /* Estilos para la tabla */
+.main{
+  width: 100%;
+}
 .table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  margin-bottom: 30px;/*baja el footer*/
 }
 
 .table th, .table td {
@@ -55,6 +59,7 @@
   background-color: #1b832f;
   border-color: #1b832f;
 }
+
 
 .btn-info {
   background-color: #17a2b8;
@@ -126,10 +131,7 @@
   padding: 20px;
 }
 
-h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
+
 
 /* Estilos para el formulario de búsqueda */
 .search-form {

@@ -1,6 +1,5 @@
 <?php
 include_once "../models/functions.php";
-
 if (!isset($_GET["search"]) || empty($_GET["search"]))
 {
     $shows = getShow();
@@ -37,10 +36,6 @@ $get_gender=getShowDetallGender();
     </header>
     <div class="row">
         <div class="col-12">
-            <div class="header">
-                <h3>SHOWS</h3>
-                <a href="../view/add_function.php" class="btn btn-success mb-2">AGREGAR</a>
-            </div>
             <form action="supplier.php" class="search-form">
                 <div class="form-row align-items-center">
                     <div class="col-6 my-1">
@@ -52,56 +47,53 @@ $get_gender=getShowDetallGender();
                 </div>
             </form>
             <table class="table">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Fecha y Hora</th>
-            <th>Género</th>
-            <th>Categoría</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($shows as $show) { ?>
-            <?php if ($show->show_state == 1) { ?>
-                <tr>
-                    <td><?php echo $show->show_name ?></td>
-                    <td>
-                        <textarea name="show_description" id="show_description" cols="10" rows="6"><?php echo $show->show_description ?></textarea>
-                    </td>
-                    <td><?php echo $show->show_date_time ?></td>
-                    <td>
-                        <?php
-                        $opcion_gender = $show->id_gender;
-                        foreach ($get_gender as $opcion_get_gender) {
-                            if ($opcion_get_gender->id_gender === $opcion_gender) {
-                                echo $opcion_get_gender->gender;
-                                break;
-                            }
-                        }
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                        $opcion_category = $show->id_category;
-                        foreach ($get_category as $opcion_get_category) {
-                            if ($opcion_get_category->id_category === $opcion_category) {
-                                echo $opcion_get_category->category;
-                                break;
-                            }
-                        }
-                        ?>
-                    </td>
-                    <td><a class="btn btn-warning" href="edit_form_show.php?id_show=<?php echo $show->id_show ?>">EDITAR</a></td>
-                    <td><a class="btn btn-danger" href="warning_delete.php?id_show=<?php echo $show->id_show ?>">ELIMINAR</a></td>
-                </tr>
-            <?php } ?>
-        <?php } ?>
-    </tbody>
-</table>
-
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Género</th>
+                        <th>Categoría</th>
+                        <th>Fechas</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($shows as $show) { 
+                        if ($show->show_state != 2) { ?>
+                        <tr>
+                            <td><?php echo $show->show_name ?></td>
+                            <td><textarea name="show_description" id="show_description" cols="10" rows="6"><?php echo $show->show_description ?></textarea></td>
+                            <td>
+                                <?php
+                                $opcion_gender = $show->id_gender;
+                                foreach ($get_gender as $opcion_get_gender) {
+                                    if ($opcion_get_gender->id_gender === $opcion_gender) 
+                                    {
+                                        echo $opcion_get_gender->gender;
+                                        break;
+                                    }
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                    <?php
+                                    $opcion_category = $show->id_category;
+                                    foreach ($get_category as $opcion_get_category) {
+                                        if ($opcion_get_category->id_category === $opcion_category) {
+                                            echo $opcion_get_category->category;
+                                            break;
+                                        }
+                                    }
+                                    ?>
+                            </td>
+                            <td><a class="btn btn-success mb-2" href="datetime_function.php?id_show=<?php echo $show->id_show ?>">FECHAS</a></td>
+                            <td><a class="btn btn-warning" href="edit_form_show.php?id_show=<?php echo $show->id_show ?>">EDITAR</a></td>
+                            <td><a class="btn btn-danger" href="warning_delete.php?id_show=<?php echo $show->id_show ?>">ELIMINAR</a></td>  
+                        </tr>
+                    <?php } }?>
+                </tbody>
+            </table>
         </div>
     </div>
     <footer>

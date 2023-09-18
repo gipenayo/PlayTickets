@@ -1,0 +1,88 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#seating-chart {
+    text-align: center;
+}
+
+#stage-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0; /* Añade margen superior e inferior para centrar */
+}
+
+.stage {
+    width: 200px; /* Ancho de la raya ovalada */
+    height: 50px; /* Altura de la raya ovalada */
+    background-color: #ccc; /* Color de la raya ovalada */
+    border-radius: 50%; /* Hace que la raya sea ovalada */
+    margin: 20px auto; /* Centra la raya horizontalmente */
+}
+
+.seat {
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.unavailable {
+    background-color: red;
+    cursor: not-allowed;
+}
+
+.selected {
+    background-color: yellow;
+}
+
+.available {
+    background-color: white;
+}
+
+#legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.legend-item .seat {
+    margin-right: 5px;
+}
+
+header {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+#seating-chart-container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+footer {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: auto;
+}

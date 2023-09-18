@@ -1,7 +1,9 @@
+/* Establece la fuente principal y la de respaldo */
 body {
     font-family: Arial, sans-serif;
 }
 
+/* Contenedor principal de los asientos */
 .asientos {
     display: flex;
     flex-wrap: wrap;
@@ -9,27 +11,45 @@ body {
     align-items: center;
 }
 
+/* Estilo de las etiquetas de los asientos */
 .asiento-label {
     margin: 10px;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
+    padding: 10px 15px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Estilo de los checkboxes (visibles al hacer clic en una etiqueta de asiento) */
 .asiento-checkbox {
     display: none;
 }
 
+/* Estilo de los inputs de nombre */
 .nombre-input {
     margin: 10px;
-    padding: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
+/* Estilo del botón de reserva */
 #reservar-btn {
     margin: 10px;
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo del botón de reserva al pasar el mouse */
+#reservar-btn:hover {
+    background-color: #0056b3;
 }

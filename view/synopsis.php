@@ -1,7 +1,8 @@
 <?php
-
+session_start();
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
+$_SESSION["id"]=$_GET["id_show"];
 /*var_dump($show);
 exit;*/
 ?>

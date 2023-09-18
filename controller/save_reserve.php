@@ -1,19 +1,47 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
+session_start();
 include_once "../models/functions.php";
-if ($_SERVER["REQUEST_METHOD"] === "POST") 
-{
-    $asientos = $_POST["asientos"];
-    $conexion = database();
-    foreach ($asientos as $asiento) 
-    {
-        $sql = "UPDATE asientos SET estado = 'reservado' WHERE numero_asiento = ?";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bindValue(1, $asiento, PDO::PARAM_INT);
-        $stmt->execute();
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+    require '../vendor/autoload.php';
+$idese=$_SESSION["id"];
+if (isset($_POST["asientos"]) && is_array($_POST["asientos"])) { 
+    foreach ($_POST["asientos"] as $asiento) {
+ $ok = addSeating($asiento,$idese);
     }
+if(!$ok)
+{
+    echo "no";
 }
-?>
+else{
+    echo "se guardo";
+        $mail = new PHPMailer;                     
+        $mail->isSMTP();                                            
+        $mail->Host       = 'smtp.gmail.com';                     
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'PlayTickets1@gmail.com';               
+        $mail->Password   = 'gxekfdrsttscsikn';                     
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         
+        $mail->Port       = 587;                                    
+    
+        
+        $mail->setFrom('PlayTickets1@gmail.com', 'PlayTickets');
+        $mail->addAddress($_SESSION["email"], 'usuario');     
+        $mail->isHTML(true);   
+        $mail->CharSet='UTF-8';                               
+        $mail->Subject = 'Compra exitosa';
+        $mail->Body = 'Felicitaciones por su compra en los asientos: ' . implode(', ', $_POST["asientos"]);
+    
+    if (!$mail->send()) {
+        echo 'Error al enviar el mensaje: ';
+    } 
+    
+    else {
+        echo 'Mensaje enviado correctamente';
+    }
+    
+    }
+    }
+    ?>

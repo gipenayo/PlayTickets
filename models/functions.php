@@ -20,7 +20,12 @@ function register ($first_name, $last_name,$email, $dni ,$phone,$date_birth,$str
 
 
 }
-
+function addSeating($asientos,$idese)
+{
+    $bd=database();
+    $sentence=$bd->prepare("INSERT INTO seatings(seating_number,id_show) VALUES (?,?)");
+    return $sentence->execute([$asientos,$idese]);
+}
 function getGender()
 {
     $bd = database();
@@ -55,7 +60,7 @@ function getShow($search = null, $id_gender = null, $id_category = null)
         $sql .= " AND show_name LIKE ?";
         $parameters[] = "%$search%";
     }
-
+    
     if (!empty($id_gender)) {
         // Si se selecciona un género, se agrega una condición a la consulta SQL
         $sql .= " AND id_gender = ?";
@@ -74,6 +79,22 @@ function getShow($search = null, $id_gender = null, $id_category = null)
 
 }
 
+function getUser()
+{
+    $bd = database();
+    $sentence = $bd->query("SELECT user_name,last_name,email,phone,date_birth FROM users");
+    return $sentence->fetchAll();
+}
+
+
+function getReserver( $showId)
+{
+    $bd = database();
+    $sentence = $bd->prepare("SELECT seating_number, seating_state, id_show FROM seatings WHERE  id_show = :showId");
+    $sentence->bindParam(':showId', $showId, PDO::PARAM_INT);
+    $sentence->execute();
+    return $sentence->fetchAll(PDO::FETCH_OBJ);
+}
 function getShowDetallCategory()
 {
     $bd = database();

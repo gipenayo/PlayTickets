@@ -63,21 +63,37 @@ if (!empty($email)) {
     $mail->setFrom('playtickets1@gmail.com', 'PlayTicket');
     $mail->addAddress($email);     
 
-    $src_imagen = '../assets/img/logo.fondo.png';
+    $src_imagen = '../assets/img/logo.con.fondo.png';
     $mail->addEmbeddedImage($src_imagen, 'logo');
 
     $mail->isHTML(true);     
-
     $mail->CharSet='UTF-8';                      
     $mail->Subject = 'Bienvenido';
     $mail->Body = '
     <h1>¡Bienvenido a PlayTickets!</h1>
-
     <p>
-    Estamos encantados de tenerte aquí.
-    Explora y disfruta de todos nuestros servicios. 
-    Si necesitas ayuda, no dudes en contactarnos.
-    ¡Esperamos que tengas una experiencia increíble!</p>
+    Bienvenido a PlayTickets!
+    <br>
+    Es un gran placer darte la bienvenida a PlayTickets, 
+    tu destino número uno para disfrutar de los mejores eventos y espectáculos en línea.
+    Estamos emocionados de tenerte como parte de nuestra comunidad y esperamos que te diviertas al máximo.
+    <br>
+    <br>
+    En PlayTickets, nos apasiona brindarte acceso a una amplia variedad de eventos,
+    desde conciertos emocionantes hasta proyecciones de películas exclusivas y experiencias teatrales inolvidables.
+    Hemos diseñado este espacio pensando en ti, para que puedas explorar, reservar y disfrutar de tus espectáculos favoritos desde la comodidad de tu hogar.
+    <br>
+    <br>
+    Te animamos a explorar nuestro sitio web y descubrir todas las sorpresas que hemos preparado para ti. Si tienes alguna pregunta, comentario o sugerencia,
+    nuestro equipo de soporte siempre está dispuesto a ayudarte.
+    Estamos aquí para garantizar que tu experiencia en PlayTickets sea excepcional.
+    <br>
+    ¡Bienvenido y disfruta de la magia de PlayTickets!
+    <br>
+    <br>
+    Saludos cordiales,
+    <br>
+    Equipo PlayTickets</p>
     <img src="cid:logo">';
 
     

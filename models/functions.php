@@ -20,6 +20,7 @@ function register ($first_name, $last_name,$email, $dni ,$phone,$date_birth,$str
 
 
 }
+
 function addSeating($asientos,$idese)
 {
     $bd=database();

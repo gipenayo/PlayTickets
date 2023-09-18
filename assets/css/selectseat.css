@@ -1,55 +1,105 @@
-/* Establece la fuente principal y la de respaldo */
-body {
-    font-family: Arial, sans-serif;
-}
-
-/* Contenedor principal de los asientos */
+/* styles.css */
 .asientos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
+    margin: 20px auto;
+    
+    max-width: 600px; /* Ajusta el ancho máximo según tus necesidades */
 }
 
-/* Estilo de las etiquetas de los asientos */
 .asiento-label {
-    margin: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 10px 15px;
-    border: 2px solid #ccc;
+    display: inline-block;
+    margin: 5px;
+    width: 40px; /* Ancho de cada butaca */
+    height: 45px; /* Altura de cada butaca */
+    background-color: #00ff15; /* Color de las butacas */
     border-radius: 5px;
-    background-color: #fff;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    position: relative;
 }
 
-/* Estilo de los checkboxes (visibles al hacer clic en una etiqueta de asiento) */
-.asiento-checkbox {
-    display: none;
+.asiento-label.selected {
+    background-color: #ff0000; /* Color cuando está seleccionada */
+    margin: 5px;
+    width: 40px; /* Ancho de cada butaca */
+    height: 45px;
+    cursor: not-allowed;
 }
 
-/* Estilo de los inputs de nombre */
-.nombre-input {
-    margin: 10px;
-    padding: 10px;
+.asiento-label::before {
+    content: "\f0fb"; /* Ícono de asiento (puedes cambiarlo) */
+    font-family: FontAwesome; /* Utiliza una fuente de iconos */
+    font-size: 20px; /* Tamaño del ícono */
+    color: #000000; /* Color del ícono */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* Ocultar el cuadradito del checkbox y su espacio en la página */
+input[type="checkbox"] {
+    margin: 5px;
+    width: 40px; /* Ancho de cada butaca */
+    height: 45px; 
+    visibility: hidden;
+   
+}
+
+#seating-chart {
+    text-align: center;
+}
+
+#stage-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0; /* Añade margen superior e inferior para centrar */
+}
+
+.stage {
+    width: 200px; /* Ancho de la raya ovalada */
+    height: 50px; /* Altura de la raya ovalada */
+    background-color: #ccc; /* Color de la raya ovalada */
+    border-radius: 50%; /* Hace que la raya sea ovalada */
+    margin: 20px auto; /* Centra la raya horizontalmente */
+}
+#seating-chart-container {
+    width: 80%;
+    margin: 20px auto;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+#legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.seat {
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
     border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
-/* Estilo del botón de reserva */
-#reservar-btn {
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
+.unavailable {
+    background-color: red;
+    cursor: not-allowed;
 }
 
-/* Estilo del botón de reserva al pasar el mouse */
-#reservar-btn:hover {
-    background-color: #0056b3;
+.selected {
+    background-color: yellow;
+}
+
+.available {
+    background-color: #00ff15;
+}
+/* Estilo para las butacas seleccionadas con un color diferente */
+.asiento-label.new-selected {
+    background-color: #ff00ff; /* Cambia el color a tu elección */
 }

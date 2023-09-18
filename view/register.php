@@ -17,7 +17,7 @@
 <header>
         <div class="navbar">
             <h1 class="logo"> 
-                <img src="../assets/img/logo.png.png" alt="Logo" height="80px ">PLAYTICKETS </h1>
+                <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS </h1>
             <button class="accordion">Menú</button>
             <div class="panel">
 
@@ -34,7 +34,7 @@
     <div class="register-container">
         <div class="register-box">
           <div class="logo-container">
-            <h2 class="title-with-logo">Registrate <img src="../assets/img/logo.png.png" alt="" ></h2>
+            <h2 class="title-with-logo">Registrate <img src="../assets/img/logo.png" alt="" ></h2>
            </div>
          
           

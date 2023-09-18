@@ -1,6 +1,8 @@
 <?php
 session_start();
    include_once "../models/functions.php";
+   $show = getShowForId($_GET["id_show"]);
+   $id=$_SESSION["id"];
    $comp=login();
    /*var_dump($comp);
    exit;*/
@@ -12,7 +14,7 @@ $logged_in = false;
       $logged_in = true;
       $_SESSION["email"] =$compara->email;
       $_SESSION["name"]=$compara->user_name;
-      echo $_SESSION["email"],$_SESSION["name"];
+      //echo $_SESSION["email"],$_SESSION["name"];
       break;
          
      }
@@ -23,7 +25,7 @@ $logged_in = false;
    }
    if ($logged_in) 
    {
-      echo "¡Has iniciado sesión con éxito!";
+      header("location: ../view/view_purchase.php?id_show=$id");
    } 
    else 
    {

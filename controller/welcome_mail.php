@@ -23,11 +23,13 @@ $departament = $_POST["departament"];
 $floor = $_POST["floor"];
 $cuil = $_POST["cuil"];
 $password = $_POST["_password"];
-$id_rol=1;
+$id_rol="1";
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 
-$ok = register($first_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $departament, $id_rol, $hashed_password);
+
+$ok = register($first_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $departament,$id_rol, $hashed_password);
+
 $idObject = getIdUser();
 $id = $idObject->id_user;
 $confirmationLink = 'http://localhost:8080/TicketRun/controller/confirmation.php?id=' . $id;
@@ -95,7 +97,6 @@ if (!empty($email)) {
     <br>
     Equipo PlayTickets</p>
     <img src="cid:logo">';
-
     
 
     $mail->send();

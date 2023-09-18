@@ -1,3 +1,4 @@
+
 <?php
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
@@ -34,5 +35,3 @@ $tickets = getAmount($id_show);
     </main>
 </body>
 </html>
-
-

@@ -1,5 +1,11 @@
 <?php
+session_start();
+include_once "../models/functions.php";
+$show = getShowForId($_GET["id_show"]);
+$_SESSION["id"];
 
+/*var_dump($_SESSION["id"]);
+exit();*/
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -15,7 +21,7 @@
 <header>
         <div class="navbar">
             <h1 class="logo"> 
-                <img src="../assets/img/logo.png.png" alt="Logo" height="80px ">PLAYTICKETS </h1>
+                <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS </h1>
             <button class="accordion">Menú</button>
             <div class="panel">
 
@@ -33,13 +39,12 @@
 <div class="login-container">
   <div class="login-box">
     <div class="logo-container">
-    <h2 class="title-with-logo"> Login<img src="../assets/img/logo.png.png" alt="" ></h2>
+    <h2 class="title-with-logo"> Login<img src="../assets/img/logo.png" alt="" ></h2>
     </div>
     <form action="../controller/save_login.php" method="post">
       <input type="email" name="email" placeholder="Correo Electronico" required>
       <input type="password" name="_password" placeholder="Password" required><br><br>
-   
-      <button type="submit">Login</button>
+      <button type="submit">Confirmar</button>
     </form>
     <p>¿No está registrado? <a href="../view/register.php">Registrate aquí</a></p>
     <p>¿Olvidaste tu contraseña? <a href="../view/recovery_form.php">Haga click aqui</a></p>

@@ -27,7 +27,7 @@ $id_rol=1;
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 
-$ok = register($first_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $departament, $floor, $cuil, $hashed_password);
+$ok = register($first_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $departament, $id_rol, $hashed_password);
 $idObject = getIdUser();
 $id = $idObject->id_user;
 $confirmationLink = 'http://localhost:8080/TicketRun/controller/confirmation.php?id=' . $id;
@@ -38,7 +38,6 @@ if (!$ok) {
 else {
     $_SESSION["nombre"] = $first_name;
 }
-
 
 
 
@@ -127,8 +126,8 @@ function Confirmation($email,$confirmationLink)
 
 if (welcome($email)&&Confirmation($email,$confirmationLink)==true) {
 
-    header("Location: ../view/register.php");
-    exit;
+    header("Location: ../view/register.php?successfulRegistratio=1");
+
 
 }
 ?>

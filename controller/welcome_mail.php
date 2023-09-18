@@ -24,11 +24,11 @@ $floor = $_POST["floor"];
 $cuil = $_POST["cuil"];
 $password = $_POST["_password"];
 $id_rol="1";
+$user_state="0";
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 
-
-$ok = register($first_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $departament,$id_rol, $hashed_password);
+$ok = register($first_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $departament, $id_rol, $hashed_password,$user_state);
 
 $idObject = getIdUser();
 $id = $idObject->id_user;

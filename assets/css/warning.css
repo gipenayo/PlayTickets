@@ -20,7 +20,7 @@ body {
     max-width: 400px;
     margin-left: 35%;
     margin-top: 10%;
-    margin-bottom: 20%;
+    margin-bottom: 30%;/*baja la barra de navegacion*/
 }
 
 /* Estilo del título */

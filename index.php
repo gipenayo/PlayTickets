@@ -101,7 +101,7 @@ $categorys=getCategory();
     <div class="cartelera row">
         <?php foreach ($shows as $show) 
         { ?>
-            <?php if ($show->show_state == 1) /*MUESTRA SOLO LOS QUE SEAN DE ESTADO=1 QUE SON LOS SHOWS ACTIVOS*/
+            <?php if ($show->show_state !=2) /*MUESTRA SOLO LOS QUE SEAN DE ESTADO=1 QUE SON LOS SHOWS ACTIVOS*/
             { ?>
         <div class="col-lg-3">
             <div class="card">

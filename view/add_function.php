@@ -4,7 +4,6 @@ include_once "../models/functions.php";
 $genders = getGender();
 $categorys= getCategory();
 
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -13,26 +12,27 @@ $categorys= getCategory();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/add_fuction.css">
     <link rel="icon" type="img/logo" href="../assets/img/logo.png"><!--Icono en la pestaña-->
-
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
     <title>PlayTickets</title>
 </head>
 <body>
     <header>
-    <div class="navbar">
-        <h1 class="logo"><img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS</h1>
-        <button class="accordion">Menú</button>
-        <div class="panel">
-            <ul>
-                <li><a href="index.php">Cartelera</a></li>
-                <li><a href="../view/login.php">Ingresar</a></li>
-                <li><a href="../view/register.php">Registrarse</a></li>
-                <li><a href="../view/contact_page.php">Contacto</a></li>
-            </ul>
+        <div class="navbar">
+            <h1 class="logo"> 
+                <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS </h1>
+            <button class="accordion">Menú</button>
+            <div class="panel">
+                <ul>
+                    <li><a href="../index.php">Cartelera</a></li>
+                    <li><a href="login.php">Ingresar</a></li>
+                    <li><a href="register.php">Registrarse</a></li>
+                    <li><a href="contact_page.php">Contacto</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
     </header>
-    <form action="../controller/save_function.php" method="post" enctype="multipart/form-data">
+    <main>
+       <form action="../controller/save_function.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="show_name">Nombre:</label>
             <input required type="text" class="form-control" name="show_name" id="show_name" required><br><br>
@@ -42,15 +42,11 @@ $categorys= getCategory();
             <textarea id="show_description" name="show_description" rows="4" cols="50" required></textarea><br><br>
         </div>
         <div class="form-group">
-            <label for="show_date_time">Fecha y Hora:</label>
-            <input type="datetime-local" class="form-control" id="show_date_time" name="show_date_time" required><br><br>
-        </div>
-        <div class="form-group">
             <br><label for="id_gender">Seleccione un genero:</label>
             <select class="form-control" id="id_gender" name="id_gender">
             <?php foreach ($genders as $gender) 
             { ?>
-            <option value="<?php echo $gender->id_gender ?>"v required><?php echo $gender->gender ?></option><br>br
+            <option value="<?php echo $gender->id_gender ?>" required><?php echo $gender->gender ?></option><br>br
             <?php 
             } ?>
             </select>
@@ -73,7 +69,9 @@ $categorys= getCategory();
         <div class="form-group">
             <button type="submit" class="btn btn-success">Guardar</button>
         </div>
-    </form>
+    </form> 
+    </main>
+    
     <footer>
         <div class="footer-logo"></div> 
         <div class="footer-content">

@@ -1,10 +1,9 @@
 <?php
 
 include_once "../models/functions.php";
-$show = getShowForId($_GET["id_show"]);
-/*var_dump($show);
+$datetime=getShowDatetimeForId($_GET["id_datetime"]);
+/*var_dump($datetime);
 exit;*/
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,9 +35,9 @@ exit;*/
     <main>
         <div class="advertencia">
             <h2>Advertencia</h2>
-            <p>¿Seguro que desea eliminar esta función?</p>
-            <form action="../controller/delete_function.php" method="post">
-                <input type="hidden" name="id_show" value="<?php echo $show->id_show?>">
+            <p>¿Seguro que desea eliminar el horario: <?php echo $datetime->datetime_show ?>?</p>
+            <form action="../controller/delete_function_datetime.php" method="post">
+                <input type="hidden" name="id_datetime" value="<?php echo $datetime->id_datetime?>">
                 <button type="submit" class="btn-eliminar">Eliminar</button>
             </form>
         </div>

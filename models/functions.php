@@ -172,4 +172,15 @@ function deleteShow($id_show)
     return $sentence->fetch();
  }
 
+ function getAmount($id_show)
+ {
+
+    $bd = database();
+    $sentence = $bd->prepare("SELECT amount_ticket FROM shows WHERE id_show = ?");
+    $sentence->execute([$id_show]);
+    $result = $sentence->fetch(PDO::FETCH_ASSOC);;
+    return $result['amount_ticket'];
+
+ }
+
 ?>

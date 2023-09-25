@@ -26,25 +26,35 @@ $categorys=getCategory();
     <link rel="stylesheet" href="assets/css/barnavfooter.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
     <title>PlayTickets</title>
 </head>
 
 <body>
     <header><!-- inicio barra de navegacion-->
     <div class="navbar">
-        <h1 class="logo"><img src="assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS</h1>
-        <button class="accordion">Menú</button>
+        <img src="assets/img/logo.png" alt="Logo" height="80px ">
+        <h1 class="logo">PLAYTICKETS</h1>
+         <button class="accordion"> <i class="fas fa-bars"></i></button>
         <div class="panel">
             <ul>
                 <li><a href="index.php">Cartelera</a></li>
                 <li><a href="view/login.php">Ingresar</a></li>
                 <li><a href="view/register.php">Registrarse</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="view/contact_page.php">Contacto</a></li>
             </ul>
         </div>
     </div>
     </header><!-- fin barra de navegacion-->
-    <div id="carouselExampleIndicators" class="carousel slide"><!-- Inicio de carrusel -->
+    <!-- inicio carrousel-->
+    <br>
+    <div id="carouselExampleIndicators" class="carousel slide" data-interval="2000">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -52,18 +62,27 @@ $categorys=getCategory();
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="assets/img/show_tini.jpeg" class="d-block w-100">
+                <img src="assets/img/show_tini.jpeg" class="d-block w-100" alt="Slide 1">
             </div>
             <div class="carousel-item">
-
-                <img src="assets/img/show_taylor.jpg"" class="d-block w-100">
+                <img src="assets/img/show_taylor.jpg" class="d-block w-100" alt="Slide 2">
             </div>
             <div class="carousel-item">
-                <img src="assets/img/show_granja.jpg" class="d-block w-100">
+                <img src="assets/img/show_granja.jpg" class="d-block w-100" alt="Slide 3">
             </div>
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
     <!-- Fin de carrusel -->
+    <br>
+    <br>
     <div class="filtros">
     <form action="index.php" method="POST" class="row justify-content-between">
         <div class="col-lg-3">
@@ -95,13 +114,13 @@ $categorys=getCategory();
         ?>
     </form>
     </div>
-
+<br><br>
     <!--fin de buscador/filtros-->
     <!-- Cartelera -->
     <div class="cartelera row">
         <?php foreach ($shows as $show) 
         { ?>
-            <?php if ($show->show_state !=2) /*MUESTRA SOLO LOS QUE SEAN DE ESTADO=1 QUE SON LOS SHOWS ACTIVOS*/
+            <?php if ($show->show_state !=2)
             { ?>
         <div class="col-lg-3">
             <div class="card">
@@ -116,7 +135,7 @@ $categorys=getCategory();
         }
         ?>
     </div>  
-    <footer>
+    <footer class="footer">
         <div class="footer-logo"></div> 
         <div class="footer-content">
             <div class="footer-links">
@@ -127,8 +146,20 @@ $categorys=getCategory();
             <div class="footer-copyright">&copy; 2023 PlayTickets</div>  
         </div>
     </footer>
-    <script src="../assets/js/barnavfooter.js"></script>
+<script> document.addEventListener("DOMContentLoaded", function() {
+    const accordion = document.querySelector(".accordion");
+    const panel = document.querySelector(".panel");
+
+    accordion.addEventListener("click", function() {
+        panel.style.display = panel.style.display === "block" ? "none" : "block";
+    });
+});</script>
+
+<script>
+       // Inicializa el carrusel
+        $(document).ready(function(){
+            $('#carouselExampleIndicators').carousel();
+        });
+</script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
-
-
+</html>

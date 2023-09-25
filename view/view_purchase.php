@@ -14,10 +14,12 @@ exit;*/
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="img/logo" href="../assets/img/logo.png"><!--Icono en la pestaña-->
-    <link rel="stylesheet" href="../assets/css/barnavfooter.css">
+    <link rel="stylesheet" href="../assets/css/barnavlog.css">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/selectseat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>PlayTickets</title>
 </head>
 <body>
@@ -25,13 +27,13 @@ exit;*/
     <div class="navbar">
         <h1 class="logotipo">
             <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS </h1>
-        <button class="accordion">Menú</button>
+        <button class="accordion"><i class="fas fa-bars"></i></button>
         <div class="panel">
             <ul>
-                <li><a href="index.php">Cartelera</a></li>
-                <li><a href="../view/login.php">Ingresar</a></li>
-                <li><a href="../view/register.php">Registrarse</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li>Hola <?php echo $_SESSION["name"]?>!</li>
+                <li><a href="#">Mis reservas</a></li>
+                <hr class="hr">
+                <li><a href="#">Cerrar Sesion</a></li>
             </ul>
         </div>
     </div>
@@ -95,9 +97,6 @@ exit;*/
                 </label>
                 
                 <?php
-               
-            
-           
         }
         ?>
     </div>
@@ -105,7 +104,7 @@ exit;*/
     <input type="submit" value="Reservar" id="reservation-button" disabled>
 </form>
 
-<footer>
+<footer class="footer">
     <div class="footer-logo"></div> 
     <div class="footer-content">
         <div class="footer-links">

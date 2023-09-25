@@ -22,6 +22,11 @@ $logged_in = false;
       {
       header("location: ../view/supplier.php");
       }
+      
+      if(($compara->email === $_POST["email"]) && (password_verify($_POST["_password"], $compara->_password))&& ($compara->id_rol===3))
+      {
+      header("location: ../view/counter_staff.php");
+      }
    }
    if ($logged_in) 
    {

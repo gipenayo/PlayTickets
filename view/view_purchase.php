@@ -24,6 +24,8 @@ exit;*/
     <title>PlayTickets</title>
 </head>
 <body>
+<div class="main-content">
+
 <header>
     <div class="navbar">
         <h1 class="logotipo">
@@ -104,6 +106,8 @@ exit;*/
     
     
 </form>
+
+
 
 
 

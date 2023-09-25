@@ -15,6 +15,7 @@ $logged_in = false;
       $logged_in = true;
       $_SESSION["email"] =$compara->email;
       $_SESSION["name"]=$compara->user_name;
+      
       //echo $_SESSION["email"],$_SESSION["name"];
       break;
          
@@ -31,7 +32,7 @@ $logged_in = false;
    }
    if ($logged_in) 
    {
-      header("location: ../view/view_purchase.php?id_show=$id");
+      header("location: ../view/record.php");
    } 
    else 
    {

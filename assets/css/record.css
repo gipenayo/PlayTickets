@@ -1,0 +1,24 @@
+/* Estilo para centrar el título h2 */
+h2 {
+    text-align: center;
+}
+
+/* Estilo para las filas de reserva en un rectángulo */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc; /* Borde para cada celda */
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilo para resaltar las filas impares */
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}

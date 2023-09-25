@@ -37,6 +37,8 @@ $categorys=getCategory();
 </head>
 
 <body>
+<div class="main-content">
+
     <header><!-- inicio barra de navegacion-->
     <div class="navbar">
         <img src="assets/img/logo.png" alt="Logo" height="80px ">
@@ -62,23 +64,18 @@ $categorys=getCategory();
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="assets/img/show_tini.jpeg" class="d-block w-100" alt="Slide 1">
+
+                <img src="assets/img/show_tini.jpeg" class="d-block w-100" alt="Slide 1" loading="lazy">
             </div>
             <div class="carousel-item">
-                <img src="assets/img/show_taylor.jpg" class="d-block w-100" alt="Slide 2">
+                <img src="assets/img/show_taylor.jpg" class="d-block w-100" alt="Slide 2" loading="lazy">
             </div>
             <div class="carousel-item">
-                <img src="assets/img/show_granja.jpg" class="d-block w-100" alt="Slide 3">
+                <img src="assets/img/show_granja.jpg" class="d-block w-100" alt="Slide 3" loading="lazy">
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+       
+
     </div>
     <!-- Fin de carrusel -->
     <br>
@@ -135,7 +132,10 @@ $categorys=getCategory();
         }
         ?>
     </div>  
-    <footer class="footer">
+
+    </div>
+    <footer>
+
         <div class="footer-logo"></div> 
         <div class="footer-content">
             <div class="footer-links">

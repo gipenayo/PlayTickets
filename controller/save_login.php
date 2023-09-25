@@ -35,7 +35,7 @@ $logged_in = false;
    } 
    else 
    {
-      echo "Usuario o contraseña incorrectos.";
+      header("location: ../view/login.php?error=1"); // Agrega "?error=1" para indicar un error.
    }    
 
 ?>

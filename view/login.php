@@ -68,7 +68,15 @@ exit();*/
     </footer>
     <script src="../assets/js/barnavfooter.js"></script>
     
-ev
+   <!-- Script para mostrar una alerta -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+        
+        if (error === '1') {
+            alert('Usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.');
+        }
+        </script>
 </body>
 
 </html>

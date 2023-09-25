@@ -1,80 +1,16 @@
-/* styles.css */
-.asientos {
-    text-align: center;
-    margin: 20px auto;
-    
-    max-width: 600px; /* Ajusta el ancho máximo según tus necesidades */
-}
-
-.asiento-label {
-    display: inline-block;
-    margin: 5px;
-    width: 40px; /* Ancho de cada butaca */
-    height: 45px; /* Altura de cada butaca */
-    background-color: #00ff15; /* Color de las butacas */
-    border-radius: 5px;
-    cursor: pointer;
-    position: relative;
-}
-
-.asiento-label.selected {
-    background-color: #ff0000; /* Color cuando está seleccionada */
-    margin: 5px;
-    width: 40px; /* Ancho de cada butaca */
-    height: 45px;
-    cursor: not-allowed;
-}
-
-.asiento-label::before {
-    content: "\f0fb"; /* Ícono de asiento (puedes cambiarlo) */
-    font-family: FontAwesome; /* Utiliza una fuente de iconos */
-    font-size: 20px; /* Tamaño del ícono */
-    color: #000000; /* Color del ícono */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-/* Ocultar el cuadradito del checkbox y su espacio en la página */
-input[type="checkbox"] {
-    margin: 5px;
-    width: 40px; /* Ancho de cada butaca */
-    height: 45px; 
-    visibility: hidden;
-   
-}
-
-#seating-chart {
-    text-align: center;
-}
-
+/* Estilo para las etiquetas de asientos seleccionadas */
 #stage-title {
     font-size: 24px;
     font-weight: bold;
     text-align: center;
     margin: 20px 0; /* Añade margen superior e inferior para centrar */
 }
-
 .stage {
     width: 200px; /* Ancho de la raya ovalada */
     height: 50px; /* Altura de la raya ovalada */
     background-color: #ccc; /* Color de la raya ovalada */
     border-radius: 50%; /* Hace que la raya sea ovalada */
     margin: 20px auto; /* Centra la raya horizontalmente */
-}
-#seating-chart-container {
-    width: 80%;
-    margin: 20px auto;
-}
-.legend-item {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-}
-#legend {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
 }
 .seat {
     width: 30px;
@@ -84,22 +20,104 @@ input[type="checkbox"] {
     text-align: center;
     line-height: 30px;
     cursor: pointer;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
 }
 
 .unavailable {
-    background-color: red;
+    background-color: rgb(0, 0, 0);
     cursor: not-allowed;
 }
 
 .selected {
-    background-color: yellow;
+    background-color: rgb(0, 0, 0);
 }
 
 .available {
-    background-color: #00ff15;
+    background-color: white;
 }
-/* Estilo para las butacas seleccionadas con un color diferente */
-.asiento-label.new-selected {
-    background-color: #ff00ff; /* Cambia el color a tu elección */
+#legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.legend-item .seat {
+    margin-right: 5px;
+}
+#seating-chart-container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.asientos{
+    margin-left: 20%;
+    margin-right: 20%;
+    display: inline-block;
+}
+.asiento-label{
+    background-color: #ffffff; /* Cambia el color de fondo cuando se selecciona el asiento */
+    color: #000000; /* Cambia el color del texto cuando se selecciona el asiento */
+        
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+        margin-top: 10px;
+        display: inline-block;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+        border: 1px solid #000000;
+    
+}
+.asiento-label.selected {
+    background-color: #000000; /* Cambia el color de fondo cuando se selecciona el asiento */
+    color: #fff; /* Cambia el color del texto cuando se selecciona el asiento */
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+    
+    /* Agrega otros estilos según tus preferencias */
+}
+/* Estilos para el botón de reserva */
+.btn-reservar {
+    display: block; /* Hacer que el botón sea un bloque para centrarlo */
+    margin: 0 auto; /* Centrar horizontalmente */
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 10px 20px; /* Añadir espacio alrededor del botón */
+    color: #fff; /* Color del texto del botón */
+    border: none; /* Eliminar el borde del botón */
+    border-radius: 25%;
+    cursor: pointer; /* Cambiar el cursor al pasar el ratón por encima */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+/* Estilos adicionales para cuando el botón esté habilitado */
+.btn-reservar:enabled {
+    background-color: #000000; /* Cambiar el color de fondo cuando habilitado */
+    cursor: pointer;
+}
+
+/* Estilos para cuando el botón esté deshabilitado */
+.btn-reservar:disabled {
+    background-color: #ccc; /* Cambiar el color de fondo cuando deshabilitado */
+    cursor: not-allowed; /* Cambiar el cursor cuando deshabilitado */
+}
+
+
+/* Estilo para el botón de reserva cuando está deshabilitado */
+/*#reservation-button:disabled {
+    background-color: #000000; /* Cambia el color de fondo del botón cuando está deshabilitado */
+    /*color: #999; /* Cambia el color del texto del botón cuando está deshabilitado */
+    /* Agrega otros estilos según tus preferencias */
+/*}

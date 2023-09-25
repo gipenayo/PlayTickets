@@ -1,9 +1,15 @@
-
 <?php
+session_start();
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
 $id_show = isset($_GET['id_show']) ? $_GET['id_show'] : null;
-$tickets = getAmount($id_show);
+$_SESSION["id"]=$id_show;
+$name= $show->show_name;
+$_SESSION["show"]=$name;
+
+/*$tickets = getAmount($id_show);*/
+ /*var_dump($_SESSION["id"]);
+   exit;*/
 ?>
 
 <!DOCTYPE html>

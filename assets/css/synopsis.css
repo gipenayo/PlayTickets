@@ -46,7 +46,8 @@ img {
 p {
     margin-bottom: 1rem;
 }
-/* Estilos del botón de reserva */
+
+/* Estilos para el botón de reserva */
 .reservar-btn {
     background-color: #3498db;
     color: #fff;
@@ -56,13 +57,22 @@ p {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    align-content: center;
     text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Establecer target=_blank para abrir en nueva pestaña/ventana */
+.reservar-btn a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
 }
 
 .reservar-btn:hover {
     background-color: #2980b9;
 }
+
 
 /* Estilos del icono de Font Awesome */
 .fa-shopping-cart {
@@ -99,4 +109,23 @@ p {
 
 .back-btn:hover {
     background-color: #2980b9;
+}
+
+.form-container {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Estilo para las etiquetas (labels) */
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Estilo para los select y el input */
+select, input[type="number"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }

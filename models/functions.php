@@ -1,5 +1,4 @@
 <?php
-
 date_default_timezone_set("America/Argentina");
 function database()
 {
@@ -241,30 +240,29 @@ function inactiveShowDatetime($id_datetime)
     return $result;
 }
 
- function login()
- {
+function login()
+{
     $bd=database();
     $sentence=$bd->query("SELECT email ,_password, id_rol,user_name,user_state FROM users");
     return $sentence->fetchAll();
- }
+}
 
- function confMail($user_state, $id_user)
- {
+function confMail($user_state, $id_user)
+{
     $bd=database();
     $sentence = $bd->prepare("UPDATE users SET user_state = ? WHERE id_user = ?");
     $sentence->execute([$user_state, $id_user]);
- }
+}
 
- function getIdUser()
- {
+function getIdUser()
+{
     $bd=database();
     $sentence=$bd->query("SELECT id_user FROM users ORDER BY id_user DESC");
     return $sentence->fetch();
- }
+}
 
-
- function getUser()
- {
+function getUser()
+{
     $bd = database();
     $sentence = $bd->query("SELECT id_user, user_name, last_name, email, phone, date_birth FROM users");
     return $sentence->fetchAll();
@@ -295,8 +293,10 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
     return $sentence->execute([$user_name, $last_name , $email, $phone, $date_birth, $id_user]);
 }
 
+
  /*function getAmount($id_show)
  {
+
 
     $bd = database();
     $sentence = $bd->prepare("SELECT amount_ticket FROM shows WHERE id_show = ?");
@@ -304,6 +304,8 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
     $result = $sentence->fetch(PDO::FETCH_ASSOC);;
     return $result['amount_ticket'];
 
+
  }*/
+
 
 ?>

@@ -1,9 +1,11 @@
-
 <?php
+session_start();
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
 $id_show = isset($_GET['id_show']) ? $_GET['id_show'] : null;
-$tickets = getAmount($id_show);
+#$tickets = getAmount($id_show);
+$_SESSION["id"]=$id_show;
+$datetime=getShowDatetime();
 ?>
 
 <!DOCTYPE html>
@@ -37,10 +39,22 @@ $tickets = getAmount($id_show);
         <h1><?php echo $show->show_name ?></h1>
         <img src="data:image/jpeg;base64,<?php echo base64_encode($show->picture); ?>" alt="Imagen del espectáculo">
         <p><?php echo $show->show_description ?></p>
-        <p>Fecha disponible: <?php echo $show->show_date_time?></p>
+        <div class="form-container">
+            <label for="datetime_show">Fecha disponible:</label>
+        <select name="datetime_show" id="datetime_show">
+        <?php  
+        foreach ($datetime as $datetime_show) { 
+        if ($show->id_show === $datetime_show->id_show) { ?>
+            <option value="<?php echo $datetime_show->datetime_show;?>" required><?php echo $datetime_show->datetime_show; ?></option>
+        <?php } } ?>
+        </select>
+        <br><label for="cant_seating">Cantidad de asientos: </label>
+        <input type="number" name="cant_seating" id="cant_seating">
+        </div>
+        
         <?php if ($tickets < 100) { ?>
             <!-- Botón de reserva solo si hay entradas disponibles -->
-            <button class="reservar-btn"><a href="../view/login.php">Reservar Entrada</a></button>
+            <br><button class="reservar-btn"><a href="../view/login.php">Reservar</a></button>
         <?php } else { ?>
             <!-- Mostrar un mensaje cuando no hay entradas disponibles -->
             <div class="alert-danger" role="alert">

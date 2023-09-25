@@ -1,4 +1,3 @@
-/* Estilos para la barra de navegación (navbar) */
 header {
     background-color: #000;
     color: #fff;
@@ -31,19 +30,21 @@ header {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    background-color: #444;
+
 }
 
 .panel ul li {
     margin: 0;
     padding: 0;
+    background-color: #444;
+    padding: 10px;
 }
 
 .panel ul li a {
     text-decoration: none;
     color: #fff;
     display: block;
-    padding: 10px;
-    background-color: #444;
     transition: background-color 0.3s ease;
 }
 
@@ -51,13 +52,30 @@ header {
     background-color: #555;
 }
 
-/* Estilos para el pie de página (footer) */
+.hr {
+    border: 1px solid white; /* Establecer el color de borde en blanco */
+    background-color: white; /* Establecer el fondo en blanco (opcional) */
+}
+
+/* Estilos para el pie de página (footer)
+.footer {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* padding: 20px 0;
+}*/
 footer {
     background-color: #000;
     color: #fff;
     text-align: center;
     padding: 20px 0;
 }
+
 
 .footer-content {
     display: flex;

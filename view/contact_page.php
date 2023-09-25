@@ -10,6 +10,8 @@
     <title>Contacto</title>
 </head>
 <body>
+<div class="main-content">
+
 <header>
         <div class="navbar">
             <h1 class="logo"> 
@@ -61,6 +63,7 @@
             </form>
         </div>
     </div>
+</div>
     <footer>
     <div class="footer-logo">
             </div>

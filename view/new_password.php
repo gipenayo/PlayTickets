@@ -13,6 +13,8 @@ session_start();
 
 </head>
 <body>
+<div class="main-content">
+
 <header>
         <div class="navbar">
             <h1 class="logo"> 
@@ -70,6 +72,7 @@ session_start();
         </form>
         
   </div>
+</div>
 </div>
 <footer>
     <div class="footer-logo">

@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../assets/css/front_seat.css">
 </head>
 <body>
+<div class="main-content">
+
 <header>
     <div class="navbar">
         <h1 class="logo">
@@ -56,6 +58,7 @@
 <br>
 <button id="reservation-button" disabled>Confirmar</button>
 <br>
+</div>
 <footer>
     <div class="footer-logo"></div>
     <div class="footer-content">

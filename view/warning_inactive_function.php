@@ -18,6 +18,8 @@ $datetime=getShowDatetimeForId($_GET["id_datetime"]);
     <title>PlayTickets</title>
 </head>
 <body>
+<div class="main-content">
+
     <header>
         <div class="navbar">
             <h1 class="logo"> 
@@ -44,7 +46,7 @@ $datetime=getShowDatetimeForId($_GET["id_datetime"]);
             </form>
         </div>
     </main>
-    
+    /</div>
     <footer>
         <div class="footer-logo"></div>
         <div class="footer-content">

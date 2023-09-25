@@ -13,6 +13,8 @@ session_start();
 
 </head>
 <body>
+<div class="main-content">
+
 <header>
         <div class="navbar">
             <h1 class="logo"> 
@@ -44,6 +46,7 @@ session_start();
     <p>¿No está registrado? <a href="../view/register.php">Registrate aquí</a></p>
     <p>¿Olvidaste tu contraseña? <a href="../view/recovery_form.php">Haga click aqui</a></p>
   </div>
+</div>
 </div>
 <footer>
     <div class="footer-logo">

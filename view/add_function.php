@@ -16,6 +16,8 @@ $categorys= getCategory();
     <title>PlayTickets</title>
 </head>
 <body>
+<div class="main-content">
+
     <header>
         <div class="navbar">
             <h1 class="logo"> 
@@ -71,7 +73,7 @@ $categorys= getCategory();
         </div>
     </form> 
     </main>
-    
+</div>
     <footer>
         <div class="footer-logo"></div> 
         <div class="footer-content">

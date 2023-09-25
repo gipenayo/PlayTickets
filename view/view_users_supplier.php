@@ -20,6 +20,8 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
     <title>PlayTickets</title>
 </head>
 <body>
+<div class="main-content">
+
     <header>
         <div class="navbar">
             <h1 class="logo"><img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS</h1>
@@ -72,6 +74,8 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
             </table>
         </div>
     </div>
+    
+</div>
     <footer>
         <div class="footer-logo"></div> 
         <div class="footer-content">

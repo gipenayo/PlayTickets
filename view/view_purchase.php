@@ -21,6 +21,8 @@ exit;*/
     <title>PlayTickets</title>
 </head>
 <body>
+<div class="main-content">
+
 <header>
     <div class="navbar">
         <h1 class="logotipo">
@@ -104,7 +106,7 @@ exit;*/
     <?php echo "hola".$_SESSION["name"] ?>
     <input type="submit" value="Reservar" id="reservation-button" disabled>
 </form>
-
+</div>
 <footer>
     <div class="footer-logo"></div> 
     <div class="footer-content">

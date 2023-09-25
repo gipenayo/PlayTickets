@@ -18,6 +18,8 @@ exit();*/
 
 </head>
 <body>
+<div class="main-content">
+
 <header>
         <div class="navbar">
             <h1 class="logo"> 
@@ -50,6 +52,7 @@ exit();*/
     <p>¿Olvidaste tu contraseña? <a href="../view/recovery_form.php">Haga click aqui</a></p>
   </div>
 </div>
+</div>
 <footer>
     <div class="footer-logo">
             </div>
@@ -66,7 +69,7 @@ exit();*/
     </footer>
     <script src="../assets/js/barnavfooter.js"></script>
     
-ev
+
 </body>
 
 </html>

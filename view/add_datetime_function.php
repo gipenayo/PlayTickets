@@ -18,6 +18,7 @@ $show = getShowForId($_GET["id_show"]);
     <title>PlayTickets</title>
 </head>
 <body>
+    
     <header>
     <div class="navbar">
         <h1 class="logo"><img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS</h1>

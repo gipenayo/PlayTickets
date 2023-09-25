@@ -15,6 +15,7 @@ exit;*/
     <title>PlayTickets</title>
 </head>
 <body>
+    
     <main>
         <div class="row">
             <div class="col-12">

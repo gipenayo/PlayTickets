@@ -3,7 +3,9 @@
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
 $id_show = isset($_GET['id_show']) ? $_GET['id_show'] : null;
-$tickets = getAmount($id_show);
+//$tickets = getAmount($id_show);
+$datetime=getShowDatetime();
+$_SESSION["id"]=$id_show;
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +19,8 @@ $tickets = getAmount($id_show);
     <title>PlayTickets</title>
 </head>
 <body>
+<div class="main-content">
+
     <header>
         <div class="navbar">
             <h1 class="logo"> 
@@ -37,7 +41,13 @@ $tickets = getAmount($id_show);
         <h1><?php echo $show->show_name ?></h1>
         <img src="data:image/jpeg;base64,<?php echo base64_encode($show->picture); ?>" alt="Imagen del espectáculo">
         <p><?php echo $show->show_description ?></p>
-        <p>Fecha disponible: <?php echo $show->show_date_time?></p>
+        <p>Fecha disponible: <?php  
+        foreach ($datetime as $datetime_show) {
+            if ($show->id_show === $datetime_show->id_show) {
+                echo $datetime_show->datetime_show ;
+            }
+        }
+        ?></p>
         <?php if ($tickets < 100) { ?>
             <!-- Botón de reserva solo si hay entradas disponibles -->
             <button class="reservar-btn"><a href="../view/login.php">Reservar Entrada</a></button>
@@ -49,6 +59,7 @@ $tickets = getAmount($id_show);
             </div>
         <?php } ?>
     </main>
+    </div>
     <footer>
     <div class="footer-logo">
             </div>

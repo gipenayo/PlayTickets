@@ -11,6 +11,8 @@
     <title>Registro</title>
 </head>
 <body>
+<div class="main-content">
+
 <?php if (isset($_GET['successfulRegistratio']) && $_GET['successfulRegistratio'] == 1): ?>
   <script src="../assets/js/successful_register.js"></script>
     <?php endif; ?>
@@ -75,6 +77,7 @@
         </div>
       </div>
      </main> 
+</div>    
       <footer>
     <div class="footer-logo">
             </div>

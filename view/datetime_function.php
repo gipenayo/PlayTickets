@@ -18,6 +18,8 @@ exit;*/
     <title>PlayTickets</title>
 </head>
 <body>
+<div class="main-content">
+
     <header>
         <div class="navbar">
             <h1 class="logo"> 
@@ -76,6 +78,7 @@ exit;*/
         </div>
     </div>
     </main>
+</div>
     <footer>
         <div class="footer-logo"></div>
         <div class="footer-content">

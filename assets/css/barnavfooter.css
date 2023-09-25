@@ -1,4 +1,10 @@
 /* Estilos para la barra de navegación (navbar) */
+body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: 100vh; /* Asegura que el cuerpo de la página ocupe al menos toda la altura de la ventana */
+}
 header {
     background-color: #333;
     color: #fff;
@@ -57,12 +63,17 @@ footer {
     color: #fff;
     text-align: center;
     padding: 20px 0;
+    position: absolute;
+    bottom: 0; /* Ancla el footer en la parte inferior */
+    width: 100%; /* Asegura que el footer tenga el ancho completo */
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px; /* Limita el ancho del contenido del footer */
+    margin: 0 auto; /* Centra el contenido horizontalmente */
 }
 
 .footer-links a {
@@ -74,14 +85,19 @@ footer {
 .footer-copyright {
     font-size: 14px;
 }
+
 .logo {
     display: flex;
-    align-items: center; /* Centra verticalmente */
+    align-items: center;
+    margin-left: 20px; /* Espacio entre la imagen y el texto */
 }
 
 .logo img {
-    margin-right: 400px; /* Espacio entre la imagen y el texto */
-
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+.main-content {
+    /* Añade un margen inferior al contenido principal para que no quede oculto detrás del footer */
+    padding-bottom: 100px; /* Ajusta el valor según sea necesario para evitar la superposición con el footer */
 }
 
 

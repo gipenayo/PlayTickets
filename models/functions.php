@@ -89,13 +89,13 @@ function getShow($search = null, $id_gender = null, $id_category = null)
     $sentence->execute($parameters);
     return $sentence->fetchAll();
 }
-
+/*
 function getUser()
 {
     $bd = database();
     $sentence = $bd->query("SELECT user_name,last_name,email,phone,date_birth FROM users");
     return $sentence->fetchAll();
-}
+}*/
 
 
 function getReserver( $showId)
@@ -285,7 +285,7 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
     return $sentence->execute([$user_name, $last_name , $email, $phone, $date_birth, $id_user]);
 }
 
- function getAmount($id_show)
+ /*function getAmount($id_show)
  {
 
     $bd = database();
@@ -294,6 +294,36 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
     $result = $sentence->fetch(PDO::FETCH_ASSOC);;
     return $result['amount_ticket'];
 
+ }*/
+ function ReservationHistory($email)
+ {
+     $bd = database();
+     
+     // Escapar y rodear $email con comillas simples
+     $email = $bd->quote($email); // Cambiar query a quote para escapar el valor
+     
+     // Consulta SQL 
+     $history = "SELECT 
+                   ra.id_reserve_amount AS id_reserve_amount,
+                   ra.amount AS amount,
+                   r.id_reserve AS id_reserve,
+                   r.id_user AS id_user,
+                   ra.id_show AS id_show,
+                   ra.id_datetime AS id_datetime,
+                   sd.datetime_show AS reservation_date
+               FROM 
+                  reserves_amounts ra  -- Cambiar a ra para que coincida con la tabla
+               INNER JOIN
+                   reserves r ON ra.id_reserve = r.id_reserve  -- Cambiar reserves_amounts a reserves
+               INNER JOIN
+                   shows_dates sd ON ra.id_datetime = sd.id_datetime
+               WHERE
+                   r.id_user = $email  -- Eliminar comillas simples alrededor de $email
+               ORDER BY
+                   sd.datetime_show DESC";
+     
+     $result = $bd->query($history);// Ejecutar la consulta SQL
+     return $result;
  }
-
+ 
 ?>

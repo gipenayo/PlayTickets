@@ -1,5 +1,4 @@
 <?php
-
 date_default_timezone_set("America/Argentina");
 function database()
 {
@@ -20,13 +19,31 @@ function register ($first_name, $last_name,$email, $dni ,$phone,$date_birth,$str
     $sentence=$bd->prepare("INSERT INTO users(user_name,last_name,email,dni,phone,date_birth,street,height,departament,id_rol,_password,user_state) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     return $sentence->execute([$first_name, $last_name,$email,$dni, $phone,$date_birth,$street,$height,$departament,$id_rol,$_password,$user_state]);
 }
-
-function addSeating($asientos,$idese)
+function addSeating($asientosSeleccionados, $idese)
 {
-    $bd=database();
-    $sentence=$bd->prepare("INSERT INTO seatings(seating_number,id_show) VALUES (?,?)");
-    return $sentence->execute([$asientos,$idese]);
+    $bd = database();
+    // Divide la cadena de asientos en un array de asientos individuales
+    $asientosArray = explode(',', $asientosSeleccionados);
+    
+    // Elimina espacios en blanco alrededor de cada asiento y la coma final
+    $asientosArray = array_map('trim', $asientosArray);
+    $asientosArray = array_filter($asientosArray); // Elimina elementos vacíos
+
+    // Itera a través de los asientos y ejecuta una inserción para cada uno
+    foreach ($asientosArray as $asiento) {
+        $sentence = $bd->prepare("INSERT INTO seatings(seating_number, id_show) VALUES (?, ?)");
+        $result = $sentence->execute([$asiento, $idese]);
+
+        // Verifica si hubo un error en la inserción
+        if (!$result) {
+            return false; // Retorna false si falla una inserción
+        }
+    }
+
+    return true; // Retorna true si todas las inserciones son exitosas
 }
+
+
 function getGender()
 {
     $bd = database();
@@ -89,6 +106,7 @@ function getShow($search = null, $id_gender = null, $id_category = null)
     $sentence->execute($parameters);
     return $sentence->fetchAll();
 }
+<<<ecord_foote
 /*
 function getUser()
 {
@@ -96,6 +114,7 @@ function getUser()
     $sentence = $bd->query("SELECT user_name,last_name,email,phone,date_birth FROM users");
     return $sentence->fetchAll();
 }*/
+
 
 
 function getReserver( $showId)
@@ -231,30 +250,29 @@ function inactiveShowDatetime($id_datetime)
     return $result;
 }
 
- function login()
- {
+function login()
+{
     $bd=database();
-    $sentence=$bd->query("SELECT email ,_password, id_rol,user_name FROM users");
+    $sentence=$bd->query("SELECT email ,_password, id_rol,user_name,user_state FROM users");
     return $sentence->fetchAll();
- }
+}
 
- function confMail($user_state, $id_user)
- {
+function confMail($user_state, $id_user)
+{
     $bd=database();
     $sentence = $bd->prepare("UPDATE users SET user_state = ? WHERE id_user = ?");
     $sentence->execute([$user_state, $id_user]);
- }
+}
 
- function getIdUser()
- {
+function getIdUser()
+{
     $bd=database();
     $sentence=$bd->query("SELECT id_user FROM users ORDER BY id_user DESC");
     return $sentence->fetch();
- }
+}
 
-
- function getUser()
- {
+function getUser()
+{
     $bd = database();
     $sentence = $bd->query("SELECT id_user, user_name, last_name, email, phone, date_birth FROM users");
     return $sentence->fetchAll();
@@ -285,14 +303,17 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
     return $sentence->execute([$user_name, $last_name , $email, $phone, $date_birth, $id_user]);
 }
 
+
  /*function getAmount($id_show)
  {
+
 
     $bd = database();
     $sentence = $bd->prepare("SELECT amount_ticket FROM shows WHERE id_show = ?");
     $sentence->execute([$id_show]);
     $result = $sentence->fetch(PDO::FETCH_ASSOC);;
     return $result['amount_ticket'];
+
 
  }*/
  function ReservationHistory($email)
@@ -326,4 +347,5 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
      return $result;
  }
  
+
 ?>

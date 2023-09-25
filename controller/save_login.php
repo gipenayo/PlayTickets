@@ -4,12 +4,13 @@ session_start();
    $show = getShowForId($_GET["id_show"]);
    $id=$_SESSION["id"];
    $comp=login();
-   /*var_dump($comp);
+   $_SESSION["show"];
+   /*var_dump($_SESSION["id"]);
    exit;*/
 $logged_in = false;
    foreach($comp as $compara)//lopez no lo entenderias YO ENCONTRE VARIABLES EN ESPAÑOL EN TU CODIGO SALU2
    {
-      if (($compara->email === $_POST["email"]) && (password_verify($_POST["_password"], $compara->_password))&& ($compara->id_rol===1))
+      if (($compara->email === $_POST["email"]) && (password_verify($_POST["_password"], $compara->_password))&& ($compara->id_rol===1) && ($compara->user_state===1))
      {
       $logged_in = true;
       $_SESSION["email"] =$compara->email;
@@ -22,6 +23,11 @@ $logged_in = false;
      if(($compara->email === $_POST["email"]) && (password_verify($_POST["_password"], $compara->_password))&& ($compara->id_rol===2))
       {
       header("location: ../view/supplier.php");
+      }
+      
+      if(($compara->email === $_POST["email"]) && (password_verify($_POST["_password"], $compara->_password))&& ($compara->id_rol===3))
+      {
+      header("location: ../view/counter_staff.php");
       }
    }
    if ($logged_in) 

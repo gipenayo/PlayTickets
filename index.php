@@ -64,6 +64,7 @@ $categorys=getCategory();
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
+
                 <img src="assets/img/show_tini.jpeg" class="d-block w-100" alt="Slide 1" loading="lazy">
             </div>
             <div class="carousel-item">
@@ -74,6 +75,7 @@ $categorys=getCategory();
             </div>
         </div>
        
+
     </div>
     <!-- Fin de carrusel -->
     <br>
@@ -115,7 +117,7 @@ $categorys=getCategory();
     <div class="cartelera row">
         <?php foreach ($shows as $show) 
         { ?>
-            <?php if ($show->show_state !=2) /*MUESTRA SOLO LOS QUE SEAN DE ESTADO=1 QUE SON LOS SHOWS ACTIVOS*/
+            <?php if ($show->show_state !=2)
             { ?>
         <div class="col-lg-3">
             <div class="card">
@@ -130,8 +132,10 @@ $categorys=getCategory();
         }
         ?>
     </div>  
+
     </div>
     <footer>
+
         <div class="footer-logo"></div> 
         <div class="footer-content">
             <div class="footer-links">

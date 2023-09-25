@@ -1,16 +1,24 @@
 <?php
 session_start();
 include_once "../models/functions.php";
+$show = getShowForId($_GET["id_show"]);
+$_SESSION["show"];
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
     require '../vendor/autoload.php';
 $idese=$_SESSION["id"];
-if (isset($_POST["asientos"]) && is_array($_POST["asientos"])) { 
-    foreach ($_POST["asientos"] as $asiento) {
- $ok = addSeating($asiento,$idese);
-    }
+
+/*var_dump($_SESSION["idese"]);
+   exit;*/
+   $_POST["asientos"];
+   
+   /*var_dump($_POST["asientos"]);
+   exit();*/
+   $asientosSeleccionados = $_POST["asientos"];
+   $ok = addSeating($asientosSeleccionados, $idese);
+   
 if(!$ok)
 {
     echo "no";
@@ -31,9 +39,14 @@ else{
         $mail->addAddress($_SESSION["email"], 'usuario');     
         $mail->isHTML(true);   
         $mail->CharSet='UTF-8';                               
-        $mail->Subject = 'Compra exitosa';
-        $mail->Body = 'Felicitaciones por su compra en los asientos: ' . implode(', ', $_POST["asientos"]);
-    
+        $mail->Subject = 'Compra exitosa';        
+        if (is_array($_POST["asientos"])) {
+            $mail->Body = 'Felicitaciones por su compra en los asientos: ' . implode(', ', $_POST["asientos"]). $_SESSION["show"];
+        } else {
+            // Manejar el caso en el que $_POST["asientos"] no es un array
+            $mail->Body = 'Felicitaciones por su compra en los asientosssssssssssss: ' . $_POST["asientos"] . $_SESSION["show"];;
+        }
+        
     if (!$mail->send()) {
         echo 'Error al enviar el mensaje: ';
     } 
@@ -42,6 +55,6 @@ else{
         echo 'Mensaje enviado correctamente';
     }
     
-    }
+    
     }
     ?>

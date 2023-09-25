@@ -4,6 +4,7 @@ include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
 $_SESSION["id"];
 $_SESSION["name"];
+$_SESSION["show"];
 /*var_dump($_SESSION["name"]);
 exit;*/
 ?>
@@ -14,10 +15,12 @@ exit;*/
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="img/logo" href="../assets/img/logo.png"><!--Icono en la pestaña-->
-    <link rel="stylesheet" href="../assets/css/barnavfooter.css">
+    <link rel="stylesheet" href="../assets/css/barnavlog.css">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/selectseat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>PlayTickets</title>
 </head>
 <body>
@@ -27,13 +30,13 @@ exit;*/
     <div class="navbar">
         <h1 class="logotipo">
             <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS </h1>
-        <button class="accordion">Menú</button>
+        <button class="accordion"><i class="fas fa-bars"></i></button>
         <div class="panel">
             <ul>
-                <li><a href="index.php">Cartelera</a></li>
-                <li><a href="../view/login.php">Ingresar</a></li>
-                <li><a href="../view/register.php">Registrarse</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li>Hola <?php echo $_SESSION["name"]?>!</li>
+                <li><a href="#">Mis reservas</a></li>
+                <hr class="hr">
+                <li><a href="#">Cerrar Sesion</a></li>
             </ul>
         </div>
     </div>
@@ -47,14 +50,9 @@ exit;*/
             <div class="seat unavailable">
                 <i class="fas fa-chair"></i>
             </div>
-            <span>No Disponible</span>
+            <span>No Disponible/Seleccionado</span>
         </div>
-        <div class="legend-item">
-            <div class="seat selected">
-                <i class="fas fa-chair"></i>
-            </div>
-            <span>Seleccionado</span>
-        </div>
+      
         <div class="legend-item">
             <div class="seat available">
                 <i class="fas fa-chair"></i>
@@ -63,7 +61,6 @@ exit;*/
         </div>
     </div>
 </div>
-
 <form action="../controller/save_reserve.php" method="POST">
     <div class="asientos">
         <?php
@@ -86,28 +83,36 @@ exit;*/
             echo "Error al obtener los datos de asientos ocupados desde la base de datos.";
         }
 
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             $asientoOcupado = in_array($i, $asientosOcupados);
             $estadoAsiento = $asientoOcupado ? "ocupado" : "disponible";
             
             ?>
-            <label for="mi-checkbox" class='asiento-label <?php echo $asientoOcupado ? 'selected' : '' ?>' data-seat-number="<?php echo $i ?>">
-                <input id="mi-checkbox" type='checkbox' class='asiento-checkbox' name='asientos[]' value='<?php echo $i ?>' <?php echo $asientoOcupado ? 'disabled' : '' ?>>
-                <?php echo "$i" ?>
-                </label>
-                
-                <?php
-               
             
+  <div class="asiento-label <?php echo $asientoOcupado ? 'selected' : '' ?>" data-seat-number="<?php echo $i ?>" data-selected="<?php echo $asientoOcupado ? '1' : '0' ?>">
+    <?php echo "$i" ?>
+</div>
+
            
+            <?php
+
         }
         ?>
     </div>
-    <?php echo "hola".$_SESSION["name"] ?>
-    <input type="submit" value="Reservar" id="reservation-button" disabled>
+    
+    <input type="hidden" name="asientos" id="asientos-seleccionados" value="">
+
+    <input class="btn-reservar"  type="submit" value="Reservar" id="reservation-button" disabled>
+    
+    
 </form>
-</div>
+
+
+
+
+
 <footer>
+
     <div class="footer-logo"></div> 
     <div class="footer-content">
         <div class="footer-links">
@@ -120,7 +125,38 @@ exit;*/
 </footer>
 
 <script src="../assets/js/barnavfooter.js"></script>
-<script src="../assets/js/script.js"></script>
+<!--<script src="../assets/js/script.js"></script>-->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const seatLabels = document.querySelectorAll('.asiento-label');
+        const reservationButton = document.getElementById('reservation-button');
+        let asientosSeleccionados = '';
+
+        seatLabels.forEach(seatLabel => {
+            seatLabel.addEventListener('click', () => {
+                const isSelected = seatLabel.classList.contains('selected');
+                const seatNumber = seatLabel.getAttribute('data-seat-number');
+
+                if (isSelected) {
+                    seatLabel.classList.remove('selected');
+                    // Remueve el asiento del string de asientos seleccionados
+                    asientosSeleccionados = asientosSeleccionados.replace(seatNumber + ',', '');
+                } else {
+                    seatLabel.classList.add('selected');
+                    // Agrega el asiento al string de asientos seleccionados
+                    asientosSeleccionados += seatNumber + ',';
+                }
+
+                // Actualiza el valor del campo oculto
+                document.getElementById('asientos-seleccionados').value = asientosSeleccionados;
+
+                // Habilita el botón de reserva si hay asientos seleccionados
+                reservationButton.disabled = asientosSeleccionados === '';
+            });
+        });
+    });
+</script>
+
 </body>
 
 <!-- JS -->

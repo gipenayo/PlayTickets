@@ -4,6 +4,8 @@ include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
 $_SESSION["id"];
 
+$_SESSION["show"];
+
 /*var_dump($_SESSION["id"]);
 exit();*/
 ?>

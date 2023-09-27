@@ -3,11 +3,18 @@ session_start();
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
 $_SESSION["id"];
-
 $_SESSION["show"];
+if (isset($_POST["cant_seating"])) {
+    // Si se envió un formulario, actualiza $_SESSION["time"] con la opción seleccionada.
+    $_SESSION["seating"] = $_POST["cant_seating"];
+}
 
-/*var_dump($_SESSION["id"]);
-exit();*/
+if (isset($_POST["datetime_show"])) {
+    // Si se envió un formulario, actualiza $_SESSION["time"] con la opción seleccionada.
+    $_SESSION["time"] = $_POST["datetime_show"];
+}
+
+$_SESSION["time"];
 ?>
 <!DOCTYPE html>
 <html lang="es">

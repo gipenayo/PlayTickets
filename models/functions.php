@@ -356,4 +356,11 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
  }
  
 
+    function saveReserve($datetime_hour, $id_show,$seating,$user)
+    {
+        echo $datatime_hour;
+        $bd=database();
+        $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, user) VALUES (?,?,?,?)");
+        return $sentence->execute([$datetime_hour, $id_show, $seating, $user]);
+    }
 ?>

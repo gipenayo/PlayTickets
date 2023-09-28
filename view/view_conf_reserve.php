@@ -1,3 +1,16 @@
+<?php
+session_start();
+include_once "../models/functions.php";
+$show = getShowForId($_GET["id_show"]);
+$_SESSION["id"];
+$_SESSION["name"];
+$_SESSION["name"];
+$_SESSION["time"];
+$_SESSION["seating"];
+$_SESSION["asiento"] = $_POST["asientos"];
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -45,9 +58,9 @@
         <p class="data-text">
     <?php 
     if ($_SESSION["seating"] == 1) {
-      echo "Has seleccionado el asiento:". $asientosSeleccionados;
+      echo "Has seleccionado el asiento:". $_SESSION["asiento"];
     } else {
-      echo "Has seleccionado los asientos: ". $asientosSeleccionados;
+      echo "Has seleccionado los asientos: ". $_SESSION["asiento"];
     }
     ?>
   </p>  

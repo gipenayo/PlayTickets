@@ -1,3 +1,15 @@
+<?php
+session_start();
+include_once "../models/functions.php";
+$show = getShowForId($_GET["id_show"]);
+$_SESSION["id"];
+$_SESSION["name"];
+$_SESSION["show"];
+$_SESSION["time"];
+$_SESSION["seating"];
+$asientosSeleccionados=$asientosSeleccionados = $_POST["asientos"];
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

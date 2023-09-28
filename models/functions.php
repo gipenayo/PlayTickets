@@ -356,20 +356,26 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
  }
  
 
-    function saveReserve($datetime_hour, $id_show,$seating,$user,$ticket_order)
+    function saveTicket($datetime_hour, $id_show,$seating,$user,$ticket_order)
     {
         $bd=database();
-        $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, user, ticket_order) VALUES (?,?,?,?,?)");
+        $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, user, id_order) VALUES (?,?,?,?,?)");
         return $sentence->execute([$datetime_hour, $id_show, $seating, $user, $ticket_order]);
     }
 
     function getOrder()
     {
         $bd = database();  
-        $sentence = $bd->prepare("SELECT MAX(ticket_order) as max_order from tickets");
+        $sentence = $bd->prepare("SELECT MAX(id_order) as max_order from tickets");
         $sentence->execute();  
         $result = $sentence->fetch();  
         return $result->max_order;
     }
 
+    function saveReserve($id_order,$conf)
+    {
+        $bd=database();
+        $sentence=$bd->prepare("INSERT INTO reserves(id_order,confirmation) VALUES (?,?)");
+        return $sentence->execute([$id_order,$conf]);
+    }
 ?>

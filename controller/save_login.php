@@ -25,14 +25,15 @@ $logged_in = false;
       header("location: ../view/supplier.php");
       }
       
-      if(($compara->email === $_POST["email"]) && (password_verify($_POST["_password"], $compara->_password))&& ($compara->id_rol===3))
+      /*if(($compara->email === $_POST["email"]) && (password_verify($_POST["_password"], $compara->_password))&& ($compara->id_rol===3))
       {
       header("location: ../view/counter_staff.php");
-      }
+      }*///SECTOR DE STAFF PARA TENER EL LECTOR DE QR
    }
    if ($logged_in) 
    {
-      header("location: ../view/record.php");
+      //header("location: ../view/record.php");
+      header("location: ../view/view_purchase.php?id_show=$id");
    } 
    else 
    {

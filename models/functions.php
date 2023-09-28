@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set("America/Argentina");
+date_default_timezone_set('America/Argentina/Buenos_Aires');//fecha local
 function database()
 {
     $user_password = getenv("MYSQL_ROOT_PASSWORD");
@@ -106,16 +106,13 @@ function getShow($search = null, $id_gender = null, $id_category = null)
     $sentence->execute($parameters);
     return $sentence->fetchAll();
 }
-<<<ecord_foote
-/*
-function getUser()
+
+/* function getUser()
 {
     $bd = database();
     $sentence = $bd->query("SELECT user_name,last_name,email,phone,date_birth FROM users");
     return $sentence->fetchAll();
 }*/
-
-
 
 function getReserver( $showId)
 {
@@ -137,13 +134,6 @@ function getShowDetallGender()
     $bd = database();
     $sentence = $bd ->query("SELECT genders.id_gender , genders.gender FROM `shows` JOIN genders on shows.id_gender=genders.id_gender");
     //$sentence = $bd->query("SELECT  genders.gender  FROM shows JOIN genders on shows.id_gender=genders.id_gender");
-    return $sentence->fetchAll();
-}
-
-function getShowDetallShow()//devuelve el dettale del show para usar con la fecha
-{
-    $bd = database();
-    $sentence = $bd->query("SELECT shows.id_show , shows.show_name FROM `shows_dates` JOIN shows on shows_dates.id_show=shows.id_show");
     return $sentence->fetchAll();
 }
 
@@ -303,24 +293,11 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
     return $sentence->execute([$user_name, $last_name , $email, $phone, $date_birth, $id_user]);
 }
 
-
- /*function getAmount($id_show)
- {
-
-
-    $bd = database();
-    $sentence = $bd->prepare("SELECT amount_ticket FROM shows WHERE id_show = ?");
-    $sentence->execute([$id_show]);
-    $result = $sentence->fetch(PDO::FETCH_ASSOC);;
-    return $result['amount_ticket'];
-
-
- }*/
- function ReservationHistory($email)
- {
+function ReservationHistory($email)
+{
      $bd = database();
      
-     // Escapar y rodear $email con comillas simples
+     // Escapar y rodear email con comillas simples
      $email = $bd->quote($email); // Cambiar query a quote para escapar el valor
      
      // Consulta SQL 
@@ -345,7 +322,5 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
      
      $result = $bd->query($history);// Ejecutar la consulta SQL
      return $result;
- }
- 
-
+}
 ?>

@@ -3,11 +3,13 @@ session_start();
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
 $id_show = isset($_GET['id_show']) ? $_GET['id_show'] : null;
+
 $_SESSION["id"]=$id_show;
 $name= $show->show_name;
 $_SESSION["show"]=$name;
 $datetime=getShowDatetime($_GET["id_datetime"]);
 $id_date=isset($_GET["id_datetime"]) ? $_GET["id_datetime"] : null;
+
 
 ?>
 
@@ -19,6 +21,7 @@ $id_date=isset($_GET["id_datetime"]) ? $_GET["id_datetime"] : null;
     <link rel="stylesheet" href="../assets/css/synopsis.css">
     <link rel="icon" type="image/png" href="../assets/img/logo.png">
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Icono de menu-->
     <title>PlayTickets</title>
 </head>
 <body>
@@ -28,12 +31,11 @@ $id_date=isset($_GET["id_datetime"]) ? $_GET["id_datetime"] : null;
         <div class="navbar">
             <h1 class="logo"> 
                 <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS </h1>
-            <button class="accordion">Menú</button>
+            <button class="accordion"><i class="fas fa-bars"></i></button>
             <div class="panel">
 
                 <ul>
                     <li><a href="../index.php">Cartelera</a></li>
-                    <li><a href="../view/login.php">Ingresar</a></li>
                     <li><a href="../view/register.php">Registrarse</a></li>
                     <li><a href="../view/contact_page.php">Contacto</a></li>
                 </ul>
@@ -48,19 +50,23 @@ $id_date=isset($_GET["id_datetime"]) ? $_GET["id_datetime"] : null;
         <div class="form-container">
         <form action="../view/login.php" method="post">
             <label for="datetime_show">Fecha disponible:</label>
-        <select name="datetime_show" id="datetime_show">
-        <?php  
-        foreach ($datetime as $datetime_show) { 
-        if ($show->id_show === $datetime_show->id_show) { ?>
-            <option value="<?php echo $datetime_show->datetime_show;?>" required><?php echo $datetime_show->datetime_show; ?></option>
-            
-        <?php $_SESSION["time"]=$datetime_show->datetime_show; } } ?>
-        </select>
-        <br><label for="cant_seating">Cantidad de asientos: </label>
-        <input type="number" name="cant_seating" id="cant_seating">
+
+            <select name="datetime_show" id="datetime_show">
+                <?php  
+                foreach ($datetime as $datetime_show) { 
+                    if ($show->id_show === $datetime_show->id_show) { ?>
+                        <!-- Formatea la fecha y la hora en el formato deseado -->
+                        <option value="<?php echo $datetime_show->datetime_show; ?>" required>
+                            <?php echo date('d/m/Y H:i', strtotime($datetime_show->datetime_show)); ?>
+                        </option>
+                    <?php } 
+                } ?>
+            </select>
+            <br><label for="cant_seating">Cantidad de asientos: </label>
+            <input type="number" name="cant_seating" id="cant_seating">
         </div>
-        
-        
+
+
         <?php if ($tickets < 100) { ?>
             <!-- Botón de reserva solo si hay entradas disponibles -->
             <input class="reservar-btn" type="submit" value="Reservar">
@@ -74,21 +80,21 @@ $id_date=isset($_GET["id_datetime"]) ? $_GET["id_datetime"] : null;
             </div>
         <?php } ?>
     </main>
-    </div>
-    <footer>
+</div>
+<footer>
     <div class="footer-logo">
-            </div>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos y Condiciones</a>
-                <a href="#">Contacto</a>
-            </div>
-            <div class="footer-copyright">
-                &copy; 2023 PlayTickets
-            </div>
+    </div>
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="#">Política de Privacidad</a>
+            <a href="#">Términos y Condiciones</a>
+            <a href="#">Contacto</a>
         </div>
-    </footer>
-    <script src="../assets/js/barnavfooter.js"></script> 
+        <div class="footer-copyright">
+            &copy; 2023 PlayTickets
+        </div>
+    </div>
+</footer>
+<script src="../assets/js/barnavfooter.js"></script>
 </body>
 </html>

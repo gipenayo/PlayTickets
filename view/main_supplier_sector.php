@@ -1,5 +1,4 @@
 <?php
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,19 +9,20 @@
     <link rel="icon" type="img/logo" href="../assets/img/logo.png"><!--Icono en la pestaña-->
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
     <link rel="stylesheet" href="../assets/css/main_supplier_sector.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Icono de menu-->
     <title>PlayTickets</title>
 </head>
 <body>
     <header>
         <div class="navbar">
-            <h1 class="logo"><img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS</h1>
-            <button class="accordion">Menú</button>
+            <h1 class="logo"><img src="../assets/img/logo.png" alt="Logo" height="80px">PLAYTICKETS</h1>
+            <button class="accordion"><i class="fas fa-bars"></i></button>
             <div class="panel">
                 <ul>
-                    <li><a href="index.php">Cartelera</a></li>
-                    <li><a href="../view/login.php">Ingresar</a></li>
-                    <li><a href="../view/register.php">Registrarse</a></li>
-                    <li><a href="../view/contact_page.php">Contacto</a></li>
+                    <li><a href="../index.php">Cartelera</a></li>
+                    <li><a href="register.php">Registrarse</a></li>
+                    <li><a href="contact_page.php">Contacto</a></li>
+                    <li><a href="supplier.php">Funciones Disponibles</a></li>
                 </ul>
             </div>
         </div>
@@ -47,7 +47,7 @@
         </div>
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">Ver usaurios registrados.</button>
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">Ver usuarios registrados.</button>
             </h2>
             <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body"><a href="view_users_supplier.php">Permite a los usuarios acceder a un registro detallado de los datos con los que se han realizado el procedimiento de registro previamente en tu sitio web. Esto les proporciona un historial completo de los datos del usuario.</a></div>

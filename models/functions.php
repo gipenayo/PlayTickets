@@ -19,7 +19,7 @@ function register ($first_name, $last_name,$email, $dni ,$phone,$date_birth,$str
     $sentence=$bd->prepare("INSERT INTO users(user_name,last_name,email,dni,phone,date_birth,street,height,departament,id_rol,_password,user_state) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     return $sentence->execute([$first_name, $last_name,$email,$dni, $phone,$date_birth,$street,$height,$departament,$id_rol,$_password,$user_state]);
 }
-function addSeating($asientosSeleccionados, $idese)
+function addSeating($asientosSeleccionados, $idese,$time)
 {
     $bd = database();
     // Divide la cadena de asientos en un array de asientos individuales
@@ -31,8 +31,8 @@ function addSeating($asientosSeleccionados, $idese)
 
     // Itera a través de los asientos y ejecuta una inserción para cada uno
     foreach ($asientosArray as $asiento) {
-        $sentence = $bd->prepare("INSERT INTO seatings(seating_number, id_show) VALUES (?, ?)");
-        $result = $sentence->execute([$asiento, $idese]);
+        $sentence = $bd->prepare("INSERT INTO seatings(seating_number, id_show, datetime_show) VALUES (?, ?, ?)");
+        $result = $sentence->execute([$asiento, $idese,$time]);
 
         // Verifica si hubo un error en la inserción
         if (!$result) {
@@ -107,21 +107,23 @@ function getShow($search = null, $id_gender = null, $id_category = null)
     return $sentence->fetchAll();
 }
 
-/* function getUser()
-{
-    $bd = database();
-    $sentence = $bd->query("SELECT user_name,last_name,email,phone,date_birth FROM users");
-    return $sentence->fetchAll();
-}*/
+function getReserver($showId, $time)
 
-function getReserver( $showId)
 {
-    $bd = database();
-    $sentence = $bd->prepare("SELECT seating_number, seating_state, id_show FROM seatings WHERE  id_show = :showId");
-    $sentence->bindParam(':showId', $showId, PDO::PARAM_INT);
-    $sentence->execute();
-    return $sentence->fetchAll(PDO::FETCH_OBJ);
+    try {
+        $bd = database();
+        $sentence = $bd->prepare("SELECT seating_number, seating_state, id_show, datetime_show FROM seatings WHERE id_show = :showId and datetime_show = :time");
+        $sentence->bindParam(':showId', $showId, PDO::PARAM_INT);
+        $sentence->bindParam(':time', $time, PDO::PARAM_STR); // Assuming time is a string
+        $sentence->execute();
+        return $sentence->fetchAll(PDO::FETCH_OBJ);
+    } catch (PDOException $e) {
+        // Handle the exception, e.g., log the error or return an error message.
+        echo "Error: " . $e->getMessage();
+        return []; // Or return an appropriate error response
+    }
 }
+
 function getShowDetallCategory()
 {
     $bd = database();
@@ -322,5 +324,31 @@ function ReservationHistory($email)
      
      $result = $bd->query($history);// Ejecutar la consulta SQL
      return $result;
-}
+
+ }
+ 
+
+    function saveTicket($datetime_hour, $id_show,$seating,$user,$ticket_order)
+    {
+        $bd=database();
+        $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, user, id_order) VALUES (?,?,?,?,?)");
+        return $sentence->execute([$datetime_hour, $id_show, $seating, $user, $ticket_order]);
+    }
+
+    function getOrder()
+    {
+        $bd = database();  
+        $sentence = $bd->prepare("SELECT MAX(id_order) as max_order from tickets");
+        $sentence->execute();  
+        $result = $sentence->fetch();  
+        return $result->max_order;
+    }
+
+    function saveReserve($id_order,$conf)
+    {
+        $bd=database();
+        $sentence=$bd->prepare("INSERT INTO reserves(id_order,confirmation) VALUES (?,?)");
+        return $sentence->execute([$id_order,$conf]);
+    }
 ?>
+

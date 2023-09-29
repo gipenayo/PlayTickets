@@ -5,7 +5,11 @@ $show = getShowForId($_GET["id_show"]);
 $_SESSION["id"];
 $_SESSION["name"];
 $_SESSION["show"];
-/*var_dump($_SESSION["name"]);
+$_SESSION["time"];
+$_SESSION["seating"];
+
+$time=$_SESSION["time"];
+/*var_dump($_SESSION["seating"]);
 exit;*/
 ?>
 <!DOCTYPE html>
@@ -62,10 +66,10 @@ exit;*/
         </div>
     </div>
 </div>
-<form action="../controller/save_reserve.php" method="POST">
+<form action="../view/view_conf_reserve.php" method="POST">
     <div class="asientos">
         <?php
-        $asientoOcupado = getReserver($show->id_show);
+        $asientoOcupado = getReserver($show->id_show,$time);
         if ($asientoOcupado !== false) {
             // Crea un array para almacenar los objetos de asientos ocupados
             $datosAsientos = [];
@@ -87,6 +91,7 @@ exit;*/
         for ($i = 1; $i <= 100; $i++) {
             $asientoOcupado = in_array($i, $asientosOcupados);
             $estadoAsiento = $asientoOcupado ? "ocupado" : "disponible";
+            
             
             ?>
             
@@ -129,33 +134,31 @@ exit;*/
 <!--<script src="../assets/js/script.js"></script>-->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const seatLabels = document.querySelectorAll('.asiento-label');
-        const reservationButton = document.getElementById('reservation-button');
-        let asientosSeleccionados = '';
+    const seatLabels = document.querySelectorAll('.asiento-label');
+    const reservationButton = document.getElementById('reservation-button');
+    let asientosSeleccionados = '';
 
-        seatLabels.forEach(seatLabel => {
-            seatLabel.addEventListener('click', () => {
-                const isSelected = seatLabel.classList.contains('selected');
-                const seatNumber = seatLabel.getAttribute('data-seat-number');
+    seatLabels.forEach(seatLabel => {
+        seatLabel.addEventListener('click', () => {
+            const isSelected = seatLabel.classList.contains('selected');
+            const isOccupied = seatLabel.classList.contains('occupied');
+            const seatNumber = seatLabel.getAttribute('data-seat-number');
 
-                if (isSelected) {
-                    seatLabel.classList.remove('selected');
-                    // Remueve el asiento del string de asientos seleccionados
-                    asientosSeleccionados = asientosSeleccionados.replace(seatNumber + ',', '');
-                } else {
-                    seatLabel.classList.add('selected');
-                    // Agrega el asiento al string de asientos seleccionados
-                    asientosSeleccionados += seatNumber + ',';
-                }
+            // Check if the seat is occupied or already selected
+            if (!isOccupied && !isSelected) {
+                seatLabel.classList.add('selected');
+                asientosSeleccionados += seatNumber + ',';
+            }
 
-                // Actualiza el valor del campo oculto
-                document.getElementById('asientos-seleccionados').value = asientosSeleccionados;
+            // Update the value of the hidden input field
+            document.getElementById('asientos-seleccionados').value = asientosSeleccionados;
 
-                // Habilita el botón de reserva si hay asientos seleccionados
-                reservationButton.disabled = asientosSeleccionados === '';
-            });
+            // Enable the reservation button if there are selected seats
+            reservationButton.disabled = asientosSeleccionados === '';
         });
     });
+});
+
 </script>
 
 </body>

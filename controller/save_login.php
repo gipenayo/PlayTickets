@@ -5,8 +5,8 @@ session_start();
    $id=$_SESSION["id"];
    $comp=login();
    $_SESSION["show"];
-   /*var_dump($_SESSION["id"]);
-   exit;*/
+   $_SESSION["time"];
+   $time=$_SESSION["time"];
 $logged_in = false;
    foreach($comp as $compara)//lopez no lo entenderias YO ENCONTRE VARIABLES EN ESPAÑOL EN TU CODIGO SALU2
    {
@@ -33,7 +33,9 @@ $logged_in = false;
    if ($logged_in) 
    {
       //header("location: ../view/record.php");
-      header("location: ../view/view_purchase.php?id_show=$id");
+
+      header("location: ../view/view_purchase.php?id_show=$id?id_datetime=$time");
+
    } 
    else 
    {

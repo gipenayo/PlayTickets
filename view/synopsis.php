@@ -3,10 +3,13 @@ session_start();
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
 $id_show = isset($_GET['id_show']) ? $_GET['id_show'] : null;
-$_SESSION["id"] = $id_show;
-$name = $show->show_name;
-$_SESSION["show"] = $name;
-$datetime = getShowDatetime();
+
+$_SESSION["id"]=$id_show;
+$name= $show->show_name;
+$_SESSION["show"]=$name;
+$datetime=getShowDatetime($_GET["id_datetime"]);
+$id_date=isset($_GET["id_datetime"]) ? $_GET["id_datetime"] : null;
+
 
 ?>
 
@@ -45,7 +48,9 @@ $datetime = getShowDatetime();
         <p><?php echo $show->show_description ?></p>
 
         <div class="form-container">
+        <form action="../view/login.php" method="post">
             <label for="datetime_show">Fecha disponible:</label>
+
             <select name="datetime_show" id="datetime_show">
                 <?php  
                 foreach ($datetime as $datetime_show) { 
@@ -61,10 +66,13 @@ $datetime = getShowDatetime();
             <input type="number" name="cant_seating" id="cant_seating">
         </div>
 
+
         <?php if ($tickets < 100) { ?>
             <!-- Botón de reserva solo si hay entradas disponibles -->
-            <br><button class="reservar-btn"><a href="../view/login.php">Reservar</a></button>
+            <input class="reservar-btn" type="submit" value="Reservar">
+           
         <?php } else { ?>
+            </form>
             <!-- Mostrar un mensaje cuando no hay entradas disponibles -->
             <div class="alert-danger" role="alert">
                 <p>Este espectáculo está AGOTADO.</p>

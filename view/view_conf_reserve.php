@@ -4,10 +4,23 @@ include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
 $_SESSION["id"];
 $_SESSION["name"];
-$_SESSION["show"];
+$_SESSION["name"];
 $_SESSION["time"];
 $_SESSION["seating"];
-$asientosSeleccionados=$asientosSeleccionados = $_POST["asientos"];
+$_SESSION["asiento"] = $_POST["asientos"];
+
+$ticket_order=getOrder();
+
+if($ticket_order==NULL)
+{
+    $ticket_order="1";
+}
+else
+{
+    $ticket_order++;
+}
+ $_SESSION["order"]=$ticket_order;
+
 ?>
 
 <!DOCTYPE html>
@@ -55,14 +68,14 @@ $asientosSeleccionados=$asientosSeleccionados = $_POST["asientos"];
         <p class="data-text">Espectáculo: <?php echo $_SESSION["show"]; ?></p>
         <p class="data-text">Fecha: <?php echo $_SESSION["time"]; ?></p>
         <p class="data-text">
-    <?php 
-    if ($_SESSION["seating"] == 1) {
-      echo "Has seleccionado el asiento:". $asientosSeleccionados;
-    } else {
-      echo "Has seleccionado los asientos: ". $asientosSeleccionados;
-    }
-    ?>
-  </p>  
+            <?php 
+                if ($_SESSION["seating"] == 1) {
+                    echo "Has seleccionado el asiento:". $_SESSION["asiento"];
+                } 
+                else {
+                    echo "Has seleccionado los asientos: ". $_SESSION["asiento"];
+                }?></p>  
+        <p class="data-text">Orden de compra: <?php echo $_SESSION["order"]; ?></p>
     </div>
 
     <!-- Botón para confirmar la entrada dentro del contenedor de datos -->

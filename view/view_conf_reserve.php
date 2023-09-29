@@ -20,6 +20,7 @@ else
     $ticket_order++;
 }
  $_SESSION["order"]=$ticket_order;
+
 ?>
 
 <!DOCTYPE html>

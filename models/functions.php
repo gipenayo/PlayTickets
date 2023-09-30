@@ -363,7 +363,7 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
         return $sentence->execute([$datetime_hour, $id_show, $seating, $user, $ticket_order]);
     }
 
-    function getOrder()
+    function getMaxOrder()
     {
         $bd = database();  
         $sentence = $bd->prepare("SELECT MAX(id_order) as max_order from tickets");
@@ -378,4 +378,49 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
         $sentence=$bd->prepare("INSERT INTO reserves(id_order,confirmation) VALUES (?,?)");
         return $sentence->execute([$id_order,$conf]);
     }
+
+    function getStateOrder($id_order)
+    {
+        $bd = database();
+        $sentence = $bd->prepare("SELECT confirmation FROM reserves WHERE id_order = ?");
+        $sentence->execute([$id_order]);
+    
+        // Obtén todos los resultados
+        $results = $sentence->fetchAll(PDO::FETCH_ASSOC);
+    
+        if (!empty($results)) {
+            // Si hay resultados, puedes acceder al primer valor de la primera fila
+            $firstRow = $results[0];
+            return $firstRow['confirmation'];
+        } else {
+            // Maneja el caso en el que no se encuentre la orden, por ejemplo, retornando un valor por defecto o lanzando una excepción.
+            return false; // O cualquier otro valor apropiado en caso de error.
+        }
+    }
+
+    function getTicketOrder($id_order)
+    {
+        $bd = database();
+        $sentence = $bd->prepare("SELECT t.datetime_hour, t.id_show, t.seating, s.show_name
+                             FROM tickets t
+                             INNER JOIN shows s ON t.id_show = s.id_show
+                             WHERE t.id_order = :id_order");
+
+        // Bind the parameter using named placeholders
+        $sentence->bindParam(':id_order', $id_order, PDO::PARAM_INT);
+
+        $sentence->execute();
+        $tickets = $sentence->fetchAll(PDO::FETCH_ASSOC);
+
+        return $tickets;
+    }
+
+    function confirmReservation($id_order)
+    {
+        $bd=database();
+        $sentence = $bd->prepare("UPDATE reserves SET confirmation = 1 WHERE id_order = ?");
+        $result = $sentence->execute([$id_order]);
+        return $result;
+    }
+    
 ?>

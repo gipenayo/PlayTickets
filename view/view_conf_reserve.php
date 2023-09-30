@@ -9,7 +9,7 @@ $_SESSION["time"];
 $_SESSION["seating"];
 $_SESSION["asiento"] = $_POST["asientos"];
 
-$ticket_order=getOrder();
+$ticket_order=getMaxOrder();
 
 if($ticket_order==NULL)
 {

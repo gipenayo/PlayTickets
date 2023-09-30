@@ -45,6 +45,7 @@ $get_datetime_show=getShowDatetime();
                 <thead>
                     <tr>
                         <th>Fecha</th>
+                        <th>Hora</th>
                         <th>Editar</th>
                         <th>Estado</th>
                         <th>Eliminar</th>
@@ -57,7 +58,8 @@ $get_datetime_show=getShowDatetime();
                         $id_show_date=$datetime_show->id_show;
                        if ($id_show_get === $id_show_date) { ?>
                         <tr>
-                            <td><?php echo date('d/m/Y H:i', strtotime($datetime_show->datetime_show)); ?></td>
+                            <td><?php echo date('d/m/Y', strtotime($datetime_show->date_show)); ?></td>
+                            <td><?php echo $datetime_show->time_show; ?></td>
                             <td><a class="btn btn-warning" href="edit_form_show_datetime.php?id_datetime=<?php echo $datetime_show->id_datetime?>">EDITAR</a></td>
                             <td>
                                  <?php if ($datetime_show->datetime_state == 1) { ?>

@@ -11,7 +11,7 @@ exit;*/
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/edit_form_show.css">
+    <link rel="stylesheet" href="../assets/css/function.css">
     <link rel="icon" type="img/logo" href="../assets/img/logo.png"><!--Icono en la pestaña-->
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
     <title>PlayTickets</title>
@@ -33,10 +33,12 @@ exit;*/
             </div>
         </div>
     </header>
-    <div class="row">
-        <div class="col-12">
-            <h1>Editar:</h1>
+    <div clas="register-container">
+            <div class="register-box">
             <form action="../controller/update_user_supplier.php" method="post">
+                <div class="logo-container">
+                    <h2 class="title-with-logo">EDITAR USUARIO:</h2>
+                </div>
                 <input type="hidden" name="id_user" value="<?php echo $user->id_user ?>">
                 <div class="form-group">
                     <label for="show_name">Nombre:</label>
@@ -53,10 +55,6 @@ exit;*/
                 <div class="form-group">
                     <label for="id_gender">Telefono:</label>
                     <input value="<?php echo $user->phone ?>" type="text" class="form-control" name="phone" id="phone">
-                </div>
-                <div class="form-group">
-                    <label for="id_category">Fecha de Nacimiento:</label><br>
-                    <input value="<?php echo $user->date_birth ?>" type="text" class="form-control" name="date_birth" id="date_birth">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-success">Guardar</button>

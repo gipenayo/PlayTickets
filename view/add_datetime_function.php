@@ -1,12 +1,9 @@
 <?php 
 include_once "../models/functions.php";
 
-/*$getShow = getShow();
-var_dump($getShow)
-exit;*/
-//$get_show=getShowDetallShow();
 $show = getShowForId($_GET["id_show"]);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,29 +31,36 @@ $show = getShowForId($_GET["id_show"]);
                 </div>
             </div>
         </header>
-        <div clas="register-container">
-        <div class="register-box">
-        <form action="../controller/save_datetime_function.php" method="post">
-            <div class="logo-container">
-                <h2 class="title-with-logo">AGREGA NUEVA FECHA</h2>
+        <div class="register-container">
+            <div class="register-box">
+                <form action="../controller/save_datetime_function.php" method="post">
+                    <div class="logo-container">
+                        <h2 class="title-with-logo">AGREGA NUEVA FECHA</h2>
+                    </div>
+                    <div class="form-group">
+                        <label for="show_name">Seleccione el nombre del show:</label>
+                        <select class="form-control" id="id_show" name="id_show">
+                            <option value="<?php echo $show->id_show ?>" required><?php echo $show->show_name ?></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="formatted_date">Fecha (Día/Mes/Año):</label>
+                        <input type="text" class="form-control" id="day" name="day" placeholder="Día" required>
+                        <input type="text" class="form-control" id="month" name="month" placeholder="Mes" required>
+                        <input type="text" class="form-control" id="year" name="year" placeholder="Año" required>
+                        <!-- Campo oculto para almacenar la fecha en formato "año-mes-día" -->
+                        <input type="hidden" id="date_show" name="date_show" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="show_date_time">Hora:</label>
+                        <input type="time" class="form-control" id="time_show" name="time_show" required><br><br>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="show_name">Seleccione el nombre del show:</label>
-                <select class="form-control" id="id_show" name="id_show">
-                    <option value="<?php echo $show->id_show ?>" required><?php echo $show->show_name ?></option><br>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="show_date_time">Fecha y Hora:(mes/dia/año)</label>
-                <input type="datetime-local" class="form-control" id="datetime_show" name="datetime_show" required><br><br>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-success">Guardar</button>
-            </div>
-        </form>
-</div>
-</div>
-
+        </div>
     </div>
     <footer>
         <div class="footer-logo"></div>
@@ -71,7 +75,30 @@ $show = getShowForId($_GET["id_show"]);
             </div>
         </div>
     </footer>
-    <script src="../assets/js/barnavfooter.js"></script> 
-</body>
+    <script src="../assets/js/barnavfooter.js"></script>
+    <script>
+    // Escucha cambios en los campos de entrada de día, mes y año
+    const dayInput = document.getElementById('day'); // Obtiene el campo de entrada de día
+    const monthInput = document.getElementById('month'); // Obtiene el campo de entrada de mes
+    const yearInput = document.getElementById('year'); // Obtiene el campo de entrada de año
+    const datetimeShowInput = document.getElementById('date_show'); // Obtiene el campo de entrada de fecha y hora
+
+    dayInput.addEventListener('input', updateDate); // Agrega un listener de eventos al campo de día
+    monthInput.addEventListener('input', updateDate); // Agrega un listener de eventos al campo de mes
+    yearInput.addEventListener('input', updateDate); // Agrega un listener de eventos al campo de año
+
+    function updateDate() {
+        // Obtiene el valor actual de los campos de entrada de día, mes y año
+        const day = dayInput.value.padStart(2, '0'); // Asegura que tenga al menos dos dígitos (01 en lugar de 1)
+        const month = monthInput.value.padStart(2, '0'); // Asegura que tenga al menos dos dígitos (01 en lugar de 1)
+        const year = yearInput.value;
+
+        // Combina los valores en el formato "dd/mm/aaaa"
+        const datetimeValue = `${day}-${month}-${year}`;
+
+        // Asigna el valor al campo de entrada de fecha y hora
+        datetimeShowInput.value = datetimeValue;
+    }
+    </script>
 </body>
 </html>

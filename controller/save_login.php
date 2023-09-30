@@ -15,6 +15,7 @@ $logged_in = false;
       $logged_in = true;
       $_SESSION["email"] =$compara->email;
       $_SESSION["name"]=$compara->user_name;
+      $_SESSION["id_user"]=$compara->id_user; //es de yaz
       
       //echo $_SESSION["email"],$_SESSION["name"];
       break;

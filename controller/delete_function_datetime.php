@@ -7,7 +7,7 @@ if (!$ok) {
     echo "Error eliminando";
 } else {
     /*echo "Eliminado con exito";*/
-    header("Location: ../view/datetime_function.php");
+    header("Location: ../view/supplier.php");
     exit;
 }
 

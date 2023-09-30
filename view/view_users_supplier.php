@@ -56,7 +56,6 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
                         <th>Apellido</th>
                         <th>Email</th>
                         <th>Telefono</th>
-                        <th>Fecha de Nacimiento</th>
                         <th>Editar</th>
                     </tr>
                 </thead>
@@ -67,7 +66,6 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
                             <td><?php echo $user->last_name?></td>
                             <td><?php echo $user->email?></td>
                             <td><?php echo $user->phone?></td>
-                            <th><?php echo date('d/m/Y', strtotime($user->date_birth)); ?></th>
                             <td><a class="btn btn-warning" href="edit_form_user_supplier.php?id_user=<?php echo $user->id_user ?>">EDITAR</a></td>
                         </tr>
                     <?php } ?>

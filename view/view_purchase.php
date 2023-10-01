@@ -2,10 +2,12 @@
 session_start();
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
+$user_get=getUser();
 $_SESSION["id"];
 $_SESSION["name"];
 $_SESSION["show"];
-/*var_dump($_SESSION["name"]);
+$_SESSION["id_user"];
+/*var_dump($_SESSION["id_user"]);
 exit;*/
 ?>
 <!DOCTYPE html>
@@ -31,10 +33,15 @@ exit;*/
                 <div class="panel">
                     <ul>
                         <li>Hola <?php echo $_SESSION["name"]?>!</li>
-                        <li><a href="edit_form_user.php">Mis datos</a></li>
+                        <?php foreach ($user_get as $user) {
+                            if ($_SESSION["id_user"] === $user->id_user) { ?>
+                                <li><a href="edit_form_user.php?id_user=<?php echo $user->id_user ?>">Mis datos</a></li>
+                        <?php }
+                        }?>
+                        
                         <li><a href="record.php">Mis reservas</a></li>
                         <hr class="hr">
-                        <li><a href="#">Cerrar Sesion</a></li>
+                        <li><a href="../controller/logout.php">Cerrar Sesion</a></li>
                     </ul>
                 </div>
             </div>

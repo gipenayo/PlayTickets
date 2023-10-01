@@ -1,15 +1,22 @@
 <?php
-
-
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+
 require '../vendor/autoload.php';
-
-
 include_once "../models/functions.php";
 
+// Obtén la fecha de nacimiento ingresada a través de $_POST
+$fecha_nacimiento = $_POST["date_birth"];
+
+// Calcula la fecha actual
+$fecha_actual = date("Y-m-d");
+
+// Calcula la edad en años
+$edad = floor((strtotime($fecha_actual) - strtotime($fecha_nacimiento)) / (60 * 60 * 24 * 365.25));
+
+// Comprueba si la edad es mayor o igual a 18 años
+if ($edad >= 18) {
 
 $first_name = $_POST["first_name"];
 $last_name = $_POST["last_name"];
@@ -39,11 +46,8 @@ if (!$ok) {
 } 
 else {
     $_SESSION["nombre"] = $first_name;
+
 }
-
-
-
-    
 $email = $_POST["email"];
 
 function welcome($email)
@@ -138,13 +142,14 @@ function Confirmation($email,$confirmationLink)
         return true;
         
 }
-
-
-
 if (welcome($email)&&Confirmation($email,$confirmationLink)==true) {
 
     header("Location: ../view/register.php?successfulRegistratio=1");
 
 
+}
+
+} else {
+    echo "La persona es menor de 18 años y no puede registrarse.";
 }
 ?>

@@ -37,7 +37,7 @@ exit;*/
     <main>
         <div class="advertencia">
             <h2>Advertencia</h2>
-            <p>¿Seguro que desea eliminar el horario: <?php echo $datetime->datetime_show ?>?</p>
+            <p>¿Seguro que desea eliminar el horario: <?php echo date('d/m/Y', strtotime($datetime->date_show)) . ' - ' . $datetime->time_show; ?>?</p>
             <form action="../controller/delete_function_datetime.php" method="post">
                 <input type="hidden" name="id_datetime" value="<?php echo $datetime->id_datetime?>">
                 <button type="submit" class="btn-eliminar">Eliminar</button>

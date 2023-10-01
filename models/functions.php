@@ -312,18 +312,17 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
 }
 
 
- /*function getAmount($id_show)
- {
-
-
+function getAmount($id_show, $datetime_hour)
+{
     $bd = database();
-    $sentence = $bd->prepare("SELECT amount_ticket FROM shows WHERE id_show = ?");
-    $sentence->execute([$id_show]);
-    $result = $sentence->fetch(PDO::FETCH_ASSOC);;
-    return $result['amount_ticket'];
+    $sentence = $bd->prepare("SELECT COUNT(*) as seating FROM tickets WHERE id_show = ? AND datetime_hour = ?");
+    $sentence->execute([$id_show, $datetime_hour]);
+    $result = $sentence->fetch(PDO::FETCH_ASSOC);
+
+    return intval($result['seating']);
+}
 
 
- }*/
  function ReservationHistory($email)
  {
      $bd = database();

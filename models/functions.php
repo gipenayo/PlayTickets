@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set("America/Argentina");
+date_default_timezone_set('America/Argentina/Buenos_Aires');//fecha local
 function database()
 {
     $user_password = getenv("MYSQL_ROOT_PASSWORD");
@@ -107,17 +107,8 @@ function getShow($search = null, $id_gender = null, $id_category = null)
     return $sentence->fetchAll();
 }
 
-/*
-function getUser()
-{
-    $bd = database();
-    $sentence = $bd->query("SELECT user_name,last_name,email,phone,date_birth FROM users");
-    return $sentence->fetchAll();
-}*/
-
-
-
 function getReserver($showId, $time)
+
 {
     try {
         $bd = database();
@@ -145,13 +136,6 @@ function getShowDetallGender()
     $bd = database();
     $sentence = $bd ->query("SELECT genders.id_gender , genders.gender FROM `shows` JOIN genders on shows.id_gender=genders.id_gender");
     //$sentence = $bd->query("SELECT  genders.gender  FROM shows JOIN genders on shows.id_gender=genders.id_gender");
-    return $sentence->fetchAll();
-}
-
-function getShowDetallShow()//devuelve el dettale del show para usar con la fecha
-{
-    $bd = database();
-    $sentence = $bd->query("SELECT shows.id_show , shows.show_name FROM `shows_dates` JOIN shows on shows_dates.id_show=shows.id_show");
     return $sentence->fetchAll();
 }
 
@@ -312,6 +296,7 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
 }
 
 
+
 function getAmount($id_show, $datetime_hour)
 {
     $bd = database();
@@ -325,9 +310,10 @@ function getAmount($id_show, $datetime_hour)
 
  function ReservationHistory($email)
  {
+
      $bd = database();
      
-     // Escapar y rodear $email con comillas simples
+     // Escapar y rodear email con comillas simples
      $email = $bd->quote($email); // Cambiar query a quote para escapar el valor
      
      // Consulta SQL 
@@ -352,6 +338,7 @@ function getAmount($id_show, $datetime_hour)
      
      $result = $bd->query($history);// Ejecutar la consulta SQL
      return $result;
+
  }
  
 
@@ -423,3 +410,4 @@ function getAmount($id_show, $datetime_hour)
     }
     
 ?>
+

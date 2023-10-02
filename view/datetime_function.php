@@ -1,11 +1,8 @@
 <?php
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
-
 $get_datetime_show=getShowDatetime();
-/*$get_show=getShowDetallShow();
-var_dump($get_datetime_show);
-exit;*/
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,27 +12,27 @@ exit;*/
     <link rel="stylesheet" href="../assets/css/supplier.css"> 
     <link rel="icon" type="img/logo" href="../assets/img/logo.png"><!--Icono en la pestaña-->
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Icono de menu-->
     <title>PlayTickets</title>
 </head>
 <body>
 <div class="main-content">
-
     <header>
         <div class="navbar">
             <h1 class="logo"> 
-                <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS </h1>
-            <button class="accordion">Menú</button>
+                <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS</h1>
+            <button class="accordion"><i class="fas fa-bars"></i></button>
             <div class="panel">
-
                 <ul>
                     <li><a href="../index.php">Cartelera</a></li>
-                    <li><a href="login.php">Ingresar</a></li>
                     <li><a href="register.php">Registrarse</a></li>
-                    <li><a href="contact_page.php">Contacto</a></li>
+                    <li><a href="add_function.php">Agregar Función</a></li>
+                    <li><a href="supplier.php">Funciones Disponibles</a></li>
                 </ul>
             </div>
         </div>
     </header>
+    <br>
     <main class="main">
         <div class="row">
         <div class="col-12">
@@ -43,6 +40,7 @@ exit;*/
                 <h3>FECHAS DE LOS SHOWS DE <?php echo $show->show_name?></h3>
                 <a href="add_datetime_function.php?id_show=<?php echo $show->id_show ?>" class="btn btn-success mb-2">AGREGAR</a>
             </div>
+            <br>
             <table class="table">
                 <thead>
                     <tr>
@@ -59,7 +57,7 @@ exit;*/
                         $id_show_date=$datetime_show->id_show;
                        if ($id_show_get === $id_show_date) { ?>
                         <tr>
-                            <td><?php echo $datetime_show->datetime_show?></td>
+                            <td><?php echo date('d/m/Y H:i', strtotime($datetime_show->datetime_show)); ?></td>
                             <td><a class="btn btn-warning" href="edit_form_show_datetime.php?id_datetime=<?php echo $datetime_show->id_datetime?>">EDITAR</a></td>
                             <td>
                                  <?php if ($datetime_show->datetime_state == 1) { ?>

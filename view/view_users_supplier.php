@@ -17,21 +17,22 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
     <link rel="stylesheet" href="../assets/css/supplier.css"> 
     <link rel="icon" type="img/logo" href="../assets/img/logo.png"><!--Icono en la pestaña-->
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Icono de menu-->
     <title>PlayTickets</title>
 </head>
 <body>
 <div class="main-content">
-
     <header>
         <div class="navbar">
-            <h1 class="logo"><img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS</h1>
-            <button class="accordion">Menú</button>
+            <h1 class="logo"> 
+                <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS</h1>
+            <button class="accordion"><i class="fas fa-bars"></i></button>
             <div class="panel">
                 <ul>
-                    <li><a href="index.php">Cartelera</a></li>
-                    <li><a href="../view/login.php">Ingresar</a></li>
-                    <li><a href="../view/register.php">Registrarse</a></li>
-                    <li><a href="../view/contact_page.php">Contacto</a></li>
+                    <li><a href="../index.php">Cartelera</a></li>
+                    <li><a href="register.php">Registrarse</a></li>
+                    <li><a href="add_function.php">Agregar Función</a></li>
+                    <li><a href="supplier.php">Funciones Disponibles</a></li>
                 </ul>
             </div>
         </div>
@@ -66,7 +67,7 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
                             <td><?php echo $user->last_name?></td>
                             <td><?php echo $user->email?></td>
                             <td><?php echo $user->phone?></td>
-                            <th><?php echo $user->date_birth?></th>
+                            <th><?php echo date('d/m/Y', strtotime($user->date_birth)); ?></th>
                             <td><a class="btn btn-warning" href="edit_form_user_supplier.php?id_user=<?php echo $user->id_user ?>">EDITAR</a></td>
                         </tr>
                     <?php } ?>

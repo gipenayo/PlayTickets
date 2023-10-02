@@ -38,7 +38,8 @@ exit;*/
         <div class="panel">
             <ul>
                 <li>Hola <?php echo $_SESSION["name"]?>!</li>
-                <li><a href="#">Mis reservas</a></li>
+                <li><a href="edit_form_user.php">Mis datos</a></li>
+                <li><a href="record.php">Mis reservas</a></li>
                 <hr class="hr">
                 <li><a href="#">Cerrar Sesion</a></li>
             </ul>

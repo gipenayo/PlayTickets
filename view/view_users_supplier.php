@@ -40,6 +40,9 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
     <div class="row">
         <div class="col-12">
             <form action="view_users_supplier.php" class="search-form">
+                <div class="logo-container">
+                        <h2 class="title-with-logo">USUARIOS REGISTRADOS EN PLAYTICKETS</h2>
+                </div>
                 <div class="form-row align-items-center">
                     <div class="col-6 my-1">
                         <input value="<?php echo isset($_GET["search"]) && !empty($_GET["search"]) ?  $_GET["search"] : "" ?>" name="search" class="form-control" type="text" placeholder="NOMBRE DEL USUARIO">
@@ -56,7 +59,8 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
                         <th>Apellido</th>
                         <th>Email</th>
                         <th>Telefono</th>
-                        <th>Editar</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Dirección</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,7 +70,11 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
                             <td><?php echo $user->last_name?></td>
                             <td><?php echo $user->email?></td>
                             <td><?php echo $user->phone?></td>
-                            <td><a class="btn btn-warning" href="edit_form_user_supplier.php?id_user=<?php echo $user->id_user ?>">EDITAR</a></td>
+                            <td><?php echo date('d/m/Y', strtotime($user->date_birth))?></td>
+                            <td><?php echo $user->street . ' - ' . $user->height; ?></td>
+
+
+
                         </tr>
                     <?php } ?>
                 </tbody>

@@ -16,6 +16,9 @@ function database()
 function register ($first_name, $last_name,$email, $dni ,$phone,$date_birth,$street,$height,$departament,$id_rol,$_password,$user_state)
 {
     $bd=database();
+    $first_name=ucfirst(strtolower($first_name));//valida que quede como por ej. Yazmin o Giselle
+    $last_name=ucfirst(strtolower($last_name));
+    $street=ucwords(strtolower($street));//mayuscula por cada palabra ingresada
     $sentence=$bd->prepare("INSERT INTO users(user_name,last_name,email,dni,phone,date_birth,street,height,departament,id_rol,_password,user_state) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     return $sentence->execute([$first_name, $last_name,$email,$dni, $phone,$date_birth,$street,$height,$departament,$id_rol,$_password,$user_state]);
 }
@@ -108,7 +111,8 @@ function getShow($search = null, $id_gender = null, $id_category = null)
     return $sentence->fetchAll();
 }
 
-function getReserver($showId, $time)
+
+function getReserver( $showId)
 
 {
     try {
@@ -174,13 +178,23 @@ function updateShow($show_name, $show_description, $id_gender, $id_category, $pi
     return $sentence->execute([$show_name, $show_description, $id_gender, $id_category, $picture, $id_show]);
 }
 
-function updateShowDatetime($date_show,$time_show , $id_datetime)
+function updateShowDatetime($date_show, $time_show , $id_datetime)
 {
     $bd = database();
     $date_show = date('Y-m-d', strtotime($_POST['date_show']));
     $sentence = $bd->prepare("UPDATE shows_dates SET date_show = ? , time_show = ?  WHERE id_datetime = ?");
     $result = $sentence->execute([$date_show, $time_show ,$id_datetime]);
     return $result;
+}
+
+function updateUser($user_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $id_user)
+{
+    $user_name = ucfirst(strtolower($user_name));
+    $last_name=ucfirst(strtolower($last_name));
+    $street=ucwords(strtolower($street));
+    $bd = database();
+    $sentence = $bd->prepare("UPDATE users SET user_name = ?, last_name = ?, email = ?, dni = ?, phone = ?, date_birth = ?, street = ?, height = ? WHERE id_user = ?");
+    return $sentence->execute([$user_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $id_user]);
 }
 
 function recovery($email, $_password)
@@ -247,7 +261,7 @@ function inactiveShowDatetime($id_datetime)
 function login()
 {
     $bd=database();
-    $sentence=$bd->query("SELECT email ,_password, id_rol,user_name,user_state FROM users");
+    $sentence=$bd->query("SELECT id_user ,email ,_password, id_rol,user_name,user_state FROM users");
     return $sentence->fetchAll();
 }
 
@@ -268,7 +282,7 @@ function getIdUser()
 function getUser()
 {
     $bd = database();
-    $sentence = $bd->query("SELECT id_user, user_name, last_name, email, phone, date_birth FROM users");
+    $sentence = $bd->query("SELECT id_user, user_name, last_name, email, phone, date_birth, street, height FROM users");
     return $sentence->fetchAll();
 }
 
@@ -283,10 +297,11 @@ function searchUser($user_name)
 function getUserForId($id_user)
 {
     $bd = database();
-    $sentence = $bd->prepare("SELECT id_user, user_name, last_name, email, phone, date_birth FROM users WHERE id_user = ?");
+    $sentence = $bd->prepare("SELECT id_user, user_name, last_name, email, dni, phone, date_birth, street, height FROM users WHERE id_user = ?");
     $sentence->execute([$id_user]);
     return $sentence->fetchObject();
 }
+
 
 function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_user)
 {
@@ -300,6 +315,7 @@ function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_us
 
 
 function getAmount($id_show, $datetime_hour)
+
 {
     $bd = database();
     $sentence = $bd->prepare("SELECT COUNT(*) as seating FROM tickets WHERE id_show = ? AND datetime_hour = ?");

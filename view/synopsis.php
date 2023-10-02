@@ -11,8 +11,6 @@ $datetime=getShowDatetime($_GET["id_datetime"]);
 $id_date=isset($_GET["id_datetime"]) ? $_GET["id_datetime"] : null;
 
 
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -48,7 +46,7 @@ $id_date=isset($_GET["id_datetime"]) ? $_GET["id_datetime"] : null;
         <p><?php echo $show->show_description ?></p>
 
         <div class="form-container">
-        <form action="../view/login.php" method="post">
+       <form action="../controller/seating_verifier.php?id_show=<?php echo $id_show; ?>" method="post">
             <label for="datetime_show">Fecha disponible:</label>
 
             <select name="datetime_show" id="datetime_show">

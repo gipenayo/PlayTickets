@@ -67,17 +67,18 @@ function addShow($show_name, $show_description, $id_gender, $id_category, $pictu
     return $sente->execute([$show_name, $show_description, $id_gender, $id_category , $picture,$state]);
 }
 
-function addShowDatetime($datetime_show, $datetime_state, $id_show)//agregamos la fecha de los shows;
+function addShowDatetime($date_show, $time_show, $datetime_state, $id_show)//agregamos la fecha de los shows;
 {
     $bd=database();
-    $sente=$bd->prepare("INSERT INTO shows_dates(datetime_show , datetime_state , id_show) VALUES (?,?,?)");
-    return $sente->execute([$datetime_show, $datetime_state, $id_show]);
+    $date_show = date('Y-m-d', strtotime($_POST['date_show']));
+    $sente=$bd->prepare("INSERT INTO shows_dates(date_show , time_show  , datetime_state , id_show) VALUES (?,?,?,?)");
+    return $sente->execute([$date_show, $time_show, $datetime_state, $id_show]);
 }
 
 function getShowDatetime()
 {
     $bd=database();
-    $sentence = $bd->query("SELECT id_datetime , datetime_show , datetime_state, id_show FROM shows_dates");
+    $sentence = $bd->query("SELECT id_datetime , date_show, time_show  , datetime_state, id_show FROM shows_dates");
     return $sentence->fetchAll();
 }
 
@@ -159,7 +160,7 @@ function getShowForId($id_show)
 function getShowDatetimeForId($id_datetime)
 {
     $bd = database();
-    $sentence = $bd->prepare("SELECT id_datetime , datetime_show , datetime_state , id_show FROM shows_dates WHERE id_datetime = ?");
+    $sentence = $bd->prepare("SELECT id_datetime , date_show , time_show , datetime_state , id_show FROM shows_dates WHERE id_datetime = ?");
     $sentence->execute([$id_datetime]);
     return $sentence->fetchObject();
 }
@@ -173,11 +174,12 @@ function updateShow($show_name, $show_description, $id_gender, $id_category, $pi
     return $sentence->execute([$show_name, $show_description, $id_gender, $id_category, $picture, $id_show]);
 }
 
-function updateShowDatetime($datetime_show , $id_datetime)
+function updateShowDatetime($date_show,$time_show , $id_datetime)
 {
     $bd = database();
-    $sentence = $bd->prepare("UPDATE shows_dates SET datetime_show = ? WHERE id_datetime = ?");
-    $result = $sentence->execute([$datetime_show ,$id_datetime]);
+    $date_show = date('Y-m-d', strtotime($_POST['date_show']));
+    $sentence = $bd->prepare("UPDATE shows_dates SET date_show = ? , time_show = ?  WHERE id_datetime = ?");
+    $result = $sentence->execute([$date_show, $time_show ,$id_datetime]);
     return $result;
 }
 

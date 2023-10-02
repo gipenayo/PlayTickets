@@ -3,11 +3,13 @@ session_start();
 include_once "../models/functions.php";
 $show = getShowForId($_GET["id_show"]);
 $id_show = isset($_GET['id_show']) ? $_GET['id_show'] : null;
+
 $_SESSION["id"] = $id_show;
 $name = $show->show_name;
 $_SESSION["show"] = $name;
 $datetime = getShowDatetime();
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -38,6 +40,7 @@ $datetime = getShowDatetime();
         </div>
     </header>
     <main>
+
         <?php if ($show->show_state != 2) { ?>
             <h1><?php echo $show->show_name ?></h1>
             <img src="data:image/jpeg;base64,<?php echo base64_encode($show->picture); ?>">
@@ -63,6 +66,7 @@ $datetime = getShowDatetime();
             <input class="reservar-btn" type="submit" value="Reservar">
             <?php } else { ?>
             </form>
+
             <div class="alert-danger" role="alert">
                 <p>Este espectáculo está AGOTADO.</p>
                 <button class="back-btn"><a href="../index.php">Volver a la cartelera</a></button>

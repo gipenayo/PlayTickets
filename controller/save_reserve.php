@@ -1,9 +1,11 @@
 <?php
 session_start();
 include_once "../models/functions.php";
+require_once "../libs/QR/qrcode.class.php";
+
 $show = getShowForId($_GET["id_show"]);
 $_SESSION["show"];
-
+$time=$_SESSION["time"];
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
@@ -17,14 +19,12 @@ $idese=$_SESSION["id"];
    /*var_dump($_POST["asientos"]);
    exit();*/
    $asientosSeleccionados = $_POST["asientos"];
-   $ok = addSeating($asientosSeleccionados, $idese);
+   $ok = addSeating($asientosSeleccionados, $idese,$time);
+
    
-if(!$ok)
+if($ok)
 {
-    echo "no";
-}
-else{
-    echo "se guardo";
+
         $mail = new PHPMailer;                     
         $mail->isSMTP();                                            
         $mail->Host       = 'smtp.gmail.com';                     
@@ -41,18 +41,18 @@ else{
         $mail->CharSet='UTF-8';                               
         $mail->Subject = 'Compra exitosa';        
         if (is_array($_POST["asientos"])) {
-            $mail->Body = 'Felicitaciones por su compra en los asientos: ' . implode(', ', $_POST["asientos"]). $_SESSION["show"];
+            $mail->Body = 'Felicitaciones por su compra en los asientos: ' . implode(', ', $_POST["asientos"]). $_SESSION["show"].$time;
         } else {
             // Manejar el caso en el que $_POST["asientos"] no es un array
-            $mail->Body = 'Felicitaciones por su compra en los asientosssssssssssss: ' . $_POST["asientos"] . $_SESSION["show"];;
+            $mail->Body = 'Felicitaciones por su compra en los asientos: ' . $_POST["asientos"] . $_SESSION["show"].$time;;
         }
         
-    if (!$mail->send()) {
-        echo 'Error al enviar el mensaje: ';
+    if ($mail->send()) {
+        header("Location: ../view/view_qr.php");
     } 
     
     else {
-        echo 'Mensaje enviado correctamente';
+        header("Location: ../index.php");
     }
     
     

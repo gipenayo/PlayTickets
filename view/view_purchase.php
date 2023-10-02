@@ -6,9 +6,9 @@ $user_get=getUser();
 $_SESSION["id"];
 $_SESSION["name"];
 $_SESSION["show"];
+
 $_SESSION["id_user"];
-/*var_dump($_SESSION["id_user"]);
-exit;*/
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -97,49 +97,103 @@ exit;*/
             <input class="btn-reservar"  type="submit" value="Reservar" id="reservation-button" disabled>
         </form>
     </div>
-    <footer>
-        <div class="footer-logo"></div> 
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos y Condiciones</a>
-                <a href="#">Contacto</a>
-            </div>
-            <div class="footer-copyright">&copy; 2023 PlayTickets</div>  
+</div>
+<form action="../view/view_conf_reserve.php" method="POST">
+    <div class="asientos">
+        <?php
+        $asientoOcupado = getReserver($show->id_show,$time);
+        if ($asientoOcupado !== false) {
+            // Crea un array para almacenar los objetos de asientos ocupados
+            $datosAsientos = [];
+            // Recorre los resultados de la consulta y crea objetos para cada asiento ocupado
+            foreach ($asientoOcupado as $fila) {
+                $asiento = new stdClass();
+                $asiento->seating_number = $fila->seating_number;
+                $datosAsientos[] = $asiento;
+            }
+            // Extrae los números de asiento de los objetos y almacénalos en un array
+            $asientosOcupados = array_map(function ($obj) {
+                return $obj->seating_number;
+            }, $datosAsientos);
+        } else {
+            // Si la consulta falló, maneja el error o muestra un mensaje adecuado
+            echo "Error al obtener los datos de asientos ocupados desde la base de datos.";
+        }
+
+        for ($i = 1; $i <= 100; $i++) {
+            $asientoOcupado = in_array($i, $asientosOcupados);
+            $estadoAsiento = $asientoOcupado ? "ocupado" : "disponible";
+            
+            
+            ?>
+            
+  <div class="asiento-label <?php echo $asientoOcupado ? 'selected' : '' ?>" data-seat-number="<?php echo $i ?>" data-selected="<?php echo $asientoOcupado ? '1' : '0' ?>">
+    <?php echo "$i" ?>
+</div>
+
+           
+            <?php
+
+        }
+        ?>
+    </div>
+    
+    <input type="hidden" name="asientos" id="asientos-seleccionados" value="">
+
+    <input class="btn-reservar"  type="submit" value="Reservar" id="reservation-button" disabled>
+    
+    
+</form>
+
+
+
+
+
+<footer>
+
+    <div class="footer-logo"></div> 
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="#">Política de Privacidad</a>
+            <a href="#">Términos y Condiciones</a>
+            <a href="#">Contacto</a>
         </div>
-    </footer>
-    <script src="../assets/js/barnavfooter.js"></script>
-    <!--<script src="../assets/js/script.js"></script>-->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        const seatLabels = document.querySelectorAll('.asiento-label');
-        const reservationButton = document.getElementById('reservation-button');
-        let asientosSeleccionados = '';
+        <div class="footer-copyright">&copy; 2023 PlayTickets</div>  
+    </div>
+</footer>
 
-        seatLabels.forEach(seatLabel => {
-            seatLabel.addEventListener('click', () => {
-                const isSelected = seatLabel.classList.contains('selected');
-                const seatNumber = seatLabel.getAttribute('data-seat-number');
+<script src="../assets/js/barnavfooter.js"></script>
+<!--<script src="../assets/js/script.js"></script>-->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const seatLabels = document.querySelectorAll('.asiento-label');
+    const reservationButton = document.getElementById('reservation-button');
+    let asientosSeleccionados = '';
 
-                if (isSelected) {
-                    seatLabel.classList.remove('selected');
-                    // Remueve el asiento del string de asientos seleccionados
-                    asientosSeleccionados = asientosSeleccionados.replace(seatNumber + ',', '');
-                } else {
-                    seatLabel.classList.add('selected');
-                    // Agrega el asiento al string de asientos seleccionados
-                    asientosSeleccionados += seatNumber + ',';
-                }
+    seatLabels.forEach(seatLabel => {
+        seatLabel.addEventListener('click', () => {
+            const isSelected = seatLabel.classList.contains('selected');
+            const isOccupied = seatLabel.classList.contains('occupied');
+            const seatNumber = seatLabel.getAttribute('data-seat-number');
 
-                // Actualiza el valor del campo oculto
-                document.getElementById('asientos-seleccionados').value = asientosSeleccionados;
+            // Check if the seat is occupied or already selected
+            if (!isOccupied && !isSelected) {
+                seatLabel.classList.add('selected');
+                asientosSeleccionados += seatNumber + ',';
+            }
 
-                // Habilita el botón de reserva si hay asientos seleccionados
-                reservationButton.disabled = asientosSeleccionados === '';
-            });
+            // Update the value of the hidden input field
+            document.getElementById('asientos-seleccionados').value = asientosSeleccionados;
+
+            // Enable the reservation button if there are selected seats
+            reservationButton.disabled = asientosSeleccionados === '';
         });
     });
-    </script>
+});
+
+</script>
+
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </html>

@@ -1,0 +1,30 @@
+/* qr.css */
+.qr-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.qr-container h1 {
+    font-size: 24px;
+    color: #333;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.qr-container img#qr {
+    display: block;
+    margin: 20px auto;
+}
+
+.qr-container button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.qr-container button:hover {
+    background-color: #555;
+}

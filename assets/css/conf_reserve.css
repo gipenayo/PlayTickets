@@ -1,0 +1,64 @@
+/* styles.css */
+
+/* Estilos generales */
+body {
+    filter: grayscale(100%);
+}
+
+/* Estilos para el botón de confirmar entrada */
+input[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para el cuadro de datos */
+.data-frame {
+    width: 60%; /* Ajusta el ancho según tu preferencia */
+    max-width: 400px; /* Establece un ancho máximo */
+    min-height: 150px; /* Ajusta la altura según tu preferencia */
+    border: 2px solid #000;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto; /* Centrado horizontal */
+    margin-bottom: 20px; /* Espaciado inferior entre cuadros de datos */
+}
+
+/* Estilo para el texto dentro del cuadro de datos */
+.data-text {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Estilos para el encabezado con título centrado */
+.header {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Estilo para el contenedor del botón */
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Coloca el botón en la parte inferior derecha */
+    background-color: #E0E0E0; /* Fondo de color gris para separación */
+    padding: 10px; /* Espaciado para separación de botón */
+}

@@ -11,8 +11,8 @@ $time=$_SESSION["time"];
     use PHPMailer\PHPMailer\Exception;
     require '../vendor/autoload.php';
 $idese=$_SESSION["id"];
-
-/*var_dump($_SESSION["idese"]);
+$time=$_SESSION["time"];
+/*var_dump($time);
    exit;*/
    $_POST["asientos"];
    
@@ -41,10 +41,10 @@ if($ok)
         $mail->CharSet='UTF-8';                               
         $mail->Subject = 'Compra exitosa';        
         if (is_array($_POST["asientos"])) {
-            $mail->Body = 'Felicitaciones por su compra en los asientos: ' . implode(', ', $_POST["asientos"]). $_SESSION["show"].$time;
+            $mail->Body = 'Felicitaciones por su compra en los asientos: ' . implode(', ', $_POST["asientos"]). $_SESSION["show"];
         } else {
             // Manejar el caso en el que $_POST["asientos"] no es un array
-            $mail->Body = 'Felicitaciones por su compra en los asientos: ' . $_POST["asientos"] . $_SESSION["show"].$time;;
+            $mail->Body = 'Felicitaciones por su compra en los asientos: ' . $_POST["asientos"] . $_SESSION["show"];
         }
         
     if ($mail->send()) {

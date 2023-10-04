@@ -24,7 +24,7 @@
 }
 
 .unavailable {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(255, 0, 0);
     cursor: not-allowed;
 }
 
@@ -75,19 +75,23 @@
         border: 1px solid #000000;
     
 }
-.asiento-label.selected {
-    background-color: #000000; /* Cambia el color de fondo cuando se selecciona el asiento */
-    color: #fff; /* Cambia el color del texto cuando se selecciona el asiento */
-        width: 30px;
-        height: 30px;
-        display: inline-block;
-        text-align: center;
-        line-height: 30px;
-        cursor: pointer;
-        border: 1px solid #ccc;
-    
-    /* Agrega otros estilos según tus preferencias */
+
+/* ... Otros estilos ... */
+
+/* Estilo para asientos ocupados en la base de datos */
+.asiento-label.occupied {
+    background-color: rgb(255, 0, 0); /* Cambia el color de fondo para los asientos ocupados */
+    color: white; /* Cambia el color del texto para los asientos ocupados */
 }
+
+/* Estilo para asientos seleccionados en tiempo real */
+.asiento-label.selected {
+    background-color: rgb(0, 0, 0); /* Cambia el color de fondo para los asientos seleccionados */
+    color: white; /* Cambia el color del texto para los asientos seleccionados */
+}
+
+/* ... Otros estilos ... */
+
 /* Estilos para el botón de reserva */
 .btn-reservar {
     display: block; /* Hacer que el botón sea un bloque para centrarlo */

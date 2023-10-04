@@ -55,13 +55,14 @@ $_SESSION["time"];
                 <form action="../controller/save_login.php" method="post">
                 <input type="email" name="email" placeholder="Correo Electrónico" required>
                 <input type="password" id="password" name="_password" placeholder="Password" required>
+                <!-- Icono del ojo -->
+                 <span id="togglePassword" class="toggle-icon" onclick="togglePasswordVisibility()">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                 </span>
+                <br><br>
                 <button type="submit">Confirmar</button>
                 </form>
 
-<!-- Icono del ojo -->
-<span id="togglePassword" class="toggle-icon" onclick="togglePasswordVisibility()">
-    <i class="fa fa-eye" aria-hidden="true"></i>
-</span>
 
                 <p>¿No está registrado? <a href="../view/register.php">Registrate aquí</a></p>
                 <p>¿Olvidaste tu contraseña? <a href="../view/recovery_form.php">Haga click aqui</a></p>

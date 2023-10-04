@@ -119,10 +119,11 @@ body {
                  
 /*ojo*/
 .toggle-icon {
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  position: relative;
   cursor: pointer;
+  float: right; /* Coloca el icono a la derecha */
+  margin-top: -29px; /* Ajusta la posición vertical según sea necesario */
+  margin-right: -10px; /* Ajusta la posición horizontal según sea necesario */
   z-index: 1; /* Asegura que esté en la parte superior del campo de contraseña */
 }
 
@@ -132,5 +133,6 @@ body {
 
 /* Estilo adicional para el campo de contraseña */
 #password {
-  padding-right: 30px; /* Espacio para el icono del ojo */
+  padding-right: 15px; /* Espacio para el icono del ojo */
 }
+

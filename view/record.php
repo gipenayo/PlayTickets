@@ -1,8 +1,8 @@
 <?php
 session_start();
 include_once "../models/functions.php";
-$email = $_SESSION["email"];
-$reservas = ReservationHistory($email);
+$id_user = $_SESSION["id_user"];
+$reservas = ReservationHistory($id_user);
 ?>
 
 <!DOCTYPE html>
@@ -78,9 +78,9 @@ else
         <div class="footer-logo"></div>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos y Condiciones</a>
-                <a href="../view/contact_page.php">Contacto</a>
+                <a href="politic_private.php">Política de Privacidad</a>
+                <a href="termin_condiction.php">Términos y Condiciones</a>
+                <a href="contact_page.php">Contacto</a>
             </div>
             <div class="footer-copyright">
                 &copy; 2023 PlayTickets

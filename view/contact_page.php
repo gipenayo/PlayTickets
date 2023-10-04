@@ -73,7 +73,7 @@
             </div>
         <div class="footer-content">
             <div class="footer-links">
-            <a href="politic_private.php">Política de Privacidad</a>
+                <a href="politic_private.php">Política de Privacidad</a>
                 <a href="termin_condiction.php">Términos y Condiciones</a>
                 <a href="contact_page.php">Contacto</a>
             </div>

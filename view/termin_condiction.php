@@ -23,8 +23,7 @@
                 <ul>
                     <li><a href="../index.php">Cartelera</a></li>
                     <li><a href="register.php">Registrarse</a></li>
-                    <li><a href="add_function.php">Agregar Función</a></li>
-                    <li><a href="supplier.php">Funciones Disponibles</a></li>
+                    <li><a href="login.php">Ingresar</a></li>
                 </ul>
             </div>
         </div>

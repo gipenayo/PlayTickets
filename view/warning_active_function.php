@@ -14,6 +14,8 @@ exit;*/
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">   
     <link rel="stylesheet" href="../assets/css/warning.css">
     <link rel="icon" type="image/png" href="../assets/img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Icono de menu-->
+
     <title>PlayTickets</title>
 </head>
 <body>
@@ -21,9 +23,9 @@ exit;*/
 
     <header>
         <div class="navbar">
-            <h1 class="logo"> 
-                <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS </h1>
-            <button class="accordion">Menú</button>
+        <img src="../assets/img/logo.png" alt="Logo" height="80px ">
+        <h1 class="logo"> PLAYTICKETS </h1>
+            <button class="accordion"><i class="fas fa-bars"></i></button>
             <div class="panel">
 
                 <ul>
@@ -50,15 +52,22 @@ exit;*/
         <div class="footer-logo"></div>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos y Condiciones</a>
-                <a href="#">Contacto</a>
+                <a href="politic_private.php">Política de Privacidad</a>
+                <a href="termin_condiction.php">Términos y Condiciones</a>
+                <a href="contact_page.php">Contacto</a>
             </div>
             <div class="footer-copyright">
                 &copy; 2023 PlayTickets
             </div>
         </div>
     </footer>
-    <script src="../assets/js/barnavfooter.js"></script> 
+    <script> 
+        document.addEventListener("DOMContentLoaded", function() {
+        const accordion = document.querySelector(".accordion");
+        const panel = document.querySelector(".panel");
+        accordion.addEventListener("click", function() {panel.style.display = panel.style.display === "block" ? "none" : "block";
+    });
+    });
+    </script>
 </body>
 </html>

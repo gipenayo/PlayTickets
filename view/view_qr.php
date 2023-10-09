@@ -44,26 +44,33 @@ $_SESSION['order']
 <div class="qr-container">
     <h1>Deberá enseñar este QR en el mostrador.</h1>
     <img src="../controller/generate_qr.php" id="qr">
-    <button onclick="downQR()">descargar QR</button>
+    <button onclick="downQR()" >descargar QR</button>
     <br><br>
 </div>
 
 
 <script type="text/javascript">
 /*
-	la funcion de JS descarga la imagen
+    La función de JS descarga la imagen y luego redirecciona a la página.
 */
-	function downQR() {
-		var source = document.getElementById('qr').src;
-		var a = document.createElement('a');
+function downQR() {
+    var source = document.getElementById('qr').src;
+    var a = document.createElement('a');
 
-		a.download = true;
-		a.target = '_blank';
-		a.href = source;
+    a.download = true;
+    a.target = '_blank';
+    a.href = source;
 
-		a.click();
-	}
+    // Agrega un evento para esperar a que se complete la descarga antes de redirigir.
+    a.addEventListener('click', function() {
+        // Redirige a view_end_reservation.php después de la descarga.
+        window.location.href = 'view_end_reservation.php';
+    });
+
+    a.click();
+}
 </script>
+
 </div>
 <footer>
 

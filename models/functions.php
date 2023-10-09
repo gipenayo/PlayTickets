@@ -351,7 +351,7 @@ function ReservationHistory($user)
     function saveReserve($id_order,$conf,$id_user)
     {
         $bd=database();
-        $sentence=$bd->prepare("INSERT INTO reserves(reserve_order,confirmation,id_user) VALUES (?,?)");
+        $sentence=$bd->prepare("INSERT INTO reserves(reserve_order,confirmation,id_user) VALUES (?,?,?)");
         return $sentence->execute([$id_order,$conf,$id_user]);
     }
 

@@ -7,6 +7,7 @@ $_SESSION["id_user"];
 /*var_dump($_SESSION["id_user"]);
 exit;*/
 ?>
+
 <!DOCTYPE html>
 
 <html lang="es">

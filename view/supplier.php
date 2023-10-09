@@ -8,6 +8,7 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
 }
 $get_category=getShowDetallCategory();
 $get_gender=getShowDetallGender();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

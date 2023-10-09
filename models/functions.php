@@ -318,38 +318,24 @@ function getAmount($id_show, $datetime_hour)
 }
 
 
- function ReservationHistory($email)
- {
+function ReservationHistory($user)
+{
+    $bd = database();
 
-     $bd = database();
-     
-     // Escapar y rodear email con comillas simples
-     $email = $bd->quote($email); // Cambiar query a quote para escapar el valor
-     
-     // Consulta SQL 
-     $history = "SELECT 
-                   ra.id_reserve_amount AS id_reserve_amount,
-                   ra.amount AS amount,
-                   r.id_reserve AS id_reserve,
-                   r.id_user AS id_user,
-                   ra.id_show AS id_show,
-                   ra.id_datetime AS id_datetime,
-                   sd.datetime_show AS reservation_date
-               FROM 
-                  reserves_amounts ra  -- Cambiar a ra para que coincida con la tabla
-               INNER JOIN
-                   reserves r ON ra.id_reserve = r.id_reserve  -- Cambiar reserves_amounts a reserves
-               INNER JOIN
-                   shows_dates sd ON ra.id_datetime = sd.id_datetime
-               WHERE
-                   r.id_user = $email  -- Eliminar comillas simples alrededor de $email
-               ORDER BY
-                   sd.datetime_show DESC";
-     
-     $result = $bd->query($history);// Ejecutar la consulta SQL
-     return $result;
+    $query = "SELECT *
+              FROM reserves_amounts 
+              WHERE id_user = :user";
 
- }
+    $statement = $bd->prepare($query);
+    $statement->bindParam(':user', $user, PDO::PARAM_INT);
+    $statement->execute();
+
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+
+
  
 
     function saveTicket($datetime_hour, $id_show,$seating,$user,$ticket_order)
@@ -418,6 +404,4 @@ function getAmount($id_show, $datetime_hour)
         $result = $sentence->execute([$id_order]);
         return $result;
     }
-    
-
-
+?>

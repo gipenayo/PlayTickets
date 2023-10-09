@@ -313,36 +313,7 @@ function getAmount($id_show, $datetime_hour)
 }
 
 
-function ReservationHistory($email)
-{
-    $bd = database();
-     // Escapar y rodear email con comillas simples
-    $email = $bd->quote($email); // Cambiar query a quote para escapar el valor
-     
-     // Consulta SQL 
-     $history = "SELECT 
-                   ra.id_reserve_amount AS id_reserve_amount,
-                   ra.amount AS amount,
-                   r.id_reserve AS id_reserve,
-                   r.id_user AS id_user,
-                   ra.id_show AS id_show,
-                   ra.id_datetime AS id_datetime,
-                   sd.datetime_show AS reservation_date
-               FROM 
-                  reserves_amounts ra  -- Cambiar a ra para que coincida con la tabla
-               INNER JOIN
-                   reserves r ON ra.id_reserve = r.id_reserve  -- Cambiar reserves_amounts a reserves
-               INNER JOIN
-                   shows_dates sd ON ra.id_datetime = sd.id_datetime
-               WHERE
-                   r.id_user = $email  -- Eliminar comillas simples alrededor de $email
-               ORDER BY
-                   sd.datetime_show DESC";
-     
-     $result = $bd->query($history);// Ejecutar la consulta SQL
-     return $result;
 
- }
 
 
 function ReservationHistory($user)
@@ -381,11 +352,11 @@ function ReservationHistory($user)
         return $result->max_order;
     }
 
-    function saveReserve($id_order,$conf)
+    function saveReserve($id_order,$conf,$id_user)
     {
         $bd=database();
-        $sentence=$bd->prepare("INSERT INTO reserves(reserve_order,confirmation) VALUES (?,?)");
-        return $sentence->execute([$id_order,$conf]);
+        $sentence=$bd->prepare("INSERT INTO reserves(reserve_order,confirmation,id_user) VALUES (?,?,?)");
+        return $sentence->execute([$id_order,$conf,$id_user]);
     }
 
     function getStateOrder($id_order)

@@ -31,7 +31,7 @@ if (!empty($tickets)) {
         <?php
         if ($order_state == 0) {
             echo '<h1>Reserva no utilizada.</h1>';
-            echo '<a class="button confirm-button" href="http://192.168.1.20:8080/TicketRun/controller/conf_reserve.php?id='.$id_order.'">Confirmar Reserva</a>';
+            echo '<a class="button confirm-button" href="http://192.168.1.22:8080/TicketRun/controller/conf_reserve.php?id='.$id_order.'">Confirmar Reserva</a>';
         } elseif ($order_state == 1) {
             echo '<h1 class="error-message">La reserva ya ha sido utilizada.</h1>';
         }
@@ -40,11 +40,18 @@ if (!empty($tickets)) {
         foreach ($tickets as $ticket) {
             $seating = $ticket['seating'];
             $hour = $ticket['datetime_hour'];
+            $date_show = getShowDatetimeForId($hour);
+
+            if ($date_show) {
+                // Convertir la fecha de "yyyy-mm-dd" a "dd/mm/aaaa"
+                $datetime = DateTime::createFromFormat('Y-m-d', $date_show->date_show);
+                $formatted_date_show = $datetime->format('d/m/Y') . ' ' . $date_show->time_show;
+            }
 
             echo '<div>';
             echo '<p>Asiento: ' . $seating . '</p>';
             echo '<p>Show: ' . $show_name . '</p>';
-            echo '<p>Hora: ' . $hour . '</p>';
+            echo '<p>Hora: ' . $formatted_date_show . '</p>';
             echo '</div>';
         }
         ?>

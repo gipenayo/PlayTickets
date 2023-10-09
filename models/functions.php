@@ -355,14 +355,14 @@ function getAmount($id_show, $datetime_hour)
     function saveTicket($datetime_hour, $id_show,$seating,$user,$ticket_order)
     {
         $bd=database();
-        $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, user, id_order) VALUES (?,?,?,?,?)");
+        $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, user, reserve_order) VALUES (?,?,?,?,?)");
         return $sentence->execute([$datetime_hour, $id_show, $seating, $user, $ticket_order]);
     }
 
     function getMaxOrder()
     {
         $bd = database();  
-        $sentence = $bd->prepare("SELECT MAX(id_order) as max_order from tickets");
+        $sentence = $bd->prepare("SELECT MAX(reserve_order) as max_order from tickets");
         $sentence->execute();  
         $result = $sentence->fetch();  
         return $result->max_order;
@@ -371,7 +371,7 @@ function getAmount($id_show, $datetime_hour)
     function saveReserve($id_order,$conf)
     {
         $bd=database();
-        $sentence=$bd->prepare("INSERT INTO reserves(id_order,confirmation) VALUES (?,?)");
+        $sentence=$bd->prepare("INSERT INTO reserves(reserve_order,confirmation) VALUES (?,?)");
         return $sentence->execute([$id_order,$conf]);
     }
 
@@ -381,29 +381,22 @@ function getAmount($id_show, $datetime_hour)
         $sentence = $bd->prepare("SELECT confirmation FROM reserves WHERE reserve_order = ?");
         $sentence->execute([$id_order]);
     
-        // Obtén todos los resultados
         $results = $sentence->fetchAll(PDO::FETCH_ASSOC);
     
         if (!empty($results)) {
-            // Si hay resultados, puedes acceder al primer valor de la primera fila
             $firstRow = $results[0];
             return $firstRow['confirmation'];
-        } else {
-            // Maneja el caso en el que no se encuentre la orden, por ejemplo, retornando un valor por defecto o lanzando una excepción.
-            return false; // O cualquier otro valor apropiado en caso de error.
-        }
+             }
     }
 
     function getTicketOrder($id_order)
     {
         $bd = database();
-        $sentence = $bd->prepare("SELECT datetime_hour, id_show, id_order, user
-                             FROM tickets
-                             INNER JOIN shows ON id_show = id_show
-                             WHERE t.reserve_order = :reserve_order");
-
-        // Bind the parameter using named placeholders
-        $sentence->bindParam(':reserve_order', $id_order, PDO::PARAM_INT);
+        $sentence = $bd->prepare("SELECT t.datetime_hour, t.id_show, t.seating, s.show_name
+                             FROM tickets t
+                             INNER JOIN shows s ON t.id_show = s.id_show
+                             WHERE t.reserve_order = :id_order");
+        $sentence->bindParam(':id_order', $id_order, PDO::PARAM_INT);
 
         $sentence->execute();
         $tickets = $sentence->fetchAll(PDO::FETCH_ASSOC);

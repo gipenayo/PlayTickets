@@ -13,6 +13,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["name"]) && isset($_SESSION["show"
         if (!empty($seating)) {
 
             saveTicket($_SESSION["time"], $_SESSION["id"], $seating, $_SESSION["name"],$_SESSION["order"]);
+            addSeating($seating,$_SESSION["id"],$_SESSION["time"]);
             
         } else {
             header("Location: ../index.php");

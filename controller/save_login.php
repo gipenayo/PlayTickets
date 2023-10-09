@@ -23,7 +23,7 @@ $logged_in = false;
      }
      if(($compara->email === $_POST["email"]) && (password_verify($_POST["_password"], $compara->_password))&& ($compara->id_rol===2))
       {
-      header("location: ../view/supplier.php");
+      header("location: ../view/main_supplier_sector.php");//modificacion YAZ
       }
       
       /*if(($compara->email === $_POST["email"]) && (password_verify($_POST["_password"], $compara->_password))&& ($compara->id_rol===3))

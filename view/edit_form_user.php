@@ -16,7 +16,8 @@ list($year, $month, $day) = explode("-", $date_birth);
     <link rel="stylesheet" href="../assets/css/function.css">
     <link rel="icon" type="img/logo" href="../assets/img/logo.png"><!--Icono en la pestaña-->
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Icono de menu-->
+    <link rel="stylesheet" href="htt
+    ps://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Icono de menu-->
     <title>PlayTickets</title>
 </head>
 <body>

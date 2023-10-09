@@ -169,6 +169,16 @@ function getShowDatetimeForId($id_datetime)
     return $sentence->fetchObject();
 }
 
+function updateUser($user_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $id_user)
+{
+    $user_name = ucfirst(strtolower($user_name));
+    $last_name=ucfirst(strtolower($last_name));
+    $street=ucwords(strtolower($street));
+    $bd = database();
+    $sentence = $bd->prepare("UPDATE users SET user_name = ?, last_name = ?, email = ?, dni = ?, phone = ?, date_birth = ?, street = ?, height = ? WHERE id_user = ?");
+    return $sentence->execute([$user_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $id_user]);
+}
+
 function updateShow($show_name, $show_description, $id_gender, $id_category, $picture, $id_show)
 {
     $show_name = ucfirst(strtoupper($show_name));//mayuscula en la primera letra de cada palabra
@@ -186,8 +196,6 @@ function updateShowDatetime($date_show, $time_show , $id_datetime)
     $result = $sentence->execute([$date_show, $time_show ,$id_datetime]);
     return $result;
 }
-
-
 
 function recovery($email, $_password)
 {
@@ -293,19 +301,6 @@ function getUserForId($id_user)
     $sentence->execute([$id_user]);
     return $sentence->fetchObject();
 }
-
-
-function updateUser($user_name, $last_name , $email, $phone, $date_birth, $id_user)
-{
-    $user_name = ucfirst(strtolower($user_name));
-    $last_name=ucfirst(strtolower($last_name));
-    $bd = database();
-    $sentence = $bd->prepare("UPDATE users SET user_name = ?, last_name = ?, email = ?, phone = ?, date_birth = ? WHERE id_user = ?");
-    return $sentence->execute([$user_name, $last_name , $email, $phone, $date_birth, $id_user]);
-}
-
-
-
 function getAmount($id_show, $datetime_hour)
 
 {
@@ -316,6 +311,38 @@ function getAmount($id_show, $datetime_hour)
 
     return intval($result['seating']);
 }
+
+
+function ReservationHistory($email)
+{
+    $bd = database();
+     // Escapar y rodear email con comillas simples
+    $email = $bd->quote($email); // Cambiar query a quote para escapar el valor
+     
+     // Consulta SQL 
+     $history = "SELECT 
+                   ra.id_reserve_amount AS id_reserve_amount,
+                   ra.amount AS amount,
+                   r.id_reserve AS id_reserve,
+                   r.id_user AS id_user,
+                   ra.id_show AS id_show,
+                   ra.id_datetime AS id_datetime,
+                   sd.datetime_show AS reservation_date
+               FROM 
+                  reserves_amounts ra  -- Cambiar a ra para que coincida con la tabla
+               INNER JOIN
+                   reserves r ON ra.id_reserve = r.id_reserve  -- Cambiar reserves_amounts a reserves
+               INNER JOIN
+                   shows_dates sd ON ra.id_datetime = sd.id_datetime
+               WHERE
+                   r.id_user = $email  -- Eliminar comillas simples alrededor de $email
+               ORDER BY
+                   sd.datetime_show DESC";
+     
+     $result = $bd->query($history);// Ejecutar la consulta SQL
+     return $result;
+
+ }
 
 
 function ReservationHistory($user)

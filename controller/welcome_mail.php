@@ -6,17 +6,17 @@ use PHPMailer\PHPMailer\Exception;
 require '../vendor/autoload.php';
 include_once "../models/functions.php";
 
-// Obtén la fecha de nacimiento ingresada a través de $_POST
-$fecha_nacimiento = $_POST["date_birth"];
+function validarEdad($dateOfBirth) {
+    $dateOfBirthTimestamp = strtotime($dateOfBirth);
+    $currentTimestamp = time();
+    $age = date("Y", $currentTimestamp) - date("Y", $dateOfBirthTimestamp);
 
-// Calcula la fecha actual
-$fecha_actual = date("Y-m-d");
+    if (date("md", $currentTimestamp) < date("md", $dateOfBirthTimestamp)) {
+        $age--;
+    }
 
-// Calcula la edad en años
-$edad = floor((strtotime($fecha_actual) - strtotime($fecha_nacimiento)) / (60 * 60 * 24 * 365.25));
-
-// Comprueba si la edad es mayor o igual a 18 años
-if ($edad >= 18) {
+    return $age >= 18;
+}
 
 $first_name = $_POST["first_name"];
 $last_name = $_POST["last_name"];
@@ -34,8 +34,11 @@ $id_rol="1";
 $user_state="0";
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-
-$ok = register($first_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $departament, $id_rol, $hashed_password,$user_state);
+if (!validarEdad($date_birth)) {
+    echo '<script>alert("Debes ser mayor de 18 años para registrarte en PlayTickets.");</script>';
+    echo '<script>window.location.href = "../view/register.php";</script>'; // Regresar a la página anterior
+} else {
+    $ok = register($first_name, $last_name, $email, $dni, $phone, $date_birth, $street, $height, $departament, $id_rol, $hashed_password,$user_state);
 
 $idObject = getIdUser();
 $id = $idObject->id_user;
@@ -148,8 +151,5 @@ if (welcome($email)&&Confirmation($email,$confirmationLink)==true) {
 
 
 }
-
-} else {
-    echo "La persona es menor de 18 años y no puede registrarse.";
 }
 ?>

@@ -37,7 +37,7 @@ include_once "../models/functions.php";
           <div class="logo-container">
             <h2 class="title-with-logo">Registrate <img src="../assets/img/logo.png" alt=""></h2>
           </div>
-          <form action="../controller/welcome_mail.php" method="post">
+          <form action="../controller/welcome_mail.php" method="post" onsubmit="return validarEdad()">
             <div class="form-row">
               <input type="text" name="first_name" id="first_name" placeholder="Nombre" required>
               <input type="text" name="last_name" id="last_name" placeholder="Apellido" required>

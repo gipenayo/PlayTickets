@@ -1,8 +1,9 @@
 <?php
 session_start();
 include_once "../models/functions.php";
-$email = $_SESSION["email"];
-$reservas = ReservationHistory($email);
+$user = $_SESSION["id_user"];
+$reservasArray=ReservationHistory($user);
+
 ?>
 
 <!DOCTYPE html>
@@ -18,75 +19,70 @@ $reservas = ReservationHistory($email);
 </head>
 <body>
 <div class="main-content">
-    <!-- Contenido principal de la página aquí -->
-
 
     <header>
         <div class="navbar">
             <img src="../assets/img/logo.png" alt="Logo" height="80px">
             <h1 class="logo">PLAYTICKETS</h1>
-            <button class="accordion"></button>
+        <button class="accordion"><i class="fas fa-bars"></i></button>
             <div class="panel">
-                <ul>
-                    <li><a href="index.php">Cartelera</a></li>
-                    <li><a href="login.php">Ingresar</a></li>
-                    <li><a href="register.php">Registrarse</a></li>
-                    <li><a href="contact_page.php">Contacto</a></li>
-                </ul>
-            </div>
+            <ul>
+                <li>Hola <?php echo $_SESSION["name"]?>!</li>
+                <li><a href="record.php">Mis reservas</a></li>
+                <hr class="hr">
+                <li><a href="#">Cerrar Sesion</a></li>
+            </ul>
+        </div>
         </div>
     </header>
 
     <h2>Historial de Reservas</h2>
 
     <?php
-if ($reservas === false) 
-{
-    echo '<p>No se pudieron recuperar las reservas.</p>';
-} 
-else 
-{
-        echo '<table>';
-        echo '<tr>';
-        echo '<th>Reserva</th>';
-        echo '<th>Numero de Ticket</th>';
-        echo '<th>Confirmación</th>';
-        echo '<th>Usuario</th>';
-        echo '<th>Show</th>';
-        echo '<th>Fecha y Hora</th>';
-        echo '<th>Fecha de Reserva</th>';
-        echo '</tr>';
+if (empty($reservasArray)) {
+    echo '<p>No hay historial de reservas.</p>';
+} else {
+    foreach ($reservasArray as $reservation) {
+        echo '<h3>Número de Reserva: ' . $reservation['id_reserve'] . '</h3>';
+        echo '<p>Cantidad: ' . $reservation['amount'] . '</p>';
+        echo '<p>Número de Reserva: ' . $reservation['id_reserve'] . '</p>';
+        echo '<p>Usuario: ' . $reservation['id_user'] . '</p>';
+        echo '<p>Show: ' . $reservation['id_show'] . '</p>';
+        echo '<p>Fecha y Hora: ' . $reservation['id_datetime'] . '</p>';
 
-        foreach ($reservas as $reserva) {
-            echo '<tr>';
-            echo '<td>' . $reserva['id_reserve'] . '</td>';
-            echo '<td>' . $reserva['id_ticket'] . '</td>';
-            echo '<td>' . $reserva['confirmation'] . '</td>';
-            echo '<td>' . $reserva['id_user'] . '</td>';
-            echo '<td>' . $reserva['id_show'] . '</td>';
-            echo '<td>' . $reserva['id_datetime'] . '</td>';
-            echo '<td>' . $reserva['reservation_date'] . '</td>';
-            echo '</tr>';
+        // Mostrar fechas de espectáculo para esta reserva
+        echo '<ul>';
+        foreach ($reservation['shows_dates'] as $showDate) {
+            echo '<li>Fecha y Hora del Show: ' . $showDate['datetime_show'] . '</li>';
         }
+        echo '</ul>';
 
-        echo '</table>';
+        echo '<hr>'; // Separador entre reservas
+    }
 }
 ?>
-    </div>
 
-    <footer>
-        <div class="footer-logo"></div>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos y Condiciones</a>
-                <a href="../view/contact_page.php">Contacto</a>
-            </div>
-            <div class="footer-copyright">
-                &copy; 2023 PlayTickets
-            </div>
+</div>
+
+<footer>
+    <div class="footer-logo"></div>
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="politic_private.php">Política de Privacidad</a>
+            <a href="termin_condiction.php">Términos y Condiciones</a>
+            <a href="contact_page.php">Contacto</a>
         </div>
-    </footer>
-    <script src="../assets/js/barnavfooter.js"></script>
+        <div class="footer-copyright">
+            &copy; 2023 PlayTickets
+        </div>
+    </div>
+</footer>
+ <script> document.addEventListener("DOMContentLoaded", function() {
+        const accordion = document.querySelector(".accordion");
+        const panel = document.querySelector(".panel");
+        accordion.addEventListener("click", function() {panel.style.display = panel.style.display === "block" ? "none" : "block";
+    });
+    });
+    </script>
 </body>
 </html>

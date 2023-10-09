@@ -26,12 +26,15 @@ $_SESSION["time"];
     <link rel="icon" type="image/png" href="../assets/img/logo.png.png">
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Icono de menu-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><!--ojo-->
+
 </head>
 <body>
     <div class="main-content">
         <header>
             <div class="navbar">
-                <h1 class="logo"><img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS</h1>
+                <img src="../assets/img/logo.png" alt="Logo" height="80px ">
+                <h1 class="logo">PLAYTICKETS</h1>
                 <button class="accordion"><i class="fas fa-bars"></i></button>
                 <div class="panel">
                     <ul>
@@ -48,11 +51,19 @@ $_SESSION["time"];
                 <div class="logo-container">
                     <h2 class="title-with-logo"> Login<img src="../assets/img/logo.png" alt="" ></h2>
                 </div>
+             
                 <form action="../controller/save_login.php" method="post">
-                    <input type="email" name="email" placeholder="Correo Electronico" required>
-                    <input type="password" name="_password" placeholder="Password" required><br><br>
-                    <button type="submit">Confirmar</button>
+                <input type="email" name="email" placeholder="Correo Electrónico" required>
+                <input type="password" id="password" name="_password" placeholder="Password" required>
+                <!-- Icono del ojo -->
+                 <span id="togglePassword" class="toggle-icon" onclick="togglePasswordVisibility()">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                 </span>
+                <br><br>
+                <button type="submit">Confirmar</button>
                 </form>
+
+
                 <p>¿No está registrado? <a href="../view/register.php">Registrate aquí</a></p>
                 <p>¿Olvidaste tu contraseña? <a href="../view/recovery_form.php">Haga click aqui</a></p>
             </div>
@@ -62,9 +73,9 @@ $_SESSION["time"];
         <div class="footer-logo"></div>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos y Condiciones</a>
-                <a href="#">Contacto</a>
+            <a href="politic_private.php">Política de Privacidad</a>
+            <a href="termin_condiction.php">Términos y Condiciones</a>
+            <a href="contact_page.php">Contacto</a>
             </div>
             <div class="footer-copyright">
                 &copy; 2023 PlayTickets
@@ -80,5 +91,20 @@ $_SESSION["time"];
             alert('Usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.');
         }
     </script>
+    <script>
+    function togglePasswordVisibility() {
+    var passwordField = document.getElementById("password");
+    var toggleIcon = document.getElementById("togglePassword");
+
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleIcon.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i>';
+    } else {
+        passwordField.type = "password";
+        toggleIcon.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i>';
+    }
+}
+    </script>
+
 </body>
 </html>

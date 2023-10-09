@@ -312,6 +312,7 @@ function getAmount($id_show, $datetime_hour)
     return intval($result['seating']);
 }
 
+
 function ReservationHistory($email)
 {
     $bd = database();
@@ -342,6 +343,26 @@ function ReservationHistory($email)
      return $result;
 
  }
+
+
+function ReservationHistory($user)
+{
+    $bd = database();
+
+    $query = "SELECT *
+              FROM reserves_amounts 
+              WHERE id_user = :user";
+
+    $statement = $bd->prepare($query);
+    $statement->bindParam(':user', $user, PDO::PARAM_INT);
+    $statement->execute();
+
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+
+
  
 
     function saveTicket($datetime_hour, $id_show,$seating,$user,$ticket_order)
@@ -410,6 +431,4 @@ function ReservationHistory($email)
         $result = $sentence->execute([$id_order]);
         return $result;
     }
-    
-
-
+?>

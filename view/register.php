@@ -20,11 +20,13 @@ include_once "../models/functions.php";
     <?php endif; ?>
     <header>
       <div class="navbar">
-        <h1 class="logo"><img src="../assets/img/logo.png" alt="Logo" height="80px">PLAYTICKETS</h1>
+        <img src="../assets/img/logo.png" alt="Logo" height="80px">
+        <h1 class="logo">PLAYTICKETS</h1>
         <button class="accordion"><i class="fas fa-bars"></i></button>
         <div class="panel">
           <ul>
             <li><a href="../index.php">Cartelera</a></li>
+            <li><a href="login.php">Iniciar Seción</a></li>
             <li><a href="../view/contact_page.php">Contacto</a></li>
           </ul>
         </div>
@@ -47,8 +49,8 @@ include_once "../models/functions.php";
               <input type="password" name="_password" placeholder="Password" required>
             </div>
             <div class="form-row">
-              <input type="street" name="street" id="street" placeholder="Calle">
-              <input type="height" name="height" id="height" placeholder="Altura">
+              <input type="street" name="street" id="street" placeholder="Calle" required>
+              <input type="height" name="height" id="height" placeholder="Altura" required>
             </div>
             <div class="form-row">
               <input type="departament" name="departament" id="departament" placeholder="departamento">
@@ -78,9 +80,9 @@ include_once "../models/functions.php";
     <div class="footer-logo"></div>
     <div class="footer-content">
       <div class="footer-links">
-        <a href="#">Política de Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
-        <a href="#">Contacto</a>
+          <a href="politic_private.php">Política de Privacidad</a>
+          <a href="termin_condiction.php">Términos y Condiciones</a>
+          <a href="contact_page.php">Contacto</a>
       </div>
       <div class="footer-copyright">
         &copy; 2023 PlayTickets

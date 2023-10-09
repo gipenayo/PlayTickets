@@ -80,7 +80,7 @@ exit;*/
         </div>
     </div>
 </div>
-<form action="../controller/save_reserve.php" method="POST">
+<form action="../view/view_conf_reserve.php" method="POST">
     <div class="asientos">
         <?php
         $asientoOcupado = getReserver($show->id_show);

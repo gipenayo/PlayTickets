@@ -48,9 +48,9 @@
                     echo '<p>No hay historial de reservas.</p>';
                 } else {
                     foreach ($reservasArray as $reservation) {
-                        echo '<h3>Número de Reserva: ' . $reservation['id_reserve'] . '</h3>';
-                        echo '<p>Cantidad: ' . $reservation['amount'] . '</p>';
-                        echo '<p>Número de Reserva: ' . $reservation['id_reserve'] . '</p>';
+                        echo '<h3>Número de Reserva: ' . $reservation['id_ticket'] . '</h3>';
+                        echo '<p>Cantidad: ' . $reservation['seating'] . '</p>';
+                        echo '<p>Número de Reserva: ' . $reservation['reserve_order'] . '</p>';
                         foreach ($get_user as $nameuser) 
                         {
                             if ($reservation['id_user']===$nameuser->id_user) {
@@ -68,7 +68,7 @@
                         }
                         foreach($get_time as $date_time)
                         {
-                            if ($reservation['id_datetime']===$date_time->id_datetime) 
+                            if ($reservation['datetime_hour']===$date_time->id_datetime) 
                             {
                                 echo '<p>Fecha de Reserva:' . date('d/m/Y', strtotime($date_time->date_show)) . ' - ' . $date_time->time_show .'</p>';
                                 

@@ -317,7 +317,7 @@ function ReservationHistory($user)
     $bd = database();
 
     $query = "SELECT *
-              FROM reserves_amounts 
+              FROM tickets
               WHERE id_user = :user";
 
     $statement = $bd->prepare($query);
@@ -326,23 +326,17 @@ function ReservationHistory($user)
 
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
-
-
-
-
- 
-
     function saveTicket($datetime_hour, $id_show,$seating,$user,$ticket_order)
     {
         $bd=database();
-        $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, user, reserve_order) VALUES (?,?,?,?,?)");
+        $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, id_user, reserve_order) VALUES (?,?,?,?,?)");
         return $sentence->execute([$datetime_hour, $id_show, $seating, $user, $ticket_order]);
     }
 
     function getMaxOrder()
     {
         $bd = database();  
-        $sentence = $bd->prepare("SELECT MAX(reserver) as max_order from tickets");
+        $sentence = $bd->prepare("SELECT MAX(reserve_order) as max_order from tickets");
         $sentence->execute();  
         $result = $sentence->fetch();  
         return $result->max_order;

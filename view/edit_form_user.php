@@ -23,7 +23,9 @@ list($year, $month, $day) = explode("-", $date_birth);
     <div class="main-content">
         <header>
             <div class="navbar">
-                <h1 class="logotipo"><img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS</h1><button class="accordion"><i class="fas fa-bars"></i></button>
+            <img src="../assets/img/logo.png" alt="Logo" height="80px ">
+                <h1 class="logotipo">PLAYTICKETS</h1>
+                <button class="accordion"><i class="fas fa-bars"></i></button>
                 <div class="panel">
                     <ul>
                         <li>Hola <?php echo $_SESSION["name"]?>!</li>
@@ -90,9 +92,9 @@ list($year, $month, $day) = explode("-", $date_birth);
         <div class="footer-logo"></div> 
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos y Condiciones</a>
-                <a href="#">Contacto</a>
+                <a href="politic_private.php">Política de Privacidad</a>
+                <a href="termin_condiction.php">Términos y Condiciones</a>
+                <a href="contact_page.php">Contacto</a>
             </div>
             <div class="footer-copyright">&copy;2023 PlayTickets</div>  
         </div>

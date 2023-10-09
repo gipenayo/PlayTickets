@@ -1,0 +1,19 @@
+.centered-bold {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;     
+    align-items: center;     
+    height: 78vh;
+    margin: 0;
+    font-size: 25px;
+
+  }
+  .img_tick
+  { 
+    height: 200px;
+    width: 200px;
+    position: absolute; /* Posiciona la imagen de forma absoluta dentro del contenedor */
+    top: 100px; /* La posiciona en la parte superior */
+    left: 50%; /* La posiciona en el centro horizontalmente */
+    transform: translateX(-50%); /* Corrige la posición horizontal para centrarla */
+}

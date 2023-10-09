@@ -312,10 +312,6 @@ function getAmount($id_show, $datetime_hour)
     return intval($result['seating']);
 }
 
-
-
-
-
 function ReservationHistory($user)
 {
     $bd = database();
@@ -346,7 +342,7 @@ function ReservationHistory($user)
     function getMaxOrder()
     {
         $bd = database();  
-        $sentence = $bd->prepare("SELECT MAX(reserve_order) as max_order from tickets");
+        $sentence = $bd->prepare("SELECT MAX(reserver) as max_order from tickets");
         $sentence->execute();  
         $result = $sentence->fetch();  
         return $result->max_order;

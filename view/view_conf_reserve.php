@@ -31,8 +31,7 @@ else
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="img/logo" href="../assets/img/logo.png"><!--Icono en la pestaña-->
     <link rel="stylesheet" href="../assets/css/barnavlog.css">
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/barnavfooter.css">
     <link rel="stylesheet" href="../assets/css/conf_reserve.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -43,14 +42,13 @@ else
 
 <header>
     <div class="navbar">
-        <h1 class="logotipo">
-            <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS
-        </h1>
+    <img src="../assets/img/logo.png" alt="Logo" height="80px ">
+        <h1 class="logotipo">PLAYTICKETS</h1>
         <button class="accordion"><i class="fas fa-bars"></i></button>
         <div class="panel">
             <ul>
                 <li>Hola <?php echo $_SESSION["name"]?>!</li>
-                <li><a href="#">Mis reservas</a></li>
+                <li><a href="record.php">Mis reservas</a></li>
                 <hr class="hr">
                 <li><a href="#">Cerrar Sesion</a></li>
             </ul>
@@ -81,7 +79,7 @@ else
     <!-- Botón para confirmar la entrada dentro del contenedor de datos -->
     <div class="button-container">
         <form action="../controller/save_ticket.php" method="POST">
-            <input type="submit" value="Confirmar Entrada">
+            <input type="submit" value="Confirmar Entrada"><br><br>
         </form>
     </div>
 </div>
@@ -89,13 +87,21 @@ else
 <footer>
     <div class="footer-logo"></div>
     <div class="footer-content">
-        <a href="#">Política de Privacidad</a>
-        <a href="#">Términos y Condiciones</a>
-        <a href="#">Contacto</a>
+        <a href="politic_private.php">Política de Privacidad</a>
+        <a href="termin_condiction.php">Términos y Condiciones</a>
+        <a href="contact_page.php">Contacto</a>
         <div class="footer-copyright">&copy; 2023 PlayTickets</div>
     </div>
 </footer>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script>document.addEventListener("DOMContentLoaded", function() {
+    const accordion = document.querySelector(".accordion");
+    const panel = document.querySelector(".panel");
+
+    accordion.addEventListener("click", function() {
+        panel.style.display = panel.style.display === "block" ? "none" : "block";
+    });
+});</script>
 </html>

@@ -32,8 +32,9 @@ exit;*/
 
 <header>
     <div class="navbar">
+        <img src="../assets/img/logo.png" alt="Logo" height="80px ">
         <h1 class="logotipo">
-            <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS </h1>
+            PLAYTICKETS </h1>
         <button class="accordion"><i class="fas fa-bars"></i></button>
         <div class="panel">
             <ul>
@@ -128,9 +129,9 @@ exit;*/
     <div class="footer-logo"></div> 
     <div class="footer-content">
         <div class="footer-links">
-            <a href="#">Política de Privacidad</a>
-            <a href="#">Términos y Condiciones</a>
-            <a href="#">Contacto</a>
+                <a href="politic_private.php">Política de Privacidad</a>
+                <a href="termin_condiction.php">Términos y Condiciones</a>
+                <a href="contact_page.php">Contacto</a>
         </div>
         <div class="footer-copyright">&copy; 2023 PlayTickets</div>  
     </div>

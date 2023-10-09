@@ -23,8 +23,9 @@
                 <ul>
                     <li><a href="../index.php">Cartelera</a></li>
                     <li><a href="register.php">Registrarse</a></li>
-                    <li><a href="add_function.php">Agregar Función</a></li>
-                    <li><a href="supplier.php">Funciones Disponibles</a></li>
+                    <li><a href="login.php">Ingresar</a></li>
+                    <li><a href="../view/contact_page.php">Contacto</a></li>
+
                 </ul>
             </div>
         </div>
@@ -64,9 +65,9 @@ Ante cualquier consulta, no dude en comunicarse con nosotros </p>
         <div class="footer-logo"></div>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="../view/politic_private.php">Política de Privacidad</a>
-                <a href="#">Términos y Condiciones</a>
-                <a href="#">Contacto</a>
+                <a href="politic_private.php">Política de Privacidad</a>
+                <a href="termin_condiction.php">Términos y Condiciones</a>
+                <a href="contact_page.php">Contacto</a>
             </div>
             <div class="footer-copyright">
                 &copy; 2023 PlayTickets

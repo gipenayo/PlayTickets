@@ -130,9 +130,9 @@ $categorys=getCategory();
         <div class="footer-logo"></div> 
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos y Condiciones</a>
-                <a href="#">Contacto</a>
+                <a href="view/politic_private.php">Política de Privacidad</a>
+                <a href="view/termin_condiction.php">Términos y Condiciones</a>
+                <a href="view/contact_page.php">Contacto</a>
             </div>
             <div class="footer-copyright">&copy; 2023 PlayTickets</div>  
         </div>

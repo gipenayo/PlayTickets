@@ -46,7 +46,7 @@ exit;*/
                                 <li><a href="edit_form_user.php?id_user=<?php echo $user->id_user ?>">Mis datos</a></li>
                                 <?php }
                         }?>
-                <li><a href="#">Mis reservas</a></li>
+                <li><a href="record.php">Mis reservas</a></li>
 
                 <hr class="hr">
                 <li><a href="../controller/logout.php">Cerrar Sesion</a></li>

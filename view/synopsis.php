@@ -47,7 +47,7 @@ $datetime = getShowDatetime();
             <h1><?php echo $show->show_name ?></h1>
             <img src="data:image/jpeg;base64,<?php echo base64_encode($show->picture); ?>">
             <p><?php echo $show->show_description ?></p>
-            <form action="../view/login.php" method="post">
+            <form action="../controller/seating_verifier.php?id_show=<?php echo $id_show; ?>" method="post">
                 <div class="form-container">
                     <label for="datetime_show">Fecha y hora disponibles:</label>
                     <select name="datetime_show" id="datetime_show">

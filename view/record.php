@@ -1,11 +1,12 @@
 <?php
-                session_start();
+    session_start();
               include_once "../models/functions.php";
                 $user = $_SESSION["id_user"];
                 $reservasArray=ReservationHistory($user);
                 $get_show=getShow();
                 $get_user=getUser();
                 $get_time=getShowDatetime();
+                $user_get=getUser();
                 /*var_dump($get_time);
                 exit;*/
                 
@@ -18,7 +19,7 @@
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <link rel="stylesheet" href="../assets/css/login.css">
                     <link rel="icon" type="image/png" href="../assets/img/logo.png">
-                    <link rel="stylesheet" href="../assets/css/barnavfooter.css">
+                    <link rel="stylesheet" href="../assets/css/barnavlog.css">
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
                     <link rel="stylesheet" href="../assets/css/record.css">
                 </head>
@@ -33,9 +34,12 @@
                             <div class="panel">
                             <ul>
                                 <li>Hola <?php echo $_SESSION["name"]?>!</li>
-                                <li><a href="record.php">Mis reservas</a></li>
+                                <?php foreach ($user_get as $user) {
+                                    if ($_SESSION["id_user"] === $user->id_user) { ?>
+                                <li><a href="edit_form_user.php?id_user=<?php echo $user->id_user ?>">Mis datos</a></li>
+                                <?php } }?>
                                 <hr class="hr">
-                                <li><a href="#">Cerrar Sesion</a></li>
+                                <li><a href="../controller/logout.php">Cerrar Sesion</a></li>
                             </ul>
                         </div>
                         </div>

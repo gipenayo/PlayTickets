@@ -1,3 +1,12 @@
+<?php
+session_start();
+include_once "../models/functions.php";
+
+$user_get=getUser();
+$_SESSION["id_user"];
+/*var_dump($_SESSION["id_user"]);
+exit;*/
+?>
 
 <!DOCTYPE html>
 
@@ -13,21 +22,27 @@
 </head>
 <body onload="updateDate()">
   <div class="main-content">
-    <header>
-      <div class="navbar">
-        <img src="../assets/img/logo.png" alt="Logo" height="80px">
-        <h1 class="logo">PLAYTICKETS</h1>
+  <header>
+    <div class="navbar">
+        <img src="../assets/img/logo.png" alt="Logo" height="80px ">
+        <h1 class="logotipo">
+            PLAYTICKETS </h1>
         <button class="accordion"><i class="fas fa-bars"></i></button>
         <div class="panel">
-          <ul>
-               <li>Hola <?php echo $_SESSION["name"]?>!</li>
+            <ul>
+                <li>Hola <?php echo $_SESSION["name"]?>!</li>
+                <?php foreach ($user_get as $user) {
+                            if ($_SESSION["id_user"] === $user->id_user) { ?>
+                                <li><a href="edit_form_user.php?id_user=<?php echo $user->id_user ?>">Mis datos</a></li>
+                                <?php }
+                        }?>
                 <li><a href="record.php">Mis reservas</a></li>
                 <hr class="hr">
-                <li><a href="#">Cerrar Sesion</a></li>
-          </ul>
+                <li><a href="../controller/logout.php">Cerrar Sesion</a></li>
+            </ul>
         </div>
-      </div>
-    </header>
+    </div>
+</header>
 
     <main>
         <img class="img_tick" src="../assets/img/vecteezy_tickets_1189271.png" alt="">

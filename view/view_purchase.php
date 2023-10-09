@@ -40,7 +40,6 @@ exit;*/
         <div class="panel">
             <ul>
                 <li>Hola <?php echo $_SESSION["name"]?>!</li>
-
                 <?php foreach ($user_get as $user) {
                             if ($_SESSION["id_user"] === $user->id_user) { ?>
                                 <li><a href="edit_form_user.php?id_user=<?php echo $user->id_user ?>">Mis datos</a></li>

@@ -1,97 +1,98 @@
 <?php
-    session_start();
-              include_once "../models/functions.php";
-                $user = $_SESSION["id_user"];
-                $reservasArray=ReservationHistory($user);
-                $get_show=getShow();
-                $get_user=getUser();
-                $get_time=getShowDatetime();
-                $user_get=getUser();
-                /*var_dump($get_time);
-                exit;*/
-                
-                ?>
-                
-                <!DOCTYPE html>
-                <html lang="es">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <link rel="stylesheet" href="../assets/css/login.css">
-                    <link rel="icon" type="image/png" href="../assets/img/logo.png">
-                    <link rel="stylesheet" href="../assets/css/barnavlog.css">
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-                    <link rel="stylesheet" href="../assets/css/record.css">
-                </head>
-                <body>
-                <div class="main-content">
-                
-                    <header>
-                        <div class="navbar">
-                            <img src="../assets/img/logo.png" alt="Logo" height="80px">
-                            <h1 class="logo">PLAYTICKETS</h1>
-                        <button class="accordion"><i class="fas fa-bars"></i></button>
-                            <div class="panel">
-                            <ul>
-                                <li>Hola <?php echo $_SESSION["name"]?>!</li>
-                                <?php foreach ($user_get as $user) {
-                                    if ($_SESSION["id_user"] === $user->id_user) { ?>
-                                <li><a href="edit_form_user.php?id_user=<?php echo $user->id_user ?>">Mis datos</a></li>
-                                <?php } }?>
-                                <hr class="hr">
-                                <li><a href="../controller/logout.php">Cerrar Sesion</a></li>
-                            </ul>
-                        </div>
-                        </div>
-                    </header>
-                
-                    <h2>Historial de Reservas</h2>
-                
-                    <?php
-                if (empty($reservasArray)) {
-                    echo '<p>No hay historial de reservas.</p>';
-                } else {
-                    foreach ($reservasArray as $reservation) {
-                        echo '<h3>Número de Reserva: ' . $reservation['id_ticket'] . '</h3>';
-                        echo '<p>Cantidad: ' . $reservation['seating'] . '</p>';
-                        echo '<p>Número de Reserva: ' . $reservation['reserve_order'] . '</p>';
-                        foreach ($get_user as $nameuser) 
-                        {
-                            if ($reservation['id_user']===$nameuser->id_user) {
-                                echo '<p>Usuario: ' . $nameuser->user_name . '</p>'; break;
-                            }
-                           
-                        }
-                        foreach($get_show as $show)
-                        {
-                            if ($reservation['id_show']===$show->id_show ) 
-                            {
-                               echo '<p>Show: ' . $show->show_name . '</p>'; break;
-                            }
-                           
-                        }
-                        foreach($get_time as $date_time)
-                        {
-                            if ($reservation['datetime_hour']===$date_time->id_datetime) 
-                            {
-                                echo '<p>Fecha de Reserva:' . date('d/m/Y', strtotime($date_time->date_show)) . ' - ' . $date_time->time_show .'</p>';
-                                
-                                break;                            
-                        }
-                    }
-                        
-                        
-                       
-                        echo '</ul>';
-                
-                        echo '<hr>'; // Separador entre reservas
-                    }
-                }
-                ?>
-                
-                </div>
-                
 
+     session_start();
+     include_once "../models/functions.php";
+     $user = $_SESSION["id_user"];
+     $reservasArray=ReservationHistory($user);
+     $get_show=getShow();
+     $get_user=getUser();
+     /*var_dump($reservasArray);
+     exit;*/             
+     $date_show = getShowDatetimeForId($_SESSION["time"]);
+     
+
+?>
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/login.css">
+    <link rel="icon" type="image/png" href="../assets/img/logo.png">
+    <link rel="stylesheet" href="../assets/css/barnavfooter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/record.css">
+    </head>
+    <body>
+        <div class="main-content">
+        <header>
+          <div class="navbar">
+            <img src="../assets/img/logo.png" alt="Logo" height="80px">
+            <h1 class="logo">PLAYTICKETS</h1>
+            <button class="accordion"><i class="fas fa-bars"></i></button>
+                <div class="panel">
+                    <ul>
+                     <li>Hola <?php echo $_SESSION["name"]?>!</li>
+                     <li><a href="record.php">Mis reservas</a></li>
+                     <hr class="hr">
+                     <li><a href="#">Cerrar Sesion</a></li>
+                     </ul>
+                     </div>
+                    </div>
+        </header>
+
+                
+    <h2>Historial de Reservas</h2>
+                
+     <?php
+        if (empty($reservasArray))
+        {
+           echo '<p>No hay historial de reservas.</p>';
+        }
+        else
+        {
+            foreach ($reservasArray as $reservation) 
+            {
+               echo '<h3>Número de Reserva: ' . $reservation['reserve_order'] . '</h3>';
+            
+                    if ($date_show) {
+                        // Convertir la fecha de "yyyy-mm-dd" a "dd/mm/aaaa"
+                        $datetime = DateTime::createFromFormat('Y-m-d', $date_show->date_show);
+                        $formatted_date_show = $datetime->format('d/m/Y') . ' ' . $date_show->time_show;
+                        echo '<p>Hora: ' . $formatted_date_show . '</p>'; 
+                    }
+                    else 
+                    {
+                        echo '<p>Hora: no funca'. '</p>'; 
+
+                    }
+                
+            foreach($get_show as $show)
+                {
+                    if ($reservation['id_show']===$show->id_show ) 
+                    {
+                        echo '<p>Show: ' . $show->show_name . '</p>'; 
+                        break;
+                    }
+                           
+                }
+                    echo '<p>Número de Asciento: ' . $reservation['seating'] . '</p>';
+            foreach ($get_user as $nameuser) 
+                {
+                    if ($reservation['id_user']===$nameuser->id_user) 
+                    {
+                        echo '<p>Usuario: ' . $nameuser->user_name . '</p>'; 
+                        break;
+                    }
+                           
+                }
+                        
+                         
+                echo '</ul>'; 
+                echo '<hr>'; // Separador entre reservas
+            }
+                }?>
+                </div>             
 <footer>
     <div class="footer-logo"></div>
     <div class="footer-content">

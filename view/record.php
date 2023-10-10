@@ -1,4 +1,5 @@
 <?php
+
      session_start();
      include_once "../models/functions.php";
      $user = $_SESSION["id_user"];
@@ -39,6 +40,7 @@
                      </div>
                     </div>
         </header>
+
                 
     <h2>Historial de Reservas</h2>
                 

@@ -1,29 +1,27 @@
 /* styles.css */
 
-/* Estilos generales */
-body {
-    filter: grayscale(100%);
-}
+
 
 /* Estilos para el botón de confirmar entrada */
 input[type="submit"] {
+    filter: grayscale(100%);
     background-color: #007BFF;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    outline: none; /* Elimina el borde al hacer clic en el botón */
 }
 
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-/* Estilo para el cuadro de datos */
 .data-frame {
     width: 60%; /* Ajusta el ancho según tu preferencia */
-    max-width: 400px; /* Establece un ancho máximo */
-    min-height: 150px; /* Ajusta la altura según tu preferencia */
+    max-width: 600px; /* Aumenta el ancho máximo */
+    min-height: 250px; /* Aumenta la altura para que sea un poco más largo */
     border: 2px solid #000;
     background-color: #f0f0f0;
     display: flex;
@@ -33,7 +31,17 @@ input[type="submit"]:hover {
     text-align: center;
     margin: 0 auto; /* Centrado horizontal */
     margin-bottom: 20px; /* Espaciado inferior entre cuadros de datos */
+    padding-top: 20px;
 }
+
+.show-picture img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;    
+}
+
 
 /* Estilo para el texto dentro del cuadro de datos */
 .data-text {
@@ -43,11 +51,12 @@ input[type="submit"]:hover {
 
 /* Estilos para el encabezado con título centrado */
 .header {
-    background-color: #000;
-    color: #fff;
+    background-color: transparent; /* Elimina el fondo negro */
+    color: #000; /* Cambia el color del texto a negro */
     text-align: center;
     padding: 20px;
     margin-bottom: 20px;
+    font-weight: bold; /* Hace el texto más grueso */
 }
 
 .header h2 {
@@ -55,10 +64,19 @@ input[type="submit"]:hover {
     font-size: 24px;
 }
 
+/* Estilo para el encabezado "Datos a confirmar" */
+.header-sub {
+    margin-top: 20px; /* Agregar margen superior para separar encabezado "Datos a confirmar" */
+}
+
 /* Estilo para el contenedor del botón */
 .button-container {
     display: flex;
-    justify-content: flex-end; /* Coloca el botón en la parte inferior derecha */
-    background-color: #E0E0E0; /* Fondo de color gris para separación */
+    justify-content: center; /* Centrar el botón horizontalmente */
     padding: 10px; /* Espaciado para separación de botón */
+    background-color: transparent; /* Eliminar el fondo gris */
+}
+
+footer{
+    filter: grayscale(100%);
 }

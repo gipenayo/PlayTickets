@@ -15,9 +15,10 @@ include_once "../models/functions.php";
 </head>
 <body onload="updateDate()">
   <div class="main-content">
-    <?php if (isset($_GET['successfulRegistratio']) && $_GET['successfulRegistratio'] == 1): ?>
-      <script src="../assets/js/successful_register.js"></script>
-    <?php endif; ?>
+  <?php if (isset($_GET['successfulRegistratio']) && $_GET['successfulRegistratio'] == 1): 
+      echo '<script>alert("Registro exitoso! Gracias por registrarte en PlayTickets. Verifica tu correo electrónico para la confirmación.");</script>';
+      echo '<script>window.location.href = "../index.php";</script>'; // Regresar a la página anterior>
+     endif; ?>
     <header>
       <div class="navbar">
         <img src="../assets/img/logo.png" alt="Logo" height="80px">
@@ -26,8 +27,7 @@ include_once "../models/functions.php";
         <div class="panel">
           <ul>
             <li><a href="../index.php">Cartelera</a></li>
-            <li><a href="login.php">Iniciar Seción</a></li>
-            <li><a href="../view/contact_page.php">Contacto</a></li>
+            <li><a href="contact_page.php">Contacto</a></li>
           </ul>
         </div>
       </div>
@@ -60,16 +60,18 @@ include_once "../models/functions.php";
               <input type="tel" name="phone" id="phone" placeholder="Teléfono" required>
               <input type="text" name ="dni" id="dni" placeholder="DNI" required>
             </div>
+            
             <div class="form-row"> 
-              <label for="formatted_date">Fecha de Nacimiento(Día/Mes/Año):</label>
-              <input type="text" class="form-control" id="day" name="day" placeholder="Día" required>
-              <input type="text" class="form-control" id="month" name="month" placeholder="Mes" required>
-              <input type="text" class="form-control" id="year" name="year" placeholder="Año" required>
+              <label for="formatted_date">Fecha de Nacimiento (Día/Mes/Año):</label>
+              <input type="text" class="form-control" id="day" name="day" placeholder="Día" required pattern="^(0?[1-9]|[12][0-9]|3[01])$">
+              <input type="text" class="form-control" id="month" name="month" placeholder="Mes" required pattern="^(0?[1-9]|1[0-2])$">
+              <input type="text" class="form-control" id="year" name="year" placeholder="Año" required pattern="^\d{4}$">
               <!-- Campo oculto para almacenar la fecha en formato "año-mes-día" -->
               <input type="hidden" id="date_birth" name="date_birth" required>
             </div> 
+
             <button type="submit" id="register-button">Continuar</button>
-            <p>¿Ya tienes una cuenta? <a href="login.php">Iniciar sesión</a></p>
+            <p>¿Ya tienes una cuenta? <a href="../index.php">Iniciar sesión</a></p>
           </form>
         </div>
       </div>
@@ -113,6 +115,68 @@ include_once "../models/functions.php";
       // Asigna el valor al campo de entrada de fecha y hora
       datetimeShowInput.value = datetimeValue;
     }
+  </script>
+  <script>
+    // Obtiene el campo de entrada del DNI
+const dniInput = document.getElementById('dni');
+
+// Agrega un evento de escucha para el evento 'input' en el campo DNI
+dniInput.addEventListener('input', function() {
+  // Elimina cualquier carácter que no sea un número del valor del campo DNI
+  dniInput.value = dniInput.value.replace(/[^0-9]/g, '');
+
+  // Limita la longitud del campo a 8 dígitos
+  if (dniInput.value.length > 8) {
+    dniInput.value = dniInput.value.slice(0, 8);
+    alert("El DNI no puede contener más de 8 dígitos.");
+  }
+});
+
+  </script>
+  <script>
+    // Obtiene el campo de entrada del número de teléfono
+const phoneInput = document.getElementById('phone');
+const firstNameInput = document.getElementById('first_name');
+const lastNameInput = document.getElementById('last_name');
+const streetInput = document.getElementById('street');
+const heightInput = document.getElementById('height');
+
+// Agrega un evento de escucha para el evento 'input' en el campo de teléfono
+phoneInput.addEventListener('input', function() {
+  // Elimina cualquier carácter que no sea un número del valor del campo de teléfono
+  phoneInput.value = phoneInput.value.replace(/[^0-9]/g, '');
+
+  // Limita la longitud del campo a 10 dígitos
+  if (phoneInput.value.length > 10) {
+    phoneInput.value = phoneInput.value.slice(0, 10);
+
+    // Muestra una alerta cuando se ingresan más de 10 dígitos
+    alert("El número de teléfono no puede contener más de 10 dígitos.");
+  }
+});
+// Obtiene los campos de entrada de nombre y apellido
+
+
+// Agrega un evento de escucha para el evento 'input' en los campos de nombre y apellido
+firstNameInput.addEventListener('input', function() {
+  // Elimina cualquier carácter que sea un número del valor del campo de nombre
+  firstNameInput.value = firstNameInput.value.replace(/[0-9]/g, '');
+});
+
+lastNameInput.addEventListener('input', function() {
+  // Elimina cualquier carácter que sea un número del valor del campo de apellido
+  lastNameInput.value = lastNameInput.value.replace(/[0-9]/g, '');
+  
+});
+streetInput.addEventListener('input', function() {
+  // Elimina cualquier carácter que sea un número del valor del campo de apellido
+  streetInput.value = streetInput.value.replace(/[0-9]/g, '');
+  
+});
+heightInput.addEventListener('input', function() {
+  // Elimina cualquier carácter que no sea un número del valor del campo de altura
+  heightInput.value = heightInput.value.replace(/[^0-9]/g, '');
+});
   </script>
 </body>
 </html>

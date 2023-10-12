@@ -326,11 +326,11 @@ function ReservationHistory($user)
 
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
-    function saveTicket($datetime_hour, $id_show,$seating,$user,$ticket_order)
+    function saveTicket($datetime_hour, $id_show,$seating,$ticket_order,$user)
     {
         $bd=database();
-        $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, id_user, reserve_order) VALUES (?,?,?,?,?)");
-        return $sentence->execute([$datetime_hour, $id_show, $seating, $user, $ticket_order]);
+        $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, reserve_order, id_user) VALUES (?,?,?,?,?)");
+        return $sentence->execute([$datetime_hour, $id_show, $seating, $ticket_order, $user]);
     }
 
     function getMaxOrder()

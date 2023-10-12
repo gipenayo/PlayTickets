@@ -1,5 +1,4 @@
 <?php
-
      session_start();
      include_once "../models/functions.php";
      $user = $_SESSION["id_user"];
@@ -40,58 +39,77 @@
                      </div>
                     </div>
         </header>
-
                 
     <h2>Historial de Reservas</h2>
-                
-     <?php
-        if (empty($reservasArray))
-        {
-           echo '<p>No hay historial de reservas.</p>';
-        }
-        else
-        {
-            foreach ($reservasArray as $reservation) 
-            {
-               echo '<h3>Número de Reserva: ' . $reservation['reserve_order'] . '</h3>';
-            
-                    if ($date_show) {
-                        // Convertir la fecha de "yyyy-mm-dd" a "dd/mm/aaaa"
-                        $datetime = DateTime::createFromFormat('Y-m-d', $date_show->date_show);
-                        $formatted_date_show = $datetime->format('d/m/Y') . ' ' . $date_show->time_show;
-                        echo '<p>Hora: ' . $formatted_date_show . '</p>'; 
-                    }
-                    else 
-                    {
-                        echo '<p>Hora: no funca'. '</p>'; 
+    <?php
+if (empty($reservasArray)) {
+    echo '<p>No hay historial de reservas.</p>';
+} else {
+    $prevTicketID = null;  // Variable to track the previous ticket ID
+    $seatingArr = array(); // Array to store seat numbers for the current ticket
+    $displayedUser = false;  // Flag to track if user information has been displayed
 
-                    }
-                
-            foreach($get_show as $show)
-                {
-                    if ($reservation['id_show']===$show->id_show ) 
-                    {
-                        echo '<p>Show: ' . $show->show_name . '</p>'; 
-                        break;
-                    }
-                           
-                }
-                    echo '<p>Número de Asciento: ' . $reservation['seating'] . '</p>';
-            foreach ($get_user as $nameuser) 
-                {
-                    if ($reservation['id_user']===$nameuser->id_user) 
-                    {
-                        echo '<p>Usuario: ' . $nameuser->user_name . '</p>'; 
-                        break;
-                    }
-                           
-                }
-                        
-                         
-                echo '</ul>'; 
-                echo '<hr>'; // Separador entre reservas
+    foreach ($reservasArray as $reservation) {
+        if ($reservation['reserve_order'] !== $prevTicketID) {
+            // Display reservation information for a new ticket
+            if (!empty($seatingArr)) {
+                // Display seat numbers for the previous ticket within a border
+                echo '<div class="reservation">';
+                echo '<p>Número de Asientos: ' . implode(', ', $seatingArr) . '</p>';
+                echo '</div>';
             }
-                }?>
+
+            echo '<div class="reservation">';
+            echo '<h3>Número de Reserva: ' . $reservation['reserve_order'] . '</h3>';
+            if ($date_show) {
+                $datetime = DateTime::createFromFormat('Y-m-d', $date_show->date_show);
+                $formatted_date_show = $datetime->format('d/m/Y') . ' ' . $date_show->time_show;
+                echo '<p>Fecha y Hora: ' . $formatted_date_show . '</p>';
+            } 
+
+            // Display show information
+            foreach ($get_show as $show) {
+                if ($reservation['id_show'] === $show->id_show) {
+                    echo '<p>Show: ' . $show->show_name . '</p>';
+                    break;
+                }
+            }
+
+            // Reset the array for seat numbers and user display for the new ticket
+            $seatingArr = array();
+            $displayedUser = false;
+            echo '</div>';
+        }
+
+        // If the ticket ID is the same, add seating to the array
+        $seatingArr[] = $reservation['seating'];
+
+        // Display user information only once per ticket
+        if (!$displayedUser) {
+            foreach ($get_user as $nameuser) {
+                if ($reservation['id_user'] === $nameuser->id_user) {
+                    echo '<p class="user-info">Usuario: ' . $nameuser->user_name . '</p>';
+                    $displayedUser = true;  // Set the flag to true to indicate user display
+                    break;
+                }
+            }
+        }
+
+        $prevTicketID = $reservation['reserve_order'];  // Update the previous ticket ID
+    }
+
+    // Display seat numbers for the last ticket within a border
+    if (!empty($seatingArr)) {
+        echo '<div class="reservation">';
+        echo '<p>Número de Asientos: ' . implode(', ', $seatingArr) . '</p>';
+        echo '</div>';
+    }
+}
+?>
+
+
+
+
                 </div>             
 <footer>
     <div class="footer-logo"></div>

@@ -10,7 +10,7 @@ $_SESSION["time"];
 $_SESSION["seating"]=$_SESSION["seating"]+1;
 $time=$_SESSION["time"];
 $_SESSION["id_user"];
-/*var_dump($_SESSION["id_user"]);
+/*var_dump($_SESSION["time"]);
 exit;*/
 ?>
 <!DOCTYPE html>
@@ -55,29 +55,7 @@ exit;*/
 </header>
 <div id="seating-chart-container">
     <div id="stage-title">Escenario</div>
-    <div class="stage"></div> <!-- Raya ovalada para simular el escenario -->
-    <div id="seating-chart"></div>
-        <div id="legend">
-        <div class="legend-item">
-            <div class="seat unavailable">
-                <i class="fas fa-chair"></i>
-            </div>
-            <span>No Disponible</span>
-        </div>
-        <div id="legend">
-        <div class="legend-item">
-            <div class="seat selected">
-                <i class="fas fa-chair"></i>
-            </div>
-            <span>Seleccionado</span>
-        </div>
-        <div class="legend-item">
-            <div class="seat available">
-                <i class="fas fa-chair"></i>
-            </div>
-            <span>Disponible</span>
-        </div>
-    </div>
+    <div class="stage"></div> 
 </div>
 <form action="../view/view_conf_reserve.php" method="POST">
     <div class="asientos">
@@ -119,17 +97,39 @@ exit;*/
         }
         ?>
     </div>
+
     
+    <div id="seating-chart"></div>
+        <div id="legend">
+        <div class="legend-item">
+            <div class="seat unavailable">
+               <i class="fas fa-chair"></i>
+            </div>
+            <div class="span">
+            <span>No Disponible</span>
+            </div>
+        </div>
+        <div id="legend">
+        <div class="legend-item">
+            <div class="seat selected">
+                <i class="fas fa-chair"></i>
+            </div>
+            <span>Seleccionado</span>
+        </div>
+        <div class="legend-item">
+            <div class="seat available">
+                <i class="fas fa-chair"></i>
+            </div>
+            <span>Disponible</span>
+        </div>
+    </div>
+</div>
     <input type="hidden" name="asientos" id="asientos-seleccionados" value="">
 
     <input class="btn-reservar"  type="submit" value="Reservar" id="reservation-button" disabled>
     
     
 </form>
-
-
-
-
 
 <footer>
 

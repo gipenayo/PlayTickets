@@ -6,7 +6,12 @@ $user_get=getUser();
 $_SESSION["id_user"];
 /*var_dump($_SESSION["id_user"]);
 exit;*/
-$_SESSION['order']
+$_SESSION['order'];
+
+if(isset($_POST["reserve_order"]))
+{
+    $_SESSION['order']=$_POST["reserve_order"];
+}
 ?>
 
 

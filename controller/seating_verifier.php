@@ -19,11 +19,11 @@ $_SESSION["seating"] = $_POST["cant_seating"];
       $seating_reserved = intval(getAmount($id_show, $id_date));// Obtén la cantidad de asientos reservados desde la base de datos
       $totalSelectedSeats = $selectedSeats + $seating_reserved; // Total de asientos seleccionados y reservados
 
-      if ($totalSelectedSeats > 10 && $seating_reserved > 10)
+      if ($totalSelectedSeats > 100 && $seating_reserved > 100)
       {
-          // No se pueden reservar más de 40 asientos, muestra una alerta
-          echo "<script>alert('No puedes reservar más de 40 asientos.'); window.location.href = '../view/synopsis.php?id_show=" . $id_show . "';</script>";
-      } else if ($totalSelectedSeats >= $seating_reserved && $totalSelectedSeats > 10) {
+          // No se pueden reservar más de 100 asientos, muestra una alerta
+          echo "<script>alert('No puedes reservar más de 100 asientos.'); window.location.href = '../view/synopsis.php?id_show=" . $id_show . "';</script>";
+      } else if ($totalSelectedSeats >= $seating_reserved && $totalSelectedSeats > 100) {
           // No hay suficientes asientos disponibles, muestra una alerta
           echo "<script>alert('No hay asientos disponibles para la cantidad seleccionada.'); window.location.href = '../view/synopsis.php?id_show=" . $id_show . "';</script>";
       } else {

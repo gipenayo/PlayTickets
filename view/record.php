@@ -46,8 +46,11 @@ if (empty($reservasArray)) {
     $prevTicketID = null;  // Variable to track the previous ticket ID
     $seatingArr = array(); // Array to store seat numbers for the current ticket
     $displayedUser = false;  // Flag to track if user information has been displayed
+    $selectedOrder = null;
 
-    foreach ($reservasArray as $reservation) {
+
+    foreach ($reservasArray as $reservation) 
+    {
         if ($reservation['reserve_order'] !== $prevTicketID) {
             // Display reservation information for a new ticket
             if (!empty($seatingArr)) {
@@ -59,6 +62,17 @@ if (empty($reservasArray)) {
 
             echo '<div class="reservation">';
             echo '<h3>Número de Reserva: ' . $reservation['reserve_order'] . '</h3>';
+
+            if($selectedOrder<$reservasArray)
+            {
+            echo '<form action="../view/view_qr.php" method="post">';
+            echo '<input type="hidden" name="reserve_order" value="' . $reservation['reserve_order'] . '">';
+            echo '<input type="submit" value="Ver QR">';
+            echo '</form>';
+
+            $selectedOrder++;
+            }
+
             if ($date_show) {
                 $datetime = DateTime::createFromFormat('Y-m-d', $date_show->date_show);
                 $formatted_date_show = $datetime->format('d/m/Y') . ' ' . $date_show->time_show;
@@ -95,6 +109,7 @@ if (empty($reservasArray)) {
 
         $prevTicketID = $reservation['reserve_order'];  // Update the previous ticket ID
     }
+
 
     // Display seat numbers for the last ticket within a border
     if (!empty($seatingArr)) {

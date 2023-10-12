@@ -153,6 +153,15 @@ function searchShow($show_name)
 
 }
 
+function searchUserGi($user_name)
+{
+    $bd = database();
+    $sentence = $bd->prepare("SELECT id_user, user_name , last_name  FROM users WHERE user_name LIKE ?");
+    $sentence->execute(["%$user_name%"]);
+    return $sentence->fetchAll();
+
+}
+
 function getShowForId($id_show)
 {
     $bd = database();
@@ -326,11 +335,11 @@ function ReservationHistory($user)
 
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
-    function saveTicket($datetime_hour, $id_show,$seating,$user,$ticket_order)
+    function saveTicket($datetime_hour, $id_show,$seating,$ticket_order,$user)
     {
         $bd=database();
-        $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, id_user, reserve_order) VALUES (?,?,?,?,?)");
-        return $sentence->execute([$datetime_hour, $id_show, $seating, $user, $ticket_order]);
+        $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, reserve_order, id_user) VALUES (?,?,?,?,?)");
+        return $sentence->execute([$datetime_hour, $id_show, $seating, $ticket_order, $user]);
     }
 
     function getMaxOrder()
@@ -385,4 +394,13 @@ function ReservationHistory($user)
         $result = $sentence->execute([$id_order]);
         return $result;
     }
+    function GeneralHistory()
+    {
+        $bd = database();
+        $sentence = $bd->query("SELECT * FROM tickets");
+        return $sentence->fetchAll();
+
+    }
+    
+
 ?>

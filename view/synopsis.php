@@ -58,7 +58,9 @@ $datetime = getShowDatetime();
                             </option>
                         <?php } 
                         } ?>
-                         <?php $_SESSION["time"]=$datetime_show->id_datetime;   ?>
+                         <?php $_SESSION["time"]=$datetime_show->id_datetime;
+                                $_SESSION["data"]=$datetime_show->time_show;
+                                $_SESSION["day"]=$datetime_show->date_show;  ?>
                     </select>
                     <br>
                     <label for="cant_seating">Cantidad de asientos (máximo 6): </label>

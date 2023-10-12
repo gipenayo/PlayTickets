@@ -4,9 +4,7 @@
      $user = $_SESSION["id_user"];
      $reservasArray=ReservationHistory($user);
      $get_show=getShow();
-     $get_user=getUser();
-     /*var_dump($reservasArray);
-     exit;*/             
+     $get_user=getUser();           
      $date_show = getShowDatetimeForId($_SESSION["time"]);
      
 

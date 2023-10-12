@@ -136,10 +136,12 @@ dniInput.addEventListener('input', function() {
   <script>
     // Obtiene el campo de entrada del número de teléfono
 const phoneInput = document.getElementById('phone');
+
 const firstNameInput = document.getElementById('first_name');
 const lastNameInput = document.getElementById('last_name');
 const streetInput = document.getElementById('street');
 const heightInput = document.getElementById('height');
+
 
 // Agrega un evento de escucha para el evento 'input' en el campo de teléfono
 phoneInput.addEventListener('input', function() {
@@ -168,6 +170,7 @@ lastNameInput.addEventListener('input', function() {
   lastNameInput.value = lastNameInput.value.replace(/[0-9]/g, '');
   
 });
+
 streetInput.addEventListener('input', function() {
   // Elimina cualquier carácter que sea un número del valor del campo de apellido
   streetInput.value = streetInput.value.replace(/[0-9]/g, '');
@@ -177,6 +180,7 @@ heightInput.addEventListener('input', function() {
   // Elimina cualquier carácter que no sea un número del valor del campo de altura
   heightInput.value = heightInput.value.replace(/[^0-9]/g, '');
 });
+
   </script>
 </body>
 </html>

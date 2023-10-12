@@ -85,6 +85,6 @@ $id=$_GET["id"];
         });
     });
     </script>
-    
+
 </body>
 </html>

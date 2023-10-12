@@ -153,6 +153,15 @@ function searchShow($show_name)
 
 }
 
+function searchUserGi($user_name)
+{
+    $bd = database();
+    $sentence = $bd->prepare("SELECT id_user, user_name , last_name  FROM users WHERE user_name LIKE ?");
+    $sentence->execute(["%$user_name%"]);
+    return $sentence->fetchAll();
+
+}
+
 function getShowForId($id_show)
 {
     $bd = database();
@@ -385,4 +394,13 @@ function ReservationHistory($user)
         $result = $sentence->execute([$id_order]);
         return $result;
     }
+    function GeneralHistory()
+    {
+        $bd = database();
+        $sentence = $bd->query("SELECT * FROM tickets");
+        return $sentence->fetchAll();
+
+    }
+    
+
 ?>

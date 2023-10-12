@@ -55,7 +55,7 @@ function getShowName($showId, $shows) {
 </head>
 <body>
 <div class="main-content">
-<header>
+    <header>
         <div class="navbar">
         <img src="../assets/img/logo.png" alt="Logo" height="80px ">
             <h1 class="logo">PLAYTICKETS</h1>
@@ -64,9 +64,9 @@ function getShowName($showId, $shows) {
                 <ul>
                     <li><a href="../index.php">Cartelera</a></li>
                     <li><a href="add_function.php">Agregar Función</a></li>
-                    <li><a href="register.php">Usuarios registrados</a></li>
-                    <li><a href="contact_page.php">Ver funciones</a></li>
-                    
+                    <li><a href="supplier.php">Ver Funciones</a></li>
+                    <li><a href="view_users_supplier.php">Usuarios Registrados</a></li>
+                    <li><a href="../controller/logout.php">Cerrar Sesion</a></li>
                 </ul>
             </div>
         </div>

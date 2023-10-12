@@ -34,9 +34,9 @@ $get_gender=getShowDetallGender();
                 <ul>
                     <li><a href="../index.php">Cartelera</a></li>
                     <li><a href="add_function.php">Agregar Función</a></li>
-                    <li><a href="register.php">Usuarios registrados</a></li>
-                    <li><a href="contact_page.php">Historial de Compras</a></li>
-                    
+                    <li><a href="view_users_supplier.php">Usuarios Registrados</a></li>
+                    <li><a href="view_history.php">Historial de Compras</a></li>
+                    <li><a href="../controller/logout.php">Cerrar Sesión</a></li>    
                 </ul>
             </div>
         </div>

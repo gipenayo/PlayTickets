@@ -55,21 +55,26 @@ $categorys=getCategory();
         <!-- fin barra de navegacion-->
         
         <!-- inicio carrousel-->
-        <div id="carouselExampleIndicators" class="carousel slide" data-interval="2000">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
+        <div id="carouselExampleIndicators" class="carousel slide" data-interval="3000">
+     
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="assets/img/show_tini.jpeg" class="d-block w-100" alt="Slide 1" loading="lazy">
+                    <img src="assets/img/tini.jpeg" class="d-block w-100" alt="Slide 1" loading="lazy">
                 </div>
                 <div class="carousel-item">
-                    <img src="assets/img/show_taylor.jpg" class="d-block w-100" alt="Slide 2" loading="lazy">
+                    <img src="assets/img/taylor.jpeg" class="d-block w-100" alt="Slide 2" loading="lazy">
                 </div>
                 <div class="carousel-item">
-                    <img src="assets/img/show_granja.jpg" class="d-block w-100" alt="Slide 3" loading="lazy">
+                    <img src="assets/img/granja.jpg" class="d-block w-100" alt="Slide 3" loading="lazy">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/duki.png" class="d-block w-100" alt="Slide 4" loading="lazy">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/emilia.jpg" class="d-block w-100" alt="Slide 5" loading="lazy">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/konga.png" class="d-block w-100" alt="Slide 6" loading="lazy">
                 </div>
             </div>
         </div>

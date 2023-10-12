@@ -46,7 +46,6 @@ exit;*/
                                 <?php }
                         }?>
                 <li><a href="record.php">Mis reservas</a></li>
-
                 <hr class="hr">
                 <li><a href="../controller/logout.php">Cerrar Sesion</a></li>
             </ul>

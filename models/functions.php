@@ -191,15 +191,10 @@ function updateUser($user_name, $last_name, $email, $dni, $phone, $date_birth, $
 
 function updateShow($show_name, $show_description, $id_gender, $id_category, $picture, $id_show)
 {
-    $show_name = ucfirst(strtoupper($show_name));//mayuscula en la primera letra de cada palabra
-    $show_description = ucfirst(strtolower($show_description)); // Primera letra en mayúscula y lo demás en minúscula
-    
-    // Asegúrate de que $id_category sea un número entero
-    $id_category = intval($id_category);
-    
+    $show_name = ucfirst(strtoupper($show_name));
+    $show_description = ucfirst(strtolower($show_description));
     $bd = database();
     $sentence = $bd->prepare("UPDATE shows SET show_name = ?, show_description = ?, id_gender = ?, id_category = ?, picture = ? WHERE id_show = ?");
-    
     return $sentence->execute([$show_name, $show_description, $id_gender, $id_category, $picture, $id_show]);
 }
 

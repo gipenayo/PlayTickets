@@ -7,6 +7,8 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
     $shows = searchShow($_GET["search"]);
 }
 $get_category=getShowDetallCategory();
+/*var_dump($get_category);
+exit;*/
 $get_gender=getShowDetallGender();
 
 ?>
@@ -23,7 +25,6 @@ $get_gender=getShowDetallGender();
 </head>
 <body>
 <div class="main-content">
-
     <header>
         <div class="navbar">
         <img src="../assets/img/logo.png" alt="Logo" height="80px ">
@@ -32,9 +33,10 @@ $get_gender=getShowDetallGender();
             <div class="panel">
                 <ul>
                     <li><a href="../index.php">Cartelera</a></li>
-                    <li><a href="register.php">Registrarse</a></li>
-                    <li><a href="contact_page.php">Contacto</a></li>
                     <li><a href="add_function.php">Agregar Función</a></li>
+                    <li><a href="register.php">Usuarios registrados</a></li>
+                    <li><a href="contact_page.php">Historial de Compras</a></li>
+                    
                 </ul>
             </div>
         </div>

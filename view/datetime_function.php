@@ -19,15 +19,17 @@ $get_datetime_show=getShowDatetime();
 <div class="main-content">
     <header>
         <div class="navbar">
-            <h1 class="logo"> 
-                <img src="../assets/img/logo.png" alt="Logo" height="80px ">PLAYTICKETS</h1>
+        <img src="../assets/img/logo.png" alt="Logo" height="80px ">
+            <h1 class="logo">PLAYTICKETS</h1>
             <button class="accordion"><i class="fas fa-bars"></i></button>
             <div class="panel">
                 <ul>
                     <li><a href="../index.php">Cartelera</a></li>
-                    <li><a href="register.php">Registrarse</a></li>
                     <li><a href="add_function.php">Agregar Función</a></li>
-                    <li><a href="supplier.php">Funciones Disponibles</a></li>
+                    <li><a href="view_users_supplier.php">Usuarios registrados</a></li>
+                    <li><a href="view_history.php">Historial de Compras</a></li>
+                    <hr class="hr">
+                    <li><a href="../controller/logout.php">Cerrar Sesion</a></li>    
                 </ul>
             </div>
         </div>

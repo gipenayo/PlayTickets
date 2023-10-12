@@ -129,17 +129,19 @@ function Confirmation($email,$confirmationLink)
 
     $mail->setFrom('playtickets1@gmail.com', 'PlayTicket');
     $mail->addAddress($email);
-    
+    $src_imagen = '../assets/img/logo.con.fondo.png';
+    $mail->addEmbeddedImage($src_imagen, 'logo');
     $mail->isHTML(true);
     $mail->CharSet='UTF-8';  
     $mail->Subject = 'Confirmación de correo electrónico';
     $mail->Body =
-        '<body>
+        '
             <h1>Bienvenido a PlayTickets</h1>
-            <p>Gracias por registrarte con nosotros.</p>
-            <p>Para confirmar tu correo electrónico, haz clic en el siguiente enlace:</p>
+            <p>Te damos una cordial bienvenida a PlayTickets, tu plataforma de entretenimiento favorita. Estamos encantados de que te hayas registrado con nosotros y confíes en nuestra plataforma para acceder a los mejores eventos y espectáculos.</p>
+    <p>Para garantizar la seguridad de tu cuenta y mantenernos en contacto contigo, te pedimos que confirmes tu dirección de correo electrónico. Esto es esencial para que puedas recibir notificaciones sobre eventos, ofertas especiales y actualizaciones importantes de PlayTickets. Por favor, haz clic en el siguiente enlace para confirmar tu correo electrónico:</p>
             <a href="'.$confirmationLink.'">Confirmar correo</a>
-        </body>';
+            <img src="cid:logo">';
+        
 
         $mail->send();
         return true;

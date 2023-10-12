@@ -15,9 +15,10 @@ include_once "../models/functions.php";
 </head>
 <body onload="updateDate()">
   <div class="main-content">
-    <?php if (isset($_GET['successfulRegistratio']) && $_GET['successfulRegistratio'] == 1): ?>
-      <script src="../assets/js/successful_register.js"></script>
-    <?php endif; ?>
+  <?php if (isset($_GET['successfulRegistratio']) && $_GET['successfulRegistratio'] == 1): 
+      echo '<script>alert("Registro exitoso! Gracias por registrarte en PlayTickets. Verifica tu correo electrónico para la confirmación.");</script>';
+      echo '<script>window.location.href = "../index.php";</script>'; // Regresar a la página anterior>
+     endif; ?>
     <header>
       <div class="navbar">
         <img src="../assets/img/logo.png" alt="Logo" height="80px">
@@ -59,16 +60,18 @@ include_once "../models/functions.php";
               <input type="tel" name="phone" id="phone" placeholder="Teléfono" required>
               <input type="text" name ="dni" id="dni" placeholder="DNI" required>
             </div>
+            
             <div class="form-row"> 
-              <label for="formatted_date">Fecha de Nacimiento(Día/Mes/Año):</label>
-              <input type="text" class="form-control" id="day" name="day" placeholder="Día" required>
-              <input type="text" class="form-control" id="month" name="month" placeholder="Mes" required>
-              <input type="text" class="form-control" id="year" name="year" placeholder="Año" required>
+              <label for="formatted_date">Fecha de Nacimiento (Día/Mes/Año):</label>
+              <input type="text" class="form-control" id="day" name="day" placeholder="Día" required pattern="^(0?[1-9]|[12][0-9]|3[01])$">
+              <input type="text" class="form-control" id="month" name="month" placeholder="Mes" required pattern="^(0?[1-9]|1[0-2])$">
+              <input type="text" class="form-control" id="year" name="year" placeholder="Año" required pattern="^\d{4}$">
               <!-- Campo oculto para almacenar la fecha en formato "año-mes-día" -->
               <input type="hidden" id="date_birth" name="date_birth" required>
             </div> 
+
             <button type="submit" id="register-button">Continuar</button>
-            <p>¿Ya tienes una cuenta? <a href="login.php">Iniciar sesión</a></p>
+            <p>¿Ya tienes una cuenta? <a href="../index.php">Iniciar sesión</a></p>
           </form>
         </div>
       </div>
@@ -134,6 +137,12 @@ dniInput.addEventListener('input', function() {
     // Obtiene el campo de entrada del número de teléfono
 const phoneInput = document.getElementById('phone');
 
+const firstNameInput = document.getElementById('first_name');
+const lastNameInput = document.getElementById('last_name');
+const streetInput = document.getElementById('street');
+const heightInput = document.getElementById('height');
+
+
 // Agrega un evento de escucha para el evento 'input' en el campo de teléfono
 phoneInput.addEventListener('input', function() {
   // Elimina cualquier carácter que no sea un número del valor del campo de teléfono
@@ -148,8 +157,7 @@ phoneInput.addEventListener('input', function() {
   }
 });
 // Obtiene los campos de entrada de nombre y apellido
-const firstNameInput = document.getElementById('first_name');
-const lastNameInput = document.getElementById('last_name');
+
 
 // Agrega un evento de escucha para el evento 'input' en los campos de nombre y apellido
 firstNameInput.addEventListener('input', function() {
@@ -161,6 +169,16 @@ lastNameInput.addEventListener('input', function() {
   // Elimina cualquier carácter que sea un número del valor del campo de apellido
   lastNameInput.value = lastNameInput.value.replace(/[0-9]/g, '');
   
+});
+
+streetInput.addEventListener('input', function() {
+  // Elimina cualquier carácter que sea un número del valor del campo de apellido
+  streetInput.value = streetInput.value.replace(/[0-9]/g, '');
+  
+});
+heightInput.addEventListener('input', function() {
+  // Elimina cualquier carácter que no sea un número del valor del campo de altura
+  heightInput.value = heightInput.value.replace(/[^0-9]/g, '');
 });
 
   </script>

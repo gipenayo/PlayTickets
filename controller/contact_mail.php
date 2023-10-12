@@ -53,7 +53,11 @@ if(!empty($name) && !empty($email) && !empty($comment) && !empty($affair))
 
 if(Contact_mail($name,$email,$comment,$affair)==true)
 {
-    header("Location: ../view/contact_page?id=1.php");
+
+    echo '<script>alert("Mensaje enviado con exito.");</script>';
+    echo '<script>window.location.href = "../index.php";</script>'; // Regresar a la página anterior
+    //header("Location: ../index.php");
+
     exit;
 }
 

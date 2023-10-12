@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $token = bin2hex(random_bytes(32));
 
         // Almacena el token y la hora de solicitud en la base de datos
-        $stmt = $pdo->prepare('INSERT INTO tokens (token, email, fecha_solicitud) VALUES (?, ?, NOW())');
+        $stmt = $pdo->prepare('INSERT INTO tokens (token, email, date_solicitud) VALUES (?, ?, NOW())');
         $stmt->execute([$token, $email]);
 
     $mail = new PHPMailer;                     
@@ -48,11 +48,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     ' http://localhost:8080/TicketRun/view/new_password.php';
 
 if (!$mail->send()) {
-    echo 'Error al enviar el mensaje: ';
+    echo  '<script>alert("Error al enviar el mensaje");</script>';
+    
+    
 } 
 
 else {
-    echo 'Mensaje enviado correctamente';
+    echo  '<script>alert("Mensaje enviado correctamente");</script>';
+    echo '<script>window.location.href = "../index.php";</script>';
+    //header("Location: ../index.php");
+    
 }
 
 }

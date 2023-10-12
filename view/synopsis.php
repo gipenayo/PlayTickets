@@ -62,7 +62,7 @@ $datetime = getShowDatetime();
                     </select>
                     <br>
                     <label for="cant_seating">Cantidad de asientos (máximo 6): </label>
-                    <input type="number" name="cant_seating" id="cant_seating" min="1" max="6">
+                    <input type="number" name="cant_seating" id="cant_seating" min="1" max="6" required>
                 </div>
         <?php } ?>
         <?php if ($tickets < 100) { ?>

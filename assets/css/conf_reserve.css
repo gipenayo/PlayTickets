@@ -31,7 +31,7 @@ input[type="submit"]:hover {
     text-align: center;
     margin: 0 auto; /* Centrado horizontal */
     margin-bottom: 20px; /* Espaciado inferior entre cuadros de datos */
-    padding-top: 20px;
+    margin-top: 20px;
 }
 
 .show-picture img {
@@ -40,6 +40,7 @@ input[type="submit"]:hover {
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 1rem;    
+    margin-top: 20px;
 }
 
 
@@ -51,12 +52,12 @@ input[type="submit"]:hover {
 
 /* Estilos para el encabezado con título centrado */
 .header {
-    background-color: transparent; /* Elimina el fondo negro */
-    color: #000; /* Cambia el color del texto a negro */
-    text-align: center;
+    font-size: 24px;
+    color: #333;
     padding: 20px;
-    margin-bottom: 20px;
-    font-weight: bold; /* Hace el texto más grueso */
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 .header h2 {

@@ -4,31 +4,29 @@ include_once "../models/functions.php";
 $history = GeneralHistory();
 $get_show = getShow();
 
-if (!isset($_GET["search"]) || empty($_GET["search"]))
-{
-    $get_user= getUser();
+if (!isset($_GET["search"]) || empty($_GET["search"])) {
+    $get_user = getUser();
 } else {
-    $get_user= searchUserGi($_GET["search"]);
+    $search_term = $_GET["search"];
+    $get_user = searchUser($search_term);  // Llamada a la función searchUser con el término de búsqueda
 }
 
 function getUserName($userId, $users) {
     foreach ($users as $user) {
         if ($user->id_user === $userId) {
             return $user->user_name;
-            
         }
     }
-    //return 'Usuario no encontrado';
-    //exit();
+    return '';
 }
+
 function getUserLastName($userId, $users) {
     foreach ($users as $user_lastname) {
         if ($user_lastname->id_user === $userId) {
             return $user_lastname->last_name;
-            
         }
     }
-    //return 'Usuario no encontrado';
+    return '';
 }
 
 function getShowName($showId, $shows) {
@@ -37,7 +35,7 @@ function getShowName($showId, $shows) {
             return $show->show_name;
         }
     }
-    return 'Show no encontrado';
+    return '';
 }
 ?>
 
@@ -57,16 +55,19 @@ function getShowName($showId, $shows) {
 <div class="main-content">
     <header>
         <div class="navbar">
-        <img src="../assets/img/logo.png" alt="Logo" height="80px ">
+            <img src="../assets/img/logo.png" alt="Logo" height="80px ">
             <h1 class="logo">PLAYTICKETS</h1>
             <button class="accordion"><i class="fas fa-bars"></i></button>
             <div class="panel">
                 <ul>
                     <li><a href="../index.php">Cartelera</a></li>
+                    <li><a href="register.php">Registrarse</a></li>
                     <li><a href="add_function.php">Agregar Función</a></li>
+
                     <li><a href="supplier.php">Ver Funciones</a></li>
                     <li><a href="view_users_supplier.php">Usuarios Registrados</a></li>
                     <li><a href="../controller/logout.php">Cerrar Sesion</a></li>
+
                 </ul>
             </div>
         </div>
@@ -74,6 +75,9 @@ function getShowName($showId, $shows) {
     <div class="row">
         <div class="col-12">
             <form action="view_history.php" class="search-form">
+            <div class="logo-container">
+                        <h2 class="title-with-logo">COMPRAS REALIZADAS EN PLAYTICKETS</h2>
+                </div>
                 <div class="form-row align-items-center">
                     <div class="col-6 my-1">
                         <input value="<?php echo isset($_GET["search"]) && !empty($_GET["search"]) ?  $_GET["search"] : "" ?>" name="search" class="form-control" type="text" placeholder="NOMBRE DEL USUARIO">
@@ -95,29 +99,32 @@ function getShowName($showId, $shows) {
                 </thead>
                 <tbody>
                     <?php 
-                    $prevOrder = null; // Variable para almacenar el número de orden anterior
-                    $seatingArr = array(); // Array para almacenar los asientos
+                    $prevOrder = null; //almacena el número de orden anterior
+                    $seatingArr = array(); //  almacena los asientos
 
-                    foreach ($history as $historys) { 
-                        if ($historys->reserve_order !== $prevOrder) {
-                            // Nueva fila para un nuevo número de orden
-                            echo '<tr>';
-                            echo '<td>' . getUserName($historys->id_user, $get_user) . ' ' .getUserLastName($historys->id_user, $get_user). '</td>';
-                            echo '<td>' . $historys->reserve_order . '</td>';
-                            echo '<td>' . getShowName($historys->id_show, $get_show) . '</td>';
-                            echo '<td>' . implode(', ', $seatingArr) . '</td>';
-                            echo '<td>' . $historys->datetime_hour . '</td>';
-                            echo '</tr>';
-                            
-                            // Reiniciar el array de asientos para el nuevo número de orden
-                            $seatingArr = array();
-                           
-                        } else {
-                            // Continuación de la fila para el mismo número de orden
-                            $seatingArr[] = $historys->seating; // Acumular los asientos
+                    foreach ($history as $historys) 
+                    {
+                        // Verifica si el nombre de usuario coincide con el término de búsqueda
+                        $userName = getUserName($historys->id_user, $get_user);
+                        $userLastName = getUserLastName($historys->id_user, $get_user);
+                        $fullName = $userName . ' ' . $userLastName;
+
+                        if (empty($search_term) || stripos($fullName, $search_term) !== false) {
+                            if ($historys->reserve_order !== $prevOrder) {
+                                ?>
+                                <tr>
+                                <td><?php echo $fullName ?></td>
+                                <td><?php echo $historys->reserve_order ?></td>
+                                <td><?php echo getShowName($historys->id_show, $get_show) ?></td>
+                                <td><?php echo implode(', ', $seatingArr) ?></td>
+                                <td><?php echo date('d/m/Y', strtotime($historys->datetime_hour))?></td>
+                                <?php  $seatingArr = array();
+                            } else {
+                                // Continuación de la fila para el mismo número de orden
+                                $seatingArr[] = $historys->seating; // Acumular los asientos
+                            }
+                            $prevOrder = $historys->reserve_order; // Actualizar el número de orden anterior
                         }
-                        $prevOrder = $historys->reserve_order; // Actualizar el número de orden anterior
-                        
                     } 
                     ?>
                 </tbody>

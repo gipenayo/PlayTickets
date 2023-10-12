@@ -20,16 +20,7 @@ session_start();
         <div class="navbar">
             <img src="../assets/img/logo.png" alt="Logo" height="80px ">
             <h1 class="logo">PLAYTICKETS </h1>
-            <button class="accordion"><i class="fas fa-bars"></i></button>
-            <div class="panel">
-
-                <ul>
-                    <li><a href="../index.php">Cartelera</a></li>
-                    <li><a href="login.php">Ingresar</a></li>
-                    <li><a href="register.php">Registrarse</a></li>
-                    <li><a href="contact_page.php">Contacto</a></li>
-                </ul>
-            </div>
+           
         </div>
     </header>
     <br><br>
@@ -45,9 +36,14 @@ session_start();
             $hashed_password1 = password_hash($password1, PASSWORD_DEFAULT);
             $ok =recovery($ver,$hashed_password1);
             if (!$ok) {
-                echo "Error actualizando la contraseña.";
+                echo  '<script>alert("la contraseña no se actualizo");</script>';
+                
+                
+                
             } else {
-                echo "La contraseña se actualizó correctamente.";
+                echo '<script>alert("La contraseña se actualizo correctamente");</script>';
+                echo '<script>window.location.href = "../index.php";</script>';
+                
             }
         } else {
             $mensaje = "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.";

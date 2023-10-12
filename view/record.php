@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/record.css">
+    
     </head>
     <body>
         <div class="main-content">

@@ -22,17 +22,18 @@ if (!isset($_GET["search"]) || empty($_GET["search"]))
 </head>
 <body>
 <div class="main-content">
-    <header>
+<header>
         <div class="navbar">
-            <img src="../assets/img/logo.png" alt="Logo" height="80px ">
-            <h1 class="logo"> PLAYTICKETS</h1>
+        <img src="../assets/img/logo.png" alt="Logo" height="80px ">
+            <h1 class="logo">PLAYTICKETS</h1>
             <button class="accordion"><i class="fas fa-bars"></i></button>
             <div class="panel">
                 <ul>
                     <li><a href="../index.php">Cartelera</a></li>
-                    <li><a href="register.php">Registrarse</a></li>
                     <li><a href="add_function.php">Agregar Función</a></li>
-                    <li><a href="supplier.php">Funciones Disponibles</a></li>
+                    <li><a href="register.php">Ver Funciones</a></li>
+                    <li><a href="contact_page.php">Historial de Compras</a></li>
+                    
                 </ul>
             </div>
         </div>

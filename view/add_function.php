@@ -18,21 +18,22 @@ $categorys= getCategory();
 </head>
 <body>
     <div class="main-content">
-        <header>
-            <div class="navbar">
-                <img src="../assets/img/logo.png" alt="Logo" height="80px ">
-                <h1 class="logo">PLAYTICKETS</h1>
-                <button class="accordion"><i class="fas fa-bars"></i></button>
-                <div class="panel">
-                    <ul>
-                        <li><a href="../index.php">Cartelera</a></li>
-                        <li><a href="login.php">Ingresar</a></li>
-                        <li><a href="register.php">Registrarse</a></li>
-                        <li><a href="contact_page.php">Contacto</a></li>
-                    </ul>
-                </div>
+    <header>
+        <div class="navbar">
+        <img src="../assets/img/logo.png" alt="Logo" height="80px ">
+            <h1 class="logo">PLAYTICKETS</h1>
+            <button class="accordion"><i class="fas fa-bars"></i></button>
+            <div class="panel">
+                <ul>
+                    <li><a href="../index.php">Cartelera</a></li>
+                    <li><a href="add_function.php">Ver Funciones</a></li>
+                    <li><a href="register.php">Usuarios registrados</a></li>
+                    <li><a href="contact_page.php">Historial de Compras</a></li>
+                    
+                </ul>
             </div>
-        </header>
+        </div>
+    </header>
         <div clas="register-container">
             <div class="register-box">
                 <form action="../controller/save_function.php" method="post" enctype="multipart/form-data">

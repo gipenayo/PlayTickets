@@ -37,6 +37,7 @@ function getCategory()
     $sentence = $bd->query("SELECT id_category , category FROM shows_categorys");
     return $sentence->fetchAll();
 }
+
 function addSeating($asientosSeleccionados, $idese,$time)
 {
     $bd = database();
@@ -191,11 +192,17 @@ function updateUser($user_name, $last_name, $email, $dni, $phone, $date_birth, $
 function updateShow($show_name, $show_description, $id_gender, $id_category, $picture, $id_show)
 {
     $show_name = ucfirst(strtoupper($show_name));//mayuscula en la primera letra de cada palabra
-    $show_description=ucfirst(strtolower($show_description));//primera letra en mayuscula y lo demas en minuscula
+    $show_description = ucfirst(strtolower($show_description)); // Primera letra en mayúscula y lo demás en minúscula
+    
+    // Asegúrate de que $id_category sea un número entero
+    $id_category = intval($id_category);
+    
     $bd = database();
     $sentence = $bd->prepare("UPDATE shows SET show_name = ?, show_description = ?, id_gender = ?, id_category = ?, picture = ? WHERE id_show = ?");
+    
     return $sentence->execute([$show_name, $show_description, $id_gender, $id_category, $picture, $id_show]);
 }
+
 
 function updateShowDatetime($date_show, $time_show , $id_datetime)
 {
@@ -324,7 +331,6 @@ function getAmount($id_show, $datetime_hour)
 function ReservationHistory($user)
 {
     $bd = database();
-
     $query = "SELECT *
               FROM tickets
               WHERE id_user = :user";
@@ -335,72 +341,86 @@ function ReservationHistory($user)
 
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
-    function saveTicket($datetime_hour, $id_show,$seating,$ticket_order,$user)
-    {
-        $bd=database();
-        $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, reserve_order, id_user) VALUES (?,?,?,?,?)");
-        return $sentence->execute([$datetime_hour, $id_show, $seating, $ticket_order, $user]);
-    }
+function saveTicket($datetime_hour, $id_show,$seating,$ticket_order,$user)
+{
+    $bd=database();
+    $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, reserve_order, id_user) VALUES (?,?,?,?,?)");
+    return $sentence->execute([$datetime_hour, $id_show, $seating, $ticket_order, $user]);
+}
+function getMaxOrder()
+{
+    $bd = database();  
+    $sentence = $bd->prepare("SELECT MAX(reserve_order) as max_order from tickets");
+    $sentence->execute();  
+    $result = $sentence->fetch();  
+    return $result->max_order;
+}
 
-    function getMaxOrder()
-    {
-        $bd = database();  
-        $sentence = $bd->prepare("SELECT MAX(reserve_order) as max_order from tickets");
-        $sentence->execute();  
-        $result = $sentence->fetch();  
-        return $result->max_order;
-    }
+function saveReserve($id_order,$conf,$id_user)
+{
+    $bd=database();
+    $sentence=$bd->prepare("INSERT INTO reserves(reserve_order,confirmation,id_user) VALUES (?,?,?)");
+    return $sentence->execute([$id_order,$conf,$id_user]);
+}
 
-    function saveReserve($id_order,$conf,$id_user)
-    {
-        $bd=database();
-        $sentence=$bd->prepare("INSERT INTO reserves(reserve_order,confirmation,id_user) VALUES (?,?,?)");
-        return $sentence->execute([$id_order,$conf,$id_user]);
-    }
-
-    function getStateOrder($id_order)
-    {
-        $bd = database();
-        $sentence = $bd->prepare("SELECT confirmation FROM reserves WHERE reserve_order = ?");
-        $sentence->execute([$id_order]);
+function getStateOrder($id_order)
+{
+    $bd = database();
+    $sentence = $bd->prepare("SELECT confirmation FROM reserves WHERE reserve_order = ?");
+    $sentence->execute([$id_order]);
+    $results = $sentence->fetchAll(PDO::FETCH_ASSOC);
     
-        $results = $sentence->fetchAll(PDO::FETCH_ASSOC);
-    
-        if (!empty($results)) {
-            $firstRow = $results[0];
-            return $firstRow['confirmation'];
-             }
+    if (!empty($results)) {
+        $firstRow = $results[0];
+        return $firstRow['confirmation'];
     }
+}
 
-    function getTicketOrder($id_order)
-    {
-        $bd = database();
-        $sentence = $bd->prepare("SELECT t.datetime_hour, t.id_show, t.seating, s.show_name
+function getTicketOrder($id_order)
+{
+    $bd = database();
+    $sentence = $bd->prepare("SELECT t.datetime_hour, t.id_show, t.seating, s.show_name
                              FROM tickets t
                              INNER JOIN shows s ON t.id_show = s.id_show
                              WHERE t.reserve_order = :id_order");
-        $sentence->bindParam(':id_order', $id_order, PDO::PARAM_INT);
-
-        $sentence->execute();
-        $tickets = $sentence->fetchAll(PDO::FETCH_ASSOC);
-
-        return $tickets;
-    }
-
-    function confirmReservation($id_order)
-    {
-        $bd=database();
-        $sentence = $bd->prepare("UPDATE reserves SET confirmation = 1 WHERE reserve_order = ?");
-        $result = $sentence->execute([$id_order]);
-        return $result;
-    }
-    function GeneralHistory()
-    {
-        $bd = database();
-        $sentence = $bd->query("SELECT * FROM tickets");
-        return $sentence->fetchAll();
-
-    }
+    $sentence->bindParam(':id_order', $id_order, PDO::PARAM_INT);
+    $sentence->execute();
+    $tickets = $sentence->fetchAll(PDO::FETCH_ASSOC);
+    return $tickets;
+}
+function confirmReservation($id_order)
+{
+    $bd=database();
+    $sentence = $bd->prepare("UPDATE reserves SET confirmation = 1 WHERE reserve_order = ?");
+    $result = $sentence->execute([$id_order]);
+    return $result;
+}
+function GeneralHistory()
+{
+    $bd = database();
+    $sentence = $bd->query("SELECT * FROM tickets");
+    return $sentence->fetchAll();
+}
     
-
+function getCurrentPicture($id_show) {
+    try {
+        $bd =database();
+        $query = "SELECT picture FROM shows WHERE id_show = :showId";
+        $stmt = $bd->prepare($query);
+        $stmt->bindParam(':showId', $id_show);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            return $result['picture'];
+        } else {
+            // En caso de que no se encuentre un registro con el showId proporcionado
+            return null;
+        }
+    } catch (PDOException $e) {
+        // Manejo de errores
+        echo "Error: " . $e->getMessage();
+        return null;
+    }
+}
+    
 ?>

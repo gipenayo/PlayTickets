@@ -27,7 +27,7 @@ $_SESSION["time"];
     <link rel="stylesheet" href="../assets/css/barnavfooter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Icono de menu-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><!--ojo-->
-
+    <title>PlayTickets</title>
 </head>
 <body>
     <div class="main-content">

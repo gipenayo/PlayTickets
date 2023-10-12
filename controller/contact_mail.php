@@ -53,7 +53,7 @@ if(!empty($name) && !empty($email) && !empty($comment) && !empty($affair))
 
 if(Contact_mail($name,$email,$comment,$affair)==true)
 {
-    header("Location: ../view/contact_page.php");
+    header("Location: ../view/contact_page?id=1.php");
     exit;
 }
 

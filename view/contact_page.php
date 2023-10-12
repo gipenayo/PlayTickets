@@ -1,3 +1,6 @@
+<?php
+$id=$_GET["id"];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,6 +91,15 @@
         accordion.addEventListener("click", function() {panel.style.display = panel.style.display === "block" ? "none" : "block";
     });
     });
+    </script>
+       <script src="../assets/js/barnavfooter.js"></script>
+   <!-- Script para mostrar una alerta -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');    
+        if (error === '1') {
+            alert('Usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.');
+        }
     </script>
 </body>
 </html>

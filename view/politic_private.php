@@ -23,8 +23,7 @@
                 <ul>
                     <li><a href="../index.php">Cartelera</a></li>
                     <li><a href="register.php">Registrarse</a></li>
-                    <li><a href="login.php">Ingresar</a></li>
-                    <li><a href="../view/contact_page.php">Contacto</a></li>
+                    <li><a href="contact_page.php">Contacto</a></li>
 
                 </ul>
             </div>

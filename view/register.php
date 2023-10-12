@@ -26,8 +26,7 @@ include_once "../models/functions.php";
         <div class="panel">
           <ul>
             <li><a href="../index.php">Cartelera</a></li>
-            <li><a href="login.php">Iniciar Seción</a></li>
-            <li><a href="../view/contact_page.php">Contacto</a></li>
+            <li><a href="contact_page.php">Contacto</a></li>
           </ul>
         </div>
       </div>
@@ -113,6 +112,57 @@ include_once "../models/functions.php";
       // Asigna el valor al campo de entrada de fecha y hora
       datetimeShowInput.value = datetimeValue;
     }
+  </script>
+  <script>
+    // Obtiene el campo de entrada del DNI
+const dniInput = document.getElementById('dni');
+
+// Agrega un evento de escucha para el evento 'input' en el campo DNI
+dniInput.addEventListener('input', function() {
+  // Elimina cualquier carácter que no sea un número del valor del campo DNI
+  dniInput.value = dniInput.value.replace(/[^0-9]/g, '');
+
+  // Limita la longitud del campo a 8 dígitos
+  if (dniInput.value.length > 8) {
+    dniInput.value = dniInput.value.slice(0, 8);
+    alert("El DNI no puede contener más de 8 dígitos.");
+  }
+});
+
+  </script>
+  <script>
+    // Obtiene el campo de entrada del número de teléfono
+const phoneInput = document.getElementById('phone');
+
+// Agrega un evento de escucha para el evento 'input' en el campo de teléfono
+phoneInput.addEventListener('input', function() {
+  // Elimina cualquier carácter que no sea un número del valor del campo de teléfono
+  phoneInput.value = phoneInput.value.replace(/[^0-9]/g, '');
+
+  // Limita la longitud del campo a 10 dígitos
+  if (phoneInput.value.length > 10) {
+    phoneInput.value = phoneInput.value.slice(0, 10);
+
+    // Muestra una alerta cuando se ingresan más de 10 dígitos
+    alert("El número de teléfono no puede contener más de 10 dígitos.");
+  }
+});
+// Obtiene los campos de entrada de nombre y apellido
+const firstNameInput = document.getElementById('first_name');
+const lastNameInput = document.getElementById('last_name');
+
+// Agrega un evento de escucha para el evento 'input' en los campos de nombre y apellido
+firstNameInput.addEventListener('input', function() {
+  // Elimina cualquier carácter que sea un número del valor del campo de nombre
+  firstNameInput.value = firstNameInput.value.replace(/[0-9]/g, '');
+});
+
+lastNameInput.addEventListener('input', function() {
+  // Elimina cualquier carácter que sea un número del valor del campo de apellido
+  lastNameInput.value = lastNameInput.value.replace(/[0-9]/g, '');
+  
+});
+
   </script>
 </body>
 </html>

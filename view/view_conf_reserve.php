@@ -1,9 +1,8 @@
 <?php
 session_start();
 include_once "../models/functions.php";
-$show = getShowForId($_GET["id_show"]);
+$show = getShowForId($_SESSION["id"]);
 $_SESSION["id"];
-$_SESSION["name"];
 $_SESSION["name"];
 $_SESSION["time"];
 $_SESSION["seating"];
@@ -11,6 +10,7 @@ $_SESSION["asiento"] = $_POST["asientos"];
 $user_get=getUser();
 $ticket_order=getMaxOrder();
 $date_show = getShowDatetimeForId($_SESSION["time"]);
+
 
 if ($date_show) {
     // Convertir la fecha de "yyyy-mm-dd" a "dd/mm/aaaa"
@@ -68,13 +68,16 @@ else
     </div>
 </header>
 
-<div class="header">
+<div class="header header-sub">
     <h2>DATOS A CONFIRMAR</h2>
 </div>
 
 <div class="content">
-    <!-- Cuadro para mostrar datos del espectaculo, fecha y asientos -->
+    <!-- Cuadro para mostrar datos del espectáculo, fecha y asientos -->
     <div class="data-frame">
+        <div class="show-picture">
+        <img src="data:image/jpeg;base64,<?php echo base64_encode($show->picture); ?>" alt="Imagen del espectáculo">
+    </div>
         <p class="data-text">Espectáculo: <?php echo $_SESSION["show"]; ?></p>
         <p class="data-text">Fecha: <?php echo $formatted_date_show; ?></p>
         <p class="data-text">
@@ -88,7 +91,7 @@ else
         <p class="data-text">Orden de compra: <?php echo $_SESSION["order"]; ?></p>
     </div>
 
-    <!-- Boton para confirmar la entrada dentro del contenedor de datos -->
+    <!-- Botón para confirmar la entrada dentro del contenedor de datos -->
     <div class="button-container">
         <form action="../controller/save_ticket.php" method="POST">
             <input type="submit" value="Confirmar Entrada"><br><br>

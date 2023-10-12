@@ -63,7 +63,11 @@ function getShowName($showId, $shows) {
                     <li><a href="../index.php">Cartelera</a></li>
                     <li><a href="register.php">Registrarse</a></li>
                     <li><a href="add_function.php">Agregar Función</a></li>
-                    <li><a href="supplier.php">Funciones Disponibles</a></li>
+
+                    <li><a href="supplier.php">Ver Funciones</a></li>
+                    <li><a href="view_users_supplier.php">Usuarios Registrados</a></li>
+                    <li><a href="../controller/logout.php">Cerrar Sesion</a></li>
+
                 </ul>
             </div>
         </div>

@@ -20,8 +20,6 @@ foreach ($categorys as $categorys2) {
     }
 }
 
-$option_category = $_POST["id_category"];
-
 // Verifica si se cargó una nueva imagen
 if (isset($_FILES['picture']) && $_FILES['picture']['error'] === UPLOAD_ERR_OK) {
     $binary_picture = file_get_contents($_FILES['picture']['tmp_name']); // Obtiene los datos binarios de la nueva imagen

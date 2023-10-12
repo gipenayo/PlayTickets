@@ -29,6 +29,7 @@ $show = getShowForId($_GET["id_show"]);
                         <li><a href="register.php">Registrarse</a></li>
                         <li><a href="add_function.php">Agregar Función</a></li>
                         <li><a href="supplier.php">Funciones Disponibles</a></li>
+                        <li><a href="../controller/logout.php">Cerrar Sesión</a></li>
                     </ul>
                 </div>
             </div>

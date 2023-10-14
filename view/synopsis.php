@@ -51,17 +51,21 @@ $datetime = getShowDatetime();
                 <div class="form-container">
                     <label for="datetime_show">Fecha y hora disponibles:</label>
                     <select name="datetime_show" id="datetime_show">
-                        <?php  foreach ($datetime as $datetime_show) { 
-                            if ($show->id_show === $datetime_show->id_show && $datetime_show->datetime_state == 1) { ?>
-                            <option value="<?php echo $datetime_show->id_datetime; ?>">
-                            <?php echo date('d/m/Y', strtotime($datetime_show->date_show)) . ' - ' . $datetime_show->time_show; ?>
-                            </option>
-                        <?php } 
-                        } ?>
-                         <?php $_SESSION["time"]=$datetime_show->id_datetime;
-                                $_SESSION["data"]=$datetime_show->time_show;
-                                $_SESSION["day"]=$datetime_show->date_show;  ?>
-                    </select>
+    <?php foreach ($datetime as $datetime_show) {
+        if ($show->id_show === $datetime_show->id_show && $datetime_show->datetime_state == 1) { ?>
+            <option value="<?php echo $datetime_show->id_datetime; ?>">
+                <?php echo date('d/m/Y', strtotime($datetime_show->date_show)) . ' - ' . $datetime_show->time_show; ?>
+            </option>
+            <?php
+            // Move the SESSION assignment inside the loop
+            $_SESSION["time"] = $datetime_show->id_datetime;
+           
+            $_SESSION["data"] = $datetime_show->time_show;
+            $_SESSION["day"] = $datetime_show->date_show;
+        }
+    } ?>
+</select>
+
                     <br>
                     <label for="cant_seating">Cantidad de asientos (máximo 6): </label>
                     <input type="number" name="cant_seating" id="cant_seating" min="1" max="6" required>

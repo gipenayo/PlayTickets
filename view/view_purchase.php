@@ -10,8 +10,7 @@ $_SESSION["time"];
 $_SESSION["seating"]=$_SESSION["seating"]+1;
 $time=$_SESSION["time"];
 $_SESSION["id_user"];
-/*var_dump($_SESSION["time"]);
-exit;*/
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

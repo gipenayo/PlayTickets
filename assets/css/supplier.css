@@ -91,6 +91,12 @@
   background-color: #a71d2a;
   border-color: #a71d2a;
 }
+.qrbut
+{
+  background-color: #117a8b;
+  border-color: #117a8b;
+  align-content: center;
+}
 
 /* Estilos para el formulario de búsqueda */
 

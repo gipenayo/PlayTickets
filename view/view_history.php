@@ -3,6 +3,8 @@ include_once "../models/functions.php";
 
 $history = GeneralHistory();
 $get_show = getShow();
+$date_show = getShowDatetimeForId($_SESSION["time"]);
+
 
 if (!isset($_GET["search"]) || empty($_GET["search"])) {
     $get_user = getUser();
@@ -63,11 +65,7 @@ function getShowName($showId, $shows) {
                     <li><a href="../index.php">Cartelera</a></li>
                     <li><a href="register.php">Registrarse</a></li>
                     <li><a href="add_function.php">Agregar Función</a></li>
-
-                    <li><a href="supplier.php">Ver Funciones</a></li>
-                    <li><a href="view_users_supplier.php">Usuarios Registrados</a></li>
-                    <li><a href="../controller/logout.php">Cerrar Sesion</a></li>
-
+                    <li><a href="supplier.php">Funciones Disponibles</a></li>
                 </ul>
             </div>
         </div>
@@ -76,16 +74,16 @@ function getShowName($showId, $shows) {
         <div class="col-12">
             <form action="view_history.php" class="search-form">
             <div class="logo-container">
-                        <h2 class="title-with-logo">COMPRAS REALIZADAS EN PLAYTICKETS</h2>
+                <h2 class="title-with-logo">COMPRAS REALIZADAS EN PLAYTICKETS</h2>
+            </div>
+            <div class="form-row align-items-center">
+                <div class="col-6 my-1">
+                    <input value="<?php echo isset($_GET["search"]) && !empty($_GET["search"]) ?  $_GET["search"] : "" ?>" name="search" class="form-control" type="text" placeholder="NOMBRE DEL USUARIO">
                 </div>
-                <div class="form-row align-items-center">
-                    <div class="col-6 my-1">
-                        <input value="<?php echo isset($_GET["search"]) && !empty($_GET["search"]) ?  $_GET["search"] : "" ?>" name="search" class="form-control" type="text" placeholder="NOMBRE DEL USUARIO">
-                    </div>
-                    <div class="col-auto my-1">
-                        <button type="submit" class="btn btn-primary">BUSCAR</button>
-                    </div>
+                <div class="col-auto my-1">
+                    <button type="submit" class="btn btn-primary">BUSCAR</button>
                 </div>
+            </div>
             </form>
             <table class="table">
                 <thead>
@@ -98,35 +96,41 @@ function getShowName($showId, $shows) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
-                    $prevOrder = null; //almacena el número de orden anterior
-                    $seatingArr = array(); //  almacena los asientos
+                <?php 
+$prevOrder = null; // Almacena el número de orden anterior
 
-                    foreach ($history as $historys) 
-                    {
-                        // Verifica si el nombre de usuario coincide con el término de búsqueda
-                        $userName = getUserName($historys->id_user, $get_user);
-                        $userLastName = getUserLastName($historys->id_user, $get_user);
-                        $fullName = $userName . ' ' . $userLastName;
+foreach ($history as $historys) 
+{
+    // Verifica si el nombre de usuario coincide con el término de búsqueda
+    $userName = getUserName($historys->id_user, $get_user);
+    $userLastName = getUserLastName($historys->id_user, $get_user);
+    $fullName = $userName . ' ' . $userLastName;
 
-                        if (empty($search_term) || stripos($fullName, $search_term) !== false) {
-                            if ($historys->reserve_order !== $prevOrder) {
-                                ?>
-                                <tr>
-                                <td><?php echo $fullName ?></td>
-                                <td><?php echo $historys->reserve_order ?></td>
-                                <td><?php echo getShowName($historys->id_show, $get_show) ?></td>
-                                <td><?php echo implode(', ', $seatingArr) ?></td>
-                                <td><?php echo date('d/m/Y', strtotime($historys->datetime_hour))?></td>
-                                <?php  $seatingArr = array();
-                            } else {
-                                // Continuación de la fila para el mismo número de orden
-                                $seatingArr[] = $historys->seating; // Acumular los asientos
-                            }
-                            $prevOrder = $historys->reserve_order; // Actualizar el número de orden anterior
-                        }
-                    } 
-                    ?>
+    if (empty($search_term) || stripos($fullName, $search_term) !== false) {
+        if ($historys->reserve_order !== $prevOrder) {
+            ?>
+            <tr>
+                <td><?php echo $fullName ?></td>
+                <td><?php echo $historys->reserve_order ?></td>
+                <td><?php echo getShowName($historys->id_show, $get_show) ?></td>
+                <td><?php echo implode(', ', array_column(array_filter($history, function($item) use ($historys) {
+                    return $item->reserve_order === $historys->reserve_order;
+                }), 'seating')); ?></td>
+                <td><?php echo date('d/m/Y H:i', strtotime(getShowDatetimeForId($_SESSION["time"]))); ?></td>
+            </tr>
+            <?php  
+        }
+
+        $prevOrder = $historys->reserve_order; // Actualizar el número de orden anterior
+    }
+} 
+?>
+
+
+
+
+                
+
                 </tbody>
             </table>
         </div>

@@ -7,8 +7,10 @@ $_SESSION["id"] = $id_show;
 $name = $show->show_name;
 $_SESSION["show"] = $name;
 $datetime = getShowDatetime($_GET["id_datetime"]);
-$id_date = isset($_GET["id_datetime"]) ? $_GET["id_datetime"] : null;
-$time=$_SESSION["time"];
+// Retrieve the selected id_datetime from POST
+$id_date = isset($_POST["datetime_show"]) ? $_POST["datetime_show"] : null;
+$_SESSION["time"] = $id_date;  // Store the selected id_datetime in the session
+
 $_SESSION["seating"] = $_POST["cant_seating"];
 
 

@@ -5,6 +5,7 @@ $show = getShowForId($_SESSION["id"]);
 $_SESSION["id"];
 $_SESSION["name"];
 $_SESSION["time"];
+
 $_SESSION["seating"];
 $_SESSION["asiento"] = $_POST["asientos"];
 $user_get=getUser();

@@ -1,8 +1,8 @@
 <?php
 session_start();
 include_once "../models/functions.php";
-
-if (isset($_SESSION["id"]) && isset($_SESSION["id_user"]) && isset($_SESSION["show"]) && isset($_SESSION["asiento"]) && isset($_SESSION["time"]) && isset($_SESSION["order"]))
+$datetime_hour=$_SESSION["time"];
+if (isset($_SESSION["id"]) && isset($_SESSION["id_user"]) && isset($_SESSION["show"]) && isset($_SESSION["asiento"]) && isset($datetime_hour) && isset($_SESSION["order"]))
  {
     $asientosString = $_SESSION["asiento"];
     $asientosArray = explode(',', $asientosString);
@@ -12,7 +12,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["id_user"]) && isset($_SESSION["sh
         
         if (!empty($seating)) {
 
-            saveTicket($_SESSION["time"], $_SESSION["id"], $seating,$_SESSION["order"],$_SESSION["id_user"]);
+            saveTicket($datetime_hour, $_SESSION["id"], $seating,$_SESSION["order"],$_SESSION["id_user"]);
             addSeating($seating,$_SESSION["id"],$_SESSION["time"]);
             
         } else {

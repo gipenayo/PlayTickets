@@ -55,7 +55,7 @@ $categorys=getCategory();
         <!-- fin barra de navegacion-->
         
         <!-- inicio carrousel-->
-        <div id="carouselExampleIndicators" class="carousel slide" data-interval="3000">
+        <div id="carouselExampleIndicators" class="carousel slide" data-interval="2000">
      
             <div class="carousel-inner">
                 <div class="carousel-item active">

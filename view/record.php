@@ -52,6 +52,7 @@ if (empty($reservasArray)) {
     echo '<th>Fecha y Hora </th>';
     echo '<th>Show</th>';
     echo '<th>Código QR</th>';
+    echo '<th>Código alternativo</th>';
     echo '<th>Asientos</th>';
     echo '</tr></thead>';
     echo '<tbody>';

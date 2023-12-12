@@ -417,5 +417,6 @@ function getCurrentPicture($id_show) {
         return null;
     }
 }
-    
+
+
 ?>

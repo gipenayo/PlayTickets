@@ -336,11 +336,11 @@ function ReservationHistory($user)
 
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
-function saveTicket($datetime_hour, $id_show,$seating,$ticket_order,$user)
+function saveTicket($datetime_hour, $id_show,$seating,$ticket_order,$user,$uniqueNumber)
 {
     $bd=database();
-    $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, reserve_order, id_user) VALUES (?,?,?,?,?)");
-    return $sentence->execute([$datetime_hour, $id_show, $seating, $ticket_order, $user]);
+    $sentence=$bd->prepare("INSERT INTO tickets(datetime_hour , id_show , seating, reserve_order, id_user, unique_code) VALUES (?,?,?,?,?,?)");
+    return $sentence->execute([$datetime_hour, $id_show, $seating, $ticket_order, $user,$uniqueNumber]);
 }
 function getMaxOrder()
 {
@@ -417,6 +417,14 @@ function getCurrentPicture($id_show) {
         return null;
     }
 }
+// functions.php
+
+function saveUniqueCode($id_order, $uniqueNumber) {
+    $bd = database();
+    $sentence = $bd->prepare("UPDATE tickets SET unique_code = ? WHERE order_reserve = ?");
+    return $sentence->execute([$uniqueNumber, $id_order]);
+}
+
 
 
 ?>

@@ -94,6 +94,7 @@ if (empty($reservasArray)) {
                     echo $show->show_name; // Mostrar el nombre del espectáculo
                 } } 
             echo '</td>';
+            
             echo '<td>';
             if($selectedOrder<$reservasArray) //QR
             {
@@ -101,6 +102,9 @@ if (empty($reservasArray)) {
             echo '<input type="hidden" name="reserve_order" value="' . $reservation['reserve_order'] . '">';
             echo '<input type="submit" value="Ver QR">';
             echo '</form>';
+            echo '<td>';
+            echo '<span>'. $reservation['unique_code'] . '</span>';
+            echo '</td>';
             $selectedOrder++;
             }
             echo '</td>';
@@ -109,7 +113,9 @@ if (empty($reservasArray)) {
         }
         // Si el ID de la reserva es el mismo, agregar los asientos al array
         $seatingArr[] = $reservation['seating'];
+       
     }
+
     // Muestra ascientos de la nueva reserva
     if (!empty($seatingArr)) {
         echo '<td>' . implode(', ', $seatingArr) . '</td>';

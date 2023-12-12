@@ -8,12 +8,12 @@ $_SESSION["id_user"];
 exit;*/
 $_SESSION['order'];
 
-    // Genera un número único para esta reserva y lo almacena en la sesión
-    $uniqueNumber = mt_rand(100000, 999999); // Puedes ajustar el rango según tus necesidades
+if (!isset($_SESSION['unique_code'])) {
+    $uniqueNumber = mt_rand(100000, 999999).time();
     $_SESSION['order'] = $_POST["reserve_order"];
-    $_SESSION['unique_number'] = $uniqueNumber;
-    
-    ?>
+    $_SESSION['unique_code'] = $uniqueNumber;
+}
+?>
 
 
 <!DOCTYPE html>
@@ -60,7 +60,7 @@ $_SESSION['order'];
 <div class="qr-container">
     <h1>Deberá enseñar este QR en el mostrador.</h1>
     <img src="../controller/generate_qr.php" id="qr">
-    <p>Código de acceso único: <?php echo isset($_SESSION['unique_number']) ? $_SESSION['unique_number'] : 'N/A'; ?></p>
+    <p>Código de acceso único: <?php echo isset($_SESSION['unique_code']) ? $_SESSION['unique_code'] : 'N/A'; ?></p>
     <button onclick="downQR()" >Descargar QR</button>
     <br><br>
 </div>

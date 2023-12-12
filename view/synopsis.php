@@ -116,7 +116,7 @@ $whole= 100;
                 echo "Error al obtener los datos de asientos ocupados desde la base de datos.";
             }
             ?>
-        <?php } ?>
+        <?php }?>
     </main>
 </div>
 <footer>
